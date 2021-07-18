@@ -1,0 +1,8 @@
+.idea
+/vendor
+# ignore generated files
+/frontend/web/index.php
+/frontend/web/uploads
+/frontend/web/robots.txt
+/backend/web/index.php
+/backend/web/robots.txt
