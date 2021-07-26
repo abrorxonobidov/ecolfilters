@@ -53,7 +53,21 @@ return [
         'formatter' => [
             'class' => 'yii\i18n\Formatter',
             'nullDisplay' => '-'
-        ]
+        ],
+        /*'view' => [
+            'theme' => [
+                'pathMap' => [
+                    '@backend/views' => '@vendor/dmstr/yii2-adminlte-asset/example-views/yiisoft/yii2-app'
+                ],
+            ],
+        ],*/
+        'assetManager' => [
+            'bundles' => [
+                'dmstr\web\AdminLteAsset' => [
+                    'skin' => 'skin-blue'
+                ]
+            ]
+        ],
     ],
     'params' => $params,
 ];

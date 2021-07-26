@@ -1,15 +1,11 @@
 <?php
-
+use backend\assets\AppAsset;
 use yii\helpers\Html;
 
-/**
- * @var $this yii\web\View
- * @var $content string
- */
+/* @var $this \yii\web\View */
+/* @var $content string */
 
-backend\assets\AppAsset::register($this);
 dmstr\web\AdminLteAsset::register($this);
-
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -21,19 +17,11 @@ dmstr\web\AdminLteAsset::register($this);
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
 </head>
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="login-page">
+
 <?php $this->beginBody() ?>
-<div class="wrapper">
 
-    <?= $this->render('header.php') ?>
-
-    <?= $this->render('left.php') ?>
-
-    <?= $this->render('content.php', [
-        'content' => $content
-    ]) ?>
-
-</div>
+    <?= $content ?>
 
 <?php $this->endBody() ?>
 </body>
