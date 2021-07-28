@@ -41,7 +41,7 @@ return [
             'class' => codemix\localeurls\UrlManager::class,
             'enableDefaultLanguageUrlCode' => true,
             'enableLanguagePersistence' => false,
-            'languages' => ['uz', 'ru'/*, 'en'*/],
+            'languages' => ['uz', 'oz', 'ru', 'en'],
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'enableLanguageDetection' => false,
