@@ -11,6 +11,7 @@ use Yii;
  * @property int $product_category_id
  * @property int $place_id
  * @property string|null $gallery
+ * @property string $preview_image
  * @property string $title_uz
  * @property string|null $title_oz
  * @property string|null $title_ru
@@ -62,7 +63,7 @@ class Product extends BaseActiveRecord
             [['product_category_id', 'place_id', 'enabled', 'creator_id', 'modifier_id'], 'integer'],
             [['preview_uz', 'preview_oz', 'preview_ru', 'preview_en', 'description_uz', 'description_oz', 'description_ru', 'description_en', 'technic_uz', 'technic_oz', 'technic_ru', 'technic_en'], 'string'],
             [['created_at', 'updated_at'], 'safe'],
-            [['gallery', 'title_uz', 'title_oz', 'title_ru', 'title_en', 'price', 'video_uz', 'video_oz', 'video_ru', 'video_en'], 'string', 'max' => 255],
+            [['gallery', 'preview_image', 'title_uz', 'title_oz', 'title_ru', 'title_en', 'price', 'video_uz', 'video_oz', 'video_ru', 'video_en'], 'string', 'max' => 255],
             [['place_id'], 'exist', 'skipOnError' => true, 'targetClass' => Place::class, 'targetAttribute' => ['place_id' => 'id']],
             [['product_category_id'], 'exist', 'skipOnError' => true, 'targetClass' => ProductCategory::class, 'targetAttribute' => ['product_category_id' => 'id']],
         ];
@@ -77,6 +78,7 @@ class Product extends BaseActiveRecord
             'id' => Yii::t('main', 'ID'),
             'product_category_id' => Yii::t('main', 'Product Category ID'),
             'place_id' => Yii::t('main', 'Place ID'),
+            'preview_image' => Yii::t('main', 'Preview image'),
             'gallery' => Yii::t('main', 'Gallery'),
             'title_uz' => Yii::t('main', 'Title Uz'),
             'title_oz' => Yii::t('main', 'Title Oz'),

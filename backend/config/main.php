@@ -9,7 +9,7 @@ $params = array_merge(
 return [
     'id' => 'ecofilters-backend',
     'name' => 'Ecofilters | admin',
-    'language' => 'uz',
+    'language' => 'oz',
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],

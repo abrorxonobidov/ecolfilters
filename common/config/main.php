@@ -20,6 +20,14 @@ return [
                         'main' => 'main.php',
                         'main/error' => 'error.php'
                     ]
+                ],
+                'yii' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'basePath' => '@common/messages',
+                    'sourceLanguage' => 'en',
+                    'fileMap' => [
+                        'yii' => 'yii.php',
+                    ]
                 ]
             ]
         ]
