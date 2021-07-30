@@ -137,3 +137,40 @@ a.desc:after {
 .nav > li > form > button.logout:focus {
     outline: none;
 }
+
+
+.breadcrumbs-item .breadcrumb {
+    background: none;
+    margin: 0;
+    padding: 0;
+}
+
+.breadcrumbs-item .breadcrumb li a {
+    color: #fff;
+    font-weight: bold;
+    padding: 15px 16px;
+    display: block;
+}
+
+.breadcrumbs-item .breadcrumb li a:hover {
+    background: rgba(0, 0, 0, 0.1);
+    color: #f6f6f6;
+}
+
+.breadcrumbs-item .breadcrumb li.active {
+    color: #ccc;
+}
+
+.breadcrumb > li + li:before {
+    content: none;
+}
+
+.breadcrumb > li + li > a:before {
+    padding: 0 10px 0 0;
+    content: "/\00a0";
+    margin-left: -15px;
+}
+.breadcrumb > li + li:last-child:before {
+    padding: 0 15px 0 0;
+    content: "/\00a0";
+}

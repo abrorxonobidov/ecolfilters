@@ -13,6 +13,7 @@ use common\helpers\DebugHelper;
 use Yii;
 use yii\db\ActiveRecord;
 use yii\helpers\Url;
+use yii\web\NotFoundHttpException;
 use yii\web\UploadedFile;
 
 /**
@@ -24,9 +25,14 @@ use yii\web\UploadedFile;
  * @property User $modifier
  * @property string $titleLang
  * @property string $title
+ * @property string $helpGallery
+ * @property string $previewImageHelper
  */
 class BaseActiveRecord extends ActiveRecord
 {
+
+    public $previewImageHelper;
+    public $helpGallery;
 
     public function behaviors()
     {
@@ -89,8 +95,8 @@ class BaseActiveRecord extends ActiveRecord
     public function getListsEnabled()
     {
         return [
-            1 => Yii::t('main', 'Active'),
-            0 => Yii::t('main', 'Inactive')
+            1 => Yii::t('main', 'Фаол'),
+            0 => Yii::t('main', 'Ўчирилган')
         ];
     }
 
@@ -99,9 +105,14 @@ class BaseActiveRecord extends ActiveRecord
      * @param string $file
      * @return string
      */
-    public function uploadImagePath($file)
+    public static function uploadImagePath()
     {
-        return Yii::$app->params['imageUploadPath'] . $file;
+        return Yii::getAlias('@frontend') . '/web/uploads/';
+    }
+
+    public static function imageSourcePath()
+    {
+        return 'http://' . Yii::$app->params['domainName'] . '/uploads/';
     }
 
     public function uploadImageMiniPath($file)
@@ -172,7 +183,7 @@ class BaseActiveRecord extends ActiveRecord
                     [
                         'caption' => $image,
                         'size' => filesize($file),
-                        'url' => $deleteUrl,
+                        'url' =>  Url::to([$deleteUrl]),
                         'key' => $this->$field,
                         'extra' => [
                             'id' => $this->id,
@@ -259,4 +270,71 @@ class BaseActiveRecord extends ActiveRecord
             $out[$item['id']] = $item['title'];
         return $out;
     }
+
+    public static function selectText()
+    {
+        return Yii::t('main', 'Танланг') . ' ...';
+    }
+
+    public static function deleteDir($dirPath)
+    {
+        if (!is_dir($dirPath)) {
+            throw new NotFoundHttpException("$dirPath must be a directory");
+        }
+        if (substr($dirPath, strlen($dirPath) - 1, 1) != '/') {
+            $dirPath .= '/';
+        }
+        $files = glob($dirPath . '*', GLOB_MARK);
+        foreach ($files as $file) {
+            if (is_dir($file)) {
+                self::deleteDir($file);
+            } else {
+                unlink($file);
+            }
+        }
+        rmdir($dirPath);
+    }
+
+    public static function ckEditorConfig($key)
+    {
+        return [
+            'options' => [
+                'id' => 'CK-' . $key
+            ],
+            'preset' => 'custom',
+            'clientOptions' => [
+                'allowedContent' => true,
+                'height' => 400,
+                'language' => 'en',
+                'extraPlugins' => 'font,smiley,colorbutton,iframe,selectall,copyformatting,justify',
+                'removeButtons' => 'About,Anchor,Styles,Font',
+                "toolbarGroups" => [
+                    ['name' => 'document', 'groups' => ['mode']],
+                    ['name' => 'clipboard', 'groups' => ['undo', 'clipboard']],
+                    ['name' => 'editing', 'groups' => ['find', 'selection', 'editing']],
+                    ['name' => 'links', 'groups' => ['links']],
+                    ['name' => 'insert', 'groups' => ['insert']],
+                    ['name' => 'colors', 'groups' => ['colors']],
+                    '/',
+                    ['name' => 'basicstyles', 'groups' => ['basicstyles', 'cleanup']],
+                    ['name' => 'paragraph', 'groups' => ['list', 'indent', 'blocks', 'align', 'paragraph']],
+                    ['name' => 'styles', 'groups' => ['styles']]
+                ],
+                'toolbar' => [
+                    ['name' => 'document', 'items' => ['Source']],
+                    ['name' => 'clipboard', 'items' => ['Undo', 'Redo', '-', 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord']],
+                    ['name' => 'editing', 'items' => ['SelectAll']],
+                    ['name' => 'links', 'items' => ['Link', 'Unlink']],
+                    ['name' => 'insert', 'items' => ['Image', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'Iframe']],
+                    ['name' => 'colors', 'items' => ['TextColor', 'BGColor']],
+                    ['name' => 'tools', 'items' => ['Maximize']],
+                    '/',
+                    ['name' => 'basicstyles', 'items' => ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'CopyFormatting', 'RemoveFormat']],
+                    ['name' => 'paragraph', 'items' => ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock']],
+                    ['name' => 'styles', 'items' => ['Format', 'FontSize']]
+                ],
+            ],
+        ];
+    }
+
 }

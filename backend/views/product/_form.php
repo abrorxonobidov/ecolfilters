@@ -1,79 +1,83 @@
 <?php
 
-use yii\helpers\Html;
+use dosamigos\ckeditor\CKEditor;
+use kartik\file\FileInput;
+use yii\bootstrap\Html;
+use yii\bootstrap\Tabs;
 use yii\widgets\ActiveForm;
 
-/* @var $this yii\web\View */
-/* @var $model common\models\Product */
-/* @var $form yii\widgets\ActiveForm */
-?>
+/**
+ * @var $this yii\web\View
+ * @var $model common\models\Product
+ * @var $form yii\widgets\ActiveForm
+ */
 
-<div class="product-form">
+$form = ActiveForm::begin();
 
-    <?php $form = ActiveForm::begin(); ?>
+echo common\helpers\GeneralHelper::oneRow([
+    $form->field($model, 'product_category_id')->dropDownList(common\models\ProductCategory::getList(), ['prompt' => $model->selectText()]),
+    $form->field($model, 'place_id')->dropDownList(common\models\Place::getList(), ['prompt' => $model->selectText()]),
+    $form->field($model, 'price')->textInput(['maxlength' => true]),
+    $form->field($model, 'enabled')->dropDownList($model->getListsEnabled())
+]);
 
-    <?= $form->field($model, 'product_category_id')->textInput() ?>
+$previewConfig = $model->inputImageConfig('preview_image', 'product/file-remove');
 
-    <?= $form->field($model, 'place_id')->textInput() ?>
+echo $form->field($model, 'previewImageHelper')
+    ->widget(FileInput::class, [
+        'options' => ['accept' => 'image/*'],
+        'pluginOptions' => [
+            'previewFileType' => 'image',
+            'allowedFileExtensions' => ['jpg', 'gif', 'png', 'jpeg'],
+            'initialPreview' => $previewConfig['path'],
+            'initialPreviewAsData' => true,
+            'initialPreviewConfig' => $previewConfig['config'],
+            'showUpload' => false,
+            'showRemove' => false,
+            'browseClass' => 'btn btn-success',
+            'browseLabel' => Html::icon('folder-open') . $model->selectText(),
+            'browseIcon' => ''
+        ]
+    ]);
 
-    <?= $form->field($model, 'gallery')->textInput(['maxlength' => true]) ?>
+$galleyConfig = $model->inputGalleryConfig();
 
-    <?= $form->field($model, 'title_uz')->textInput(['maxlength' => true]) ?>
+echo $form->field($model, 'helpGallery[]')
+    ->widget(FileInput::class, [
+        'options' => [
+            'accept' => 'image/*',
+            'multiple' => true
+        ],
+        'pluginOptions' => [
+            //'previewFileType' => 'image',
+            'allowedFileExtensions' => ['jpg', 'gif', 'png', 'jpeg', 'mp4'],
+            'initialPreview' => $galleyConfig['path'],
+            'initialPreviewAsData' => true,
+            'initialPreviewConfig' => $galleyConfig['config'],
+            'showUpload' => false,
+            'showRemove' => false,
+            'browseClass' => 'btn btn-success',
+            'browseLabel' => Html::icon('folder-open') . '&nbsp;Tanlang...',
+            'browseIcon' => '',
+            'overwriteInitial' => false,
+        ]
+    ]);
 
-    <?= $form->field($model, 'title_oz')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'title_ru')->textInput(['maxlength' => true]) ?>
+$items = [];
+foreach (Yii::$app->params['languages'] as $lang_code => $language)
+    $items[] = [
+        'label' => $language,
+        'content' => '<br>' .
+            $form->field($model, "title_$lang_code")->textarea(['rows' => 2]) .
+            $form->field($model, "preview_$lang_code")->textarea(['rows' => 3]) .
+            $form->field($model, "description_$lang_code")->widget(CKEditor::class, $model->ckEditorConfig('d_' . $lang_code)) .
+            $form->field($model, "technic_$lang_code")->widget(CKEditor::class, $model->ckEditorConfig('t_' . $lang_code)) .
+            $form->field($model, "video_$lang_code")->textInput(),
+    ];
 
-    <?= $form->field($model, 'title_en')->textInput(['maxlength' => true]) ?>
+echo Tabs::widget(['items' => $items]);
 
-    <?= $form->field($model, 'price')->textInput(['maxlength' => true]) ?>
+echo Html::tag('div', Html::submitButton(Yii::t('main', 'Save'), ['class' => 'btn btn-success']), ['class' => 'form-group']);
 
-    <?= $form->field($model, 'preview_uz')->textarea(['rows' => 6]) ?>
-
-    <?= $form->field($model, 'preview_oz')->textarea(['rows' => 6]) ?>
-
-    <?= $form->field($model, 'preview_ru')->textarea(['rows' => 6]) ?>
-
-    <?= $form->field($model, 'preview_en')->textarea(['rows' => 6]) ?>
-
-    <?= $form->field($model, 'description_uz')->textarea(['rows' => 6]) ?>
-
-    <?= $form->field($model, 'description_oz')->textarea(['rows' => 6]) ?>
-
-    <?= $form->field($model, 'description_ru')->textarea(['rows' => 6]) ?>
-
-    <?= $form->field($model, 'description_en')->textarea(['rows' => 6]) ?>
-
-    <?= $form->field($model, 'technic_uz')->textarea(['rows' => 6]) ?>
-
-    <?= $form->field($model, 'technic_oz')->textarea(['rows' => 6]) ?>
-
-    <?= $form->field($model, 'technic_ru')->textarea(['rows' => 6]) ?>
-
-    <?= $form->field($model, 'technic_en')->textarea(['rows' => 6]) ?>
-
-    <?= $form->field($model, 'video_uz')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'video_oz')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'video_ru')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'video_en')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'enabled')->textInput() ?>
-
-    <?= $form->field($model, 'created_at')->textInput() ?>
-
-    <?= $form->field($model, 'updated_at')->textInput() ?>
-
-    <?= $form->field($model, 'creator_id')->textInput() ?>
-
-    <?= $form->field($model, 'modifier_id')->textInput() ?>
-
-    <div class="form-group">
-        <?= Html::submitButton(Yii::t('main', 'Save'), ['class' => 'btn btn-success']) ?>
-    </div>
-
-    <?php ActiveForm::end(); ?>
-
-</div>
+ActiveForm::end();

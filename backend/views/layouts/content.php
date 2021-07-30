@@ -5,16 +5,6 @@
  */
 ?>
 <div class="content-wrapper">
-    <section class="content-header">
-        <h1>
-            <?= yii\helpers\Html::encode($this->title) ?>
-        </h1>
-
-        <?= yii\widgets\Breadcrumbs::widget([
-            'links' => $this->params['breadcrumbs'] ?? []
-        ]) ?>
-    </section>
-
     <section class="content">
         <?= dmstr\widgets\Alert::widget() ?>
         <?= $content ?>

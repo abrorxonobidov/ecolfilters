@@ -5,6 +5,7 @@ namespace backend\controllers;
 use Yii;
 use common\models\Product;
 use common\models\ProductSearch;
+use common\models\BaseActiveRecord;
 use yii\web\NotFoundHttpException;
 
 /**
@@ -91,6 +92,50 @@ class ProductController extends BaseController
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
+    }
+
+    public function actionFileRemove()
+    {
+        $return = false;
+        $file = Yii::getAlias('@frontend') . '/web/uploads/' . Yii::$app->request->post('key');
+        $id = Yii::$app->request->post('id');
+        $field = Yii::$app->request->post('field');
+        $className = Yii::$app->request->post('className');
+        $model = $className::findOne($id);
+        /** @var $model yii\db\ActiveRecord */
+        $model->$field = '';
+        $model->updateAttributes([$field]);
+
+        if (isset($file) && file_exists($file)) {
+            unlink($file);
+            $return = true;
+        }
+        return $return;
+    }
+
+
+    public function actionGalleryRemove()
+    {
+        $return = false;
+        $path = Yii::$app->params['imageUploadPath']
+            . Yii::$app->request->post('key')
+            . '/';
+        $file = $path . Yii::$app->request->post('imageName');
+        if (isset($file) && file_exists($file)) {
+            unlink($file);
+            $return = true;
+        }
+
+        $images = glob($path . Yii::$app->params['allowedImageExtension'], GLOB_BRACE);
+
+        if (count($images) == 0) {
+            BaseActiveRecord::deleteDir($path);
+            $model = Product::findOne(Yii::$app->request->post('id'));
+            $model->gallery = '';
+            $model->save();
+        }
+
+        return $return;
     }
 
     /**
