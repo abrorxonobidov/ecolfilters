@@ -5,29 +5,13 @@ namespace backend\controllers;
 use Yii;
 use common\models\MenusLinks;
 use common\models\MenusLinkSearch;
-use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
  * MenusLinksController implements the CRUD actions for MenusLinks model.
  */
-class MenusLinksController extends Controller
+class MenusLinksController extends BaseController
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function behaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
-            ],
-        ];
-    }
 
     /**
      * Lists all MenusLinks models.

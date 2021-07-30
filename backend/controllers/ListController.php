@@ -5,29 +5,13 @@ namespace backend\controllers;
 use Yii;
 use common\models\Lists;
 use common\models\ListSearch;
-use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
  * ListController implements the CRUD actions for Lists model.
  */
-class ListController extends Controller
+class ListController extends BaseController
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function behaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
-            ],
-        ];
-    }
 
     /**
      * Lists all Lists models.

@@ -24,13 +24,17 @@
 
         <?= dmstr\widgets\Menu::widget(
             [
-                'options' => ['class' => 'sidebar-menu tree', 'data-widget'=> 'tree'],
+                'options' => ['class' => 'sidebar-menu tree', 'data-widget' => 'tree'],
                 'items' => [
-                    ['label' => 'Menu Yii2', 'options' => ['class' => 'header']],
-                    ['label' => 'Gii', 'icon' => 'file-code-o', 'url' => ['/gii']],
-                    ['label' => 'Debug', 'icon' => 'dashboard', 'url' => ['/debug']],
-                    ['label' => 'Login', 'url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],
-                    [
+                    ['label' => 'Menu', 'options' => ['class' => 'header']],
+                    ['label' => 'Маҳсулотлар', 'icon' => 'gift', 'url' => ['product/index']],
+                    ['label' => 'Менюлар', 'icon' => 'gift', 'url' => ['menus-links/index']],
+                    ['label' => 'Буюртмалар', 'icon' => 'gift', 'url' => ['order/index']],
+                    ['label' => 'Янгиликлар', 'icon' => 'gift', 'url' => ['list/index', 'ci' => 3]],
+                    ['label' => 'Саҳифалар', 'icon' => 'gift', 'url' => ['list/index', 'ci' => 1]],
+                    ['label' => 'Хизматлар', 'icon' => 'gift', 'url' => ['list/index', 'ci' => 2]],
+                    ['label' => 'Фикрлар', 'icon' => 'gift', 'url' => ['list/reviews']],
+                    /*[
                         'label' => 'Some tools',
                         'icon' => 'share',
                         'url' => '#',
@@ -55,7 +59,7 @@
                                 ],
                             ],
                         ],
-                    ],
+                    ],*/
                 ],
             ]
         ) ?>
