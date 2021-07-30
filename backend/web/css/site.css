@@ -174,3 +174,6 @@ a.desc:after {
     padding: 0 15px 0 0;
     content: "/\00a0";
 }
+.view-button {
+    margin-left: 10px;
+}

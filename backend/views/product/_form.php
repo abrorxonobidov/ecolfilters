@@ -12,13 +12,18 @@ use yii\widgets\ActiveForm;
  * @var $form yii\widgets\ActiveForm
  */
 
+echo $model->errors ? Html::ul($model->errors, [
+    'class' => 'list-group',
+    'itemOptions' => 'list-group-item'
+]) : '';
+
 $form = ActiveForm::begin();
 
 echo common\helpers\GeneralHelper::oneRow([
     $form->field($model, 'product_category_id')->dropDownList(common\models\ProductCategory::getList(), ['prompt' => $model->selectText()]),
     $form->field($model, 'place_id')->dropDownList(common\models\Place::getList(), ['prompt' => $model->selectText()]),
     $form->field($model, 'price')->textInput(['maxlength' => true]),
-    $form->field($model, 'enabled')->dropDownList($model->getListsEnabled())
+    $form->field($model, 'enabled')->dropDownList($model::listsEnabled())
 ]);
 
 $previewConfig = $model->inputImageConfig('preview_image', 'product/file-remove');
@@ -36,7 +41,11 @@ echo $form->field($model, 'previewImageHelper')
             'showRemove' => false,
             'browseClass' => 'btn btn-success',
             'browseLabel' => Html::icon('folder-open') . $model->selectText(),
-            'browseIcon' => ''
+            'browseIcon' => '',
+            'fileActionSettings' => [
+                'removeIcon' => Html::icon('trash'),
+                'showZoom' => false,
+            ]
         ]
     ]);
 
@@ -49,7 +58,6 @@ echo $form->field($model, 'helpGallery[]')
             'multiple' => true
         ],
         'pluginOptions' => [
-            //'previewFileType' => 'image',
             'allowedFileExtensions' => ['jpg', 'gif', 'png', 'jpeg', 'mp4'],
             'initialPreview' => $galleyConfig['path'],
             'initialPreviewAsData' => true,
@@ -60,6 +68,10 @@ echo $form->field($model, 'helpGallery[]')
             'browseLabel' => Html::icon('folder-open') . '&nbsp;Tanlang...',
             'browseIcon' => '',
             'overwriteInitial' => false,
+            'fileActionSettings' => [
+                'removeIcon' => Html::icon('trash'),
+                'showZoom' => false,
+            ]
         ]
     ]);
 

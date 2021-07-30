@@ -3,6 +3,7 @@
 
 namespace common\helpers;
 
+use common\models\BaseActiveRecord;
 use Yii;
 use yii\bootstrap\Html;
 
@@ -19,7 +20,28 @@ class GeneralHelper
     {
         return GeneralHelper::oneRow([
             Html::tag('h2', $title),
-            Html::a(Html::icon('plus') . ' ' . Yii::t('common', 'Yaratish'), ['create'], ['class' => 'btn btn-success pull-right'])
+            Html::a(Html::icon('plus') . ' ' . Yii::t('yii', 'Create'), ['create'], ['class' => 'btn btn-success pull-right'])
+        ]);
+    }
+
+    /**
+     * @param $model BaseActiveRecord
+     * @return string
+     */
+    public static function actionButtons($model)
+    {
+        return GeneralHelper::oneRow([
+            Html::tag('h2', $model->titleLang),
+            Html::a(Html::icon('trash') . ' ' . Yii::t('yii', 'Delete'), ['delete', 'id' => $model->id], [
+                'class' => 'view-button btn btn-danger pull-right',
+                'data' => [
+                    'confirm' => Yii::t('yii', 'Are you sure you want to delete this item?'),
+                    'method' => 'post'
+                ]
+            ]) .
+            Html::a(Html::icon('pencil') . ' ' . Yii::t('yii', 'Update'), ['update', 'id' => $model->id], ['class' => 'view-button btn btn-primary pull-right']) .
+            Html::a(Html::icon('plus') . ' ' . Yii::t('yii', 'Create'), ['create'], ['class' => 'view-button btn btn-success pull-right']) .
+            Html::a(Html::icon('list') . ' ' . Yii::t('main', 'Ro‘yxat'), ['index'], ['class' => 'view-button btn btn-info pull-right'])
         ]);
     }
 }

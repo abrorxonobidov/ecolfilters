@@ -51,8 +51,11 @@ class ProductController extends BaseController
     {
         $model = new Product();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+            $model->uploadImage('previewImageHelper', 'preview_image', 'product');
+            $model->uploadGallery('helpGallery', 'gallery', 'product');
+            if ($model->save())
+                return $this->redirect(['view', 'id' => $model->id]);
         }
 
         return $this->render('create', [
@@ -71,8 +74,11 @@ class ProductController extends BaseController
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+            $model->uploadImage('previewImageHelper', 'preview_image', 'product');
+            $model->uploadGallery('helpGallery', 'gallery', 'product');
+            if ($model->save())
+                return $this->redirect(['view', 'id' => $model->id]);
         }
 
         return $this->render('update', [

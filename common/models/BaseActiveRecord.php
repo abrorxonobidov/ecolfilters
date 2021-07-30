@@ -81,7 +81,7 @@ class BaseActiveRecord extends ActiveRecord
      */
     public function getEnable()
     {
-        return $this->enabled ? Yii::t('main', 'Active') : Yii::t('main', 'Inactive');
+        return @self::listsEnabled()[$this->enabled];
     }
 
     public function getOrder()
@@ -92,7 +92,7 @@ class BaseActiveRecord extends ActiveRecord
     /**
      * @return array
      */
-    public function getListsEnabled()
+    public static function listsEnabled()
     {
         return [
             1 => Yii::t('main', 'Фаол'),
@@ -148,19 +148,43 @@ class BaseActiveRecord extends ActiveRecord
         if ($image) {
             if (!$this->isNewRecord) {
                 if (!empty($this->$field)) {
-                    $oldImage = $this->uploadImagePath($this->$field);
+                    $oldImage = $this->uploadImagePath() . $this->$field;
                     if (file_exists($oldImage)) {
                         unlink($oldImage);
                     }
                 }
             }
 
-            $imageName = $this->createGuid() . '_' . $table . '_' . $this->id . '.' . $image->getExtension();
+            $imageName = $table . '_' . $this->id . '_' . $this->createGuid() . '.' . $image->getExtension();
             $this->$field = $imageName;
-            $imagePath = $this->uploadImagePath($imageName);
+            $imagePath = $this->uploadImagePath() . $imageName;
 
             if (!$image->saveAs($imagePath))
                 DebugHelper::printSingleObject($image->error, 1);
+        }
+    }
+
+    /**
+     * @param string $fileInput
+     * @param string $field
+     * @param string $table
+     */
+    public function uploadGallery($fileInput, $field, $table = '')
+    {
+        $images = UploadedFile::getInstances($this, $fileInput);
+        if ($images) {
+            if (!$this->isNewRecord && !empty($this->$field)) {
+                $folderName = $this->$field;
+            } else {
+                $folderName = $table . '_' . self::createGuid();
+                mkdir(self::uploadImagePath() . $folderName);
+                $this->$field = $folderName;
+            }
+            foreach ($images as $key => $image) {
+                $imageName = str_pad($key, 3, '0', STR_PAD_LEFT) . '_' . self::createGuid() . '_' . $table . '.' . $image->getExtension();
+                $imagePath = self::uploadImagePath() . $folderName . '/' . $imageName;
+                $image->saveAs($imagePath);
+            }
         }
     }
 
@@ -176,18 +200,19 @@ class BaseActiveRecord extends ActiveRecord
         if (!$this->isNewRecord && !empty($this->$field)) {
             $image = $this->$field;
 
-            $file = $this->uploadImagePath($image);
+            $file = $this->uploadImagePath() . $image;
             if (file_exists($file)) {
-                $config['path'] = [Url::to(Yii::$app->params['frontend_domain'] . '/uploads/' . $this->$field)];
+                $config['path'] = ['http://' . Yii::$app->params['domainName'] . '/uploads/' . $this->$field];
                 $config['config'] = [
                     [
                         'caption' => $image,
                         'size' => filesize($file),
-                        'url' =>  Url::to([$deleteUrl]),
+                        'url' => Url::to([$deleteUrl]),
                         'key' => $this->$field,
                         'extra' => [
                             'id' => $this->id,
                             'field' => $field,
+                            'className' => get_called_class()
                         ],
                     ]
                 ];
