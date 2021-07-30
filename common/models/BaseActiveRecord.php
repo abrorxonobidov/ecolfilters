@@ -157,6 +157,7 @@ class BaseActiveRecord extends ActiveRecord
 
             $imageName = $table . '_' . $this->id . '_' . $this->createGuid() . '.' . $image->getExtension();
             $this->$field = $imageName;
+            $this->updateAttributes([$field]);
             $imagePath = $this->uploadImagePath() . $imageName;
 
             if (!$image->saveAs($imagePath))
@@ -176,9 +177,10 @@ class BaseActiveRecord extends ActiveRecord
             if (!$this->isNewRecord && !empty($this->$field)) {
                 $folderName = $this->$field;
             } else {
-                $folderName = $table . '_' . self::createGuid();
+                $folderName = $table . '_' . $this->id . '_' . self::createGuid();
                 mkdir(self::uploadImagePath() . $folderName);
                 $this->$field = $folderName;
+                $this->updateAttributes([$field]);
             }
             foreach ($images as $key => $image) {
                 $imageName = str_pad($key, 3, '0', STR_PAD_LEFT) . '_' . self::createGuid() . '_' . $table . '.' . $image->getExtension();
