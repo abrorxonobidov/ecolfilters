@@ -2,20 +2,18 @@
 
 use yii\helpers\Html;
 
-/* @var $this yii\web\View */
-/* @var $model common\models\Product */
+/**
+ * @var $this yii\web\View
+ * @var $model common\models\Product
+ */
 
 $this->title = Yii::t('yii', 'Update');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('main', 'Products'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('main', 'Маҳсулотлар'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = $this->title;
-?>
-<div class="product-update">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+echo Html::tag('h1', $this->title);
 
-    <?= $this->render('_form', [
-        'model' => $model,
-    ]) ?>
-
-</div>
+echo $this->render('_form', [
+    'model' => $model,
+]);
