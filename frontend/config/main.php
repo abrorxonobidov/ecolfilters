@@ -47,6 +47,7 @@ return [
             'enableLanguageDetection' => false,
             'rules' => [
                 '' => '/site/index',
+                'page/view/<code:\S+>' => 'page/view',
                 '<controller>/<action>/<id:\d+>' => '<controller>/<action>'
             ]
         ]

@@ -1,11 +1,8 @@
 <?php
 
 use yii\helpers\Html;
-use yii\bootstrap\Nav;
-use yii\bootstrap\NavBar;
-use yii\widgets\Breadcrumbs;
 use frontend\assets\MainPageAsset;
-use common\widgets\Alert;
+use yii\helpers\Url;
 
 /**
  * @var $this yii\web\View
@@ -34,7 +31,7 @@ MainPageAsset::register($this);
     <section class="header">
         <div class="container has_width d_flex">
             <div class="col-md-2 col-xs-6">
-                <a href="#" class="logo_img">
+                <a href="<?=Url::to(['site/index'])?>" class="logo_img">
                     <img src="/img/logo.png" alt=""/>
                 </a>
             </div>
@@ -63,6 +60,8 @@ MainPageAsset::register($this);
     <?= frontend\widgets\Statistic::widget()?>
 
     <?= frontend\widgets\Footer::widget()?>
+
+    <?= frontend\widgets\Test::widget()?>
 
 </div>
 

@@ -1,27 +1,51 @@
 <?php
 
-/* @var $this yii\web\View */
-/* @var $name string */
-/* @var $message string */
-/* @var $exception Exception */
+/**
+ * @var $this yii\web\View
+ * @var $name string
+ * @var $message string
+ */
 
-use yii\helpers\Html;
+use yii\bootstrap\Html;
 
-$this->title = $name;
+$this->title = nl2br(Html::encode($message));
 ?>
-<div class="site-error">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+<section class="news_block">
+    <div class="container has_width">
+        <div class="title">
+            <?= Html::encode($this->title) ?>
+        </div>
 
-    <div class="alert alert-danger">
-        <?= nl2br(Html::encode($message)) ?>
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4">
+                <div class="not-found-page">
+                    <?= $name  ?>
+                    <br>
+                    <br>
+                    <?=Html::a(
+                            Html::icon('home') . ' ' .
+                            Yii::t('main', 'Бош саҳифа'), ['site/index'], ['class' => 'btn btn-default'])?>
+
+                </div>
+            </div>
+
+        </div>
+
     </div>
+</section>
 
-    <p>
-        The above error occurred while the Web server was processing your request.
-    </p>
-    <p>
-        Please contact us if you think this is a server error. Thank you.
-    </p>
+<style>
 
-</div>
+.not-found-page {
+    width: 100%;
+    padding: 50px 0 100px 0;
+    text-align: center;
+    font-size: 30px;
+}
+
+.not-found-page a {
+    font-size: 40px;
+
+}
+</style>

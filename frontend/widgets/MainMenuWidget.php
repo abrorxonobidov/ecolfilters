@@ -15,13 +15,16 @@ class MainMenuWidget extends Widget
         $menus = MenusLinks::find()
             ->select([
                 'label' => "title_$lang",
-                'url' => "CASE WHEN (link_in > '') THEN link_in ELSE '#' END",
+                'url' => 'link_in',
             ])
             ->where(['enabled' => 1])
             ->andWhere("title_$lang > ''")
             ->orderBy(['order' => SORT_ASC, 'id' => SORT_ASC])
             ->asArray()
             ->all();
+
+        foreach ($menus as &$menu)
+            $menu['url'] = $menu['url'] > '' ? [$menu['url']] : '#';
 
         return $this->render('main_menu', [
             'menus' => $menus

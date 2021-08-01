@@ -18,11 +18,6 @@ NavBar::begin([
     ],
     'headerContent' => Html::tag('span', Yii::t('main', 'Меню'))
 ]);
-$menuItems = [
-    ['label' => 'Home', 'url' => ['/site/sex']],
-    ['label' => 'About', 'url' => ['/site/about']],
-    ['label' => 'Contact', 'url' => ['/site/contact']],
-];
 echo Nav::widget([
     'options' => ['class' => 'nav navbar-nav'],
     'items' => $menus,

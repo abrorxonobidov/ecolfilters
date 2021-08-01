@@ -18,27 +18,15 @@ use frontend\models\ContactForm;
 /**
  * Site controller
  */
-class SiteController extends Controller
+class ProductController extends Controller
 {
 
-    public function actions()
+    public function actionCategory($id)
     {
-        return [
-            'error' => [
-                'class' => 'yii\web\ErrorAction',
-            ],
-            'captcha' => [
-                'class' => 'yii\captcha\CaptchaAction',
-                'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
-            ],
-        ];
-    }
-
-    public function actionIndex()
-    {
-        $this->layout = 'mainPage';
-
-        return $this->render('index');
+        return $this->render('/site/error', [
+            'message' => Yii::t('main', 'Маълумот тўлдирилмоқда'),
+            'name' => '',
+        ]);
     }
 
 }
