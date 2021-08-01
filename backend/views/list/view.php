@@ -6,11 +6,11 @@ use yii\widgets\DetailView;
 
 /**
  * @var $this yii\web\View
- * @var $model common\models\Product
+ * @var $model common\models\Lists
  */
 
 $this->title = $model->titleLang;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('main', 'Рўйхат'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::$app->request->get('ci') ? $model->category->titleLang : Yii::t('main', 'Рўйхат'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 
 echo common\helpers\GeneralHelper::actionButtons($model);

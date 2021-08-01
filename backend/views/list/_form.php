@@ -13,7 +13,13 @@ use kartik\file\FileInput;
 $form = ActiveForm::begin();
 
 echo common\helpers\GeneralHelper::oneRow([
-    $form->field($model, 'category_id')->dropDownList(common\models\ListCategory::getList(), ['prompt' => $model->selectText()]),
+    $form->field($model, 'category_id')
+        ->dropDownList(common\models\ListCategory::getList(), [
+            'prompt' => $model->selectText(),
+            'disabled' => Yii::$app->request->get('ci'),
+            'class' => Yii::$app->request->get('ci') ? 'hidden' : 'form-control'
+        ])
+        ->label(Yii::$app->request->get('ci') ? false : $model->getAttributeLabel('category_id')),
     $form->field($model, 'date')->widget(kartik\date\DatePicker::class, [
         'type' => 3,
         'attribute' => 'date',

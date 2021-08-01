@@ -8,7 +8,7 @@ use yii\helpers\Html;
  */
 
 $this->title = Yii::t('yii', 'Create');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('main', 'Рўйхат'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::$app->request->get('ci') ? $model->category->titleLang : Yii::t('main', 'Рўйхат'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 
 

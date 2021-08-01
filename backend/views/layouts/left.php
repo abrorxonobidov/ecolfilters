@@ -26,14 +26,14 @@
             [
                 'options' => ['class' => 'sidebar-menu tree', 'data-widget' => 'tree'],
                 'items' => [
-                    ['label' => 'Menu', 'options' => ['class' => 'header']],
+                    ['label' => '&nbsp;', 'options' => ['class' => 'header'], 'encode' => false],
                     ['label' => 'Маҳсулотлар', 'icon' => 'gift', 'url' => ['product/index']],
-                    ['label' => 'Менюлар', 'icon' => 'gift', 'url' => ['menus-links/index']],
-                    ['label' => 'Буюртмалар', 'icon' => 'gift', 'url' => ['order/index']],
-                    ['label' => 'Янгиликлар', 'icon' => 'gift', 'url' => ['list/index', 'ci' => 3]],
-                    ['label' => 'Саҳифалар', 'icon' => 'gift', 'url' => ['list/index', 'ci' => 1]],
-                    ['label' => 'Хизматлар', 'icon' => 'gift', 'url' => ['list/index', 'ci' => 2]],
-                    ['label' => 'Фикрлар', 'icon' => 'gift', 'url' => ['list/reviews']],
+                    ['label' => 'Менюлар', 'icon' => 'navicon', 'url' => ['menus-links/index']],
+                    ['label' => 'Буюртмалар', 'icon' => 'cart-arrow-down', 'url' => ['order/index']],
+                    ['label' => 'Янгиликлар', 'icon' => 'newspaper-o', 'url' => ['list/index', 'ci' => 3]],
+                    ['label' => 'Саҳифалар', 'icon' => 'address-book-o', 'url' => ['list/index', 'ci' => 1]],
+                    ['label' => 'Хизматлар', 'icon' => 'truck', 'url' => ['list/index', 'ci' => 2]],
+                    ['label' => 'Фикрлар', 'icon' => 'comments-o', 'url' => ['list/reviews']],
                     /*[
                         'label' => 'Some tools',
                         'icon' => 'share',

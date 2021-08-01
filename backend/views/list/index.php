@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Html;
+use common\models\Lists;
 
 /**
  * @var $this yii\web\View
@@ -8,7 +9,7 @@ use yii\helpers\Html;
  * @var $dataProvider yii\data\ActiveDataProvider
  */
 
-$this->title = Yii::t('main', 'Рўйхат');
+$this->title = Yii::$app->request->get('ci') ? $searchModel->category->titleLang : Yii::t('main', 'Рўйхат');
 $this->params['breadcrumbs'][] = $this->title;
 
 echo common\helpers\GeneralHelper::titleAndCreateBtn($this->title);
@@ -21,7 +22,8 @@ echo yii\grid\GridView::widget([
         [
             'attribute' => 'category_id',
             'value' => 'category.titleLang',
-            'filter' => common\models\ListCategory::getList()
+            'filter' => common\models\ListCategory::getList(),
+            'visible' => !Yii::$app->request->get('ci')
         ],
         'title_uz',
         [
@@ -41,7 +43,7 @@ echo yii\grid\GridView::widget([
         'preview_uz',
         [
             'attribute' => 'preview_image',
-            'value' => function (common\models\Lists $model) {
+            'value' => function (Lists $model) {
                 return $model->preview_image ?
                     Html::img($model::imageSourcePath() . $model->preview_image, ['class' => 'img-responsive img-thumbnail']) .
                     Html::tag('p', $model->preview_image, ['style' => 'font-size:10px;'])
@@ -58,6 +60,11 @@ echo yii\grid\GridView::widget([
             'filter' => $searchModel::listsEnabled(),
             'value' => 'enable'
         ],
-        ['class' => 'yii\grid\ActionColumn'],
+        [
+            'class' => 'yii\grid\ActionColumn',
+            'urlCreator' => function ($action, Lists $model) {
+                return [$action, 'id' => $model->id, 'ci' => Yii::$app->request->get('ci')];
+            }
+        ],
     ],
 ]);

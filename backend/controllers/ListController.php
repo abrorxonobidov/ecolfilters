@@ -12,10 +12,12 @@ use yii\web\NotFoundHttpException;
 class ListController extends BaseController
 {
 
-    public function actionIndex()
+    public function actionIndex($ci = null)
     {
         $searchModel = new ListSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $queryParams = Yii::$app->request->queryParams;
+        if ($ci) $queryParams['ListSearch']['category_id'] = $ci;
+        $dataProvider = $searchModel->search($queryParams);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
@@ -23,22 +25,22 @@ class ListController extends BaseController
         ]);
     }
 
-    public function actionView($id)
+    public function actionView($id, $ci = null)
     {
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $this->findModel($id, $ci),
         ]);
     }
 
-    public function actionCreate()
+    public function actionCreate($ci = null)
     {
         $model = new Lists();
-
+        $model->category_id = $ci;
         if ($model->load(Yii::$app->request->post())) {
             if ($model->save()) {
                 $model->uploadImage('previewImageHelper', 'preview_image', 'list');
                 $model->uploadGallery('helpGallery', 'gallery', 'list');
-                return $this->redirect(['view', 'id' => $model->id]);
+                return $this->redirect(['view', 'id' => $model->id, 'ci' => $model->category_id]);
             }
         }
 
@@ -55,7 +57,7 @@ class ListController extends BaseController
             if ($model->save()) {
                 $model->uploadImage('previewImageHelper', 'preview_image', 'list');
                 $model->uploadGallery('helpGallery', 'gallery', 'list');
-                return $this->redirect(['view', 'id' => $model->id]);
+                return $this->redirect(['view', 'id' => $model->id, 'ci' => $model->category_id]);
             }
         }
 
@@ -64,19 +66,20 @@ class ListController extends BaseController
         ]);
     }
 
-    public function actionDelete($id)
+    public function actionDelete($id, $ci = null)
     {
-        $this->findModel($id)->delete();
+        $this->findModel($id, $ci)->delete();
 
-        return $this->redirect(['index']);
+        return $this->redirect(['index', 'ci' => $ci]);
     }
 
-    protected function findModel($id)
+    protected function findModel($id, $ci = null)
     {
-        if (($model = Lists::findOne($id)) !== null) {
-            return $model;
-        }
-
+        $model = Lists::find()
+            ->where(['id' => $id])
+            ->andFilterWhere(['category_id' => $ci])
+            ->one();
+        if ($model !== null) return $model;
         throw new NotFoundHttpException(Yii::t('yii', 'The requested page does not exist.'));
     }
 }
