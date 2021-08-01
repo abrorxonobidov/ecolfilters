@@ -1,5 +1,35 @@
 <?php
-?>
+use yii\helpers\Html;
+use yii\bootstrap\Nav;
+use yii\bootstrap\NavBar;
+/**
+ * @var $menus array
+ */
+echo Html::beginTag('div', ['class' => 'main_menu']);
+NavBar::begin([
+    'id' => false,
+    'options' => [
+        'class' => 'navbar',
+    ],
+    'renderInnerContainer' => false,
+    'containerOptions' => [
+        'id' => 'bs-navbar-collapse-1',
+        'class' => 'collapse navbar-collapse nopade'
+    ],
+    'headerContent' => Html::tag('span', Yii::t('main', 'Меню'))
+]);
+$menuItems = [
+    ['label' => 'Home', 'url' => ['/site/sex']],
+    ['label' => 'About', 'url' => ['/site/about']],
+    ['label' => 'Contact', 'url' => ['/site/contact']],
+];
+echo Nav::widget([
+    'options' => ['class' => 'nav navbar-nav'],
+    'items' => $menus,
+]);
+NavBar::end();
+echo Html::endTag('div')
+?><!--
 
 <div class="main_menu">
     <nav class="navbar">
@@ -34,3 +64,4 @@
         </div>
     </nav>
 </div>
+-->
