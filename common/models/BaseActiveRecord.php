@@ -32,6 +32,7 @@ use yii\web\UploadedFile;
 class BaseActiveRecord extends ActiveRecord
 {
 
+    public $title;
     public $previewImageHelper;
     public $helpGallery;
 

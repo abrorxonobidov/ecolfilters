@@ -13,6 +13,8 @@ use Yii;
  * @property string|null $title_ru
  * @property string|null $title_en
  * @property int $enabled
+ * @property int $test_drive
+ * @property int $order
  * @property string|null $created_at
  * @property string|null $updated_at
  * @property int|null $creator_id
@@ -36,8 +38,8 @@ class ProductCategory extends BaseActiveRecord
     public function rules()
     {
         return [
-            [['title_uz'], 'required'],
-            [['enabled', 'creator_id', 'modifier_id'], 'integer'],
+            [['title_uz', 'order'], 'required'],
+            [['enabled', 'order', 'test_drive', 'creator_id', 'modifier_id'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['title_uz', 'title_oz', 'title_ru', 'title_en'], 'string', 'max' => 255],
         ];
@@ -54,6 +56,8 @@ class ProductCategory extends BaseActiveRecord
             'title_oz' => Yii::t('main', 'Title Oz'),
             'title_ru' => Yii::t('main', 'Title Ru'),
             'title_en' => Yii::t('main', 'Title En'),
+            'order' => Yii::t('main', 'Order'),
+            'test_drive' => Yii::t('main', 'Test drive'),
             'enabled' => Yii::t('main', 'Enabled'),
             'created_at' => Yii::t('main', 'Created At'),
             'updated_at' => Yii::t('main', 'Updated At'),
