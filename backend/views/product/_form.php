@@ -40,7 +40,7 @@ echo $form->field($model, 'previewImageHelper')
             'showUpload' => false,
             'showRemove' => false,
             'browseClass' => 'btn btn-success',
-            'browseLabel' => Html::icon('folder-open') . $model->selectText(),
+            'browseLabel' => Html::icon('folder-open') . ' ' . $model->selectText(),
             'browseIcon' => '',
             'fileActionSettings' => [
                 'removeIcon' => Html::icon('trash'),
@@ -49,7 +49,7 @@ echo $form->field($model, 'previewImageHelper')
         ]
     ]);
 
-$galleyConfig = $model->inputGalleryConfig();
+$galleyConfig = $model->inputGalleryConfig('product/gallery-remove');
 
 echo $form->field($model, 'helpGallery[]')
     ->widget(FileInput::class, [
@@ -90,6 +90,6 @@ foreach (Yii::$app->params['languages'] as $lang_code => $language)
 
 echo Tabs::widget(['items' => $items]);
 
-echo Html::tag('div', Html::submitButton(Yii::t('main', 'Save'), ['class' => 'btn btn-success']), ['class' => 'form-group']);
+echo Html::tag('div', Html::submitButton(Yii::t('main', 'Сақлаш'), ['class' => 'btn btn-success']), ['class' => 'form-group']);
 
 ActiveForm::end();

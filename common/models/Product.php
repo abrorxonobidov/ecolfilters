@@ -149,35 +149,4 @@ class Product extends BaseActiveRecord
         return new ProductQuery(get_called_class());
     }
 
-    public function inputGalleryConfig()
-    {
-        $config = [
-            'path' => [],
-            'config' => []
-        ];
-        if (!$this->isNewRecord && !empty($this->gallery)) {
-
-            $files = glob(self::uploadImagePath() . $this->gallery . Yii::$app->params['allowedImageExtension'], GLOB_BRACE);
-
-            foreach ($files as $file) {
-                $filePath = explode('/', $file);
-                $imageName = end($filePath);
-                if (file_exists($file)) {
-                    $config['path'][] = Url::to(self::imageSourcePath() . $this->gallery . '/' . $imageName);
-                    $config['config'][] = [
-                        'caption' => $imageName,
-                        'size' => filesize($file),
-                        'url' => Url::to(['product/gallery-remove']),
-                        'key' => $this->gallery,
-                        'extra' => [
-                            'id' => $this->id,
-                            'count' => count($files),
-                            'imageName' => $imageName
-                        ],
-                    ];
-                }
-            }
-        }
-        return $config;
-    }
 }

@@ -2,7 +2,7 @@
 /**
  * Created by PhpStorm.
  * User: Abrorxon Obidov
- * Date: 07/05/2021
+ * Date: 27/07/2021
  * Time: 15:33:00
  */
 
@@ -27,6 +27,7 @@ use yii\web\UploadedFile;
  * @property string $title
  * @property string $helpGallery
  * @property string $previewImageHelper
+ * @property string $gallery
  */
 class BaseActiveRecord extends ActiveRecord
 {
@@ -59,26 +60,16 @@ class BaseActiveRecord extends ActiveRecord
         ];
     }
 
-
-    /**
-     * @return yii\db\ActiveQuery
-     */
     public function getCreator()
     {
         return $this->hasOne(User::class, ['id' => 'creator_id']);
     }
 
-    /**
-     * @return yii\db\ActiveQuery
-     */
     public function getModifier()
     {
         return $this->hasOne(User::class, ['id' => 'modifier_id']);
     }
 
-    /**
-     * @return string
-     */
     public function getEnable()
     {
         return @self::listsEnabled()[$this->enabled];
@@ -89,9 +80,6 @@ class BaseActiveRecord extends ActiveRecord
         return $this->order ?? 500;
     }
 
-    /**
-     * @return array
-     */
     public static function listsEnabled()
     {
         return [
@@ -100,11 +88,6 @@ class BaseActiveRecord extends ActiveRecord
         ];
     }
 
-    /**
-     * uploadPath
-     * @param string $file
-     * @return string
-     */
     public static function uploadImagePath()
     {
         return Yii::getAlias('@frontend') . '/web/uploads/';
@@ -135,13 +118,6 @@ class BaseActiveRecord extends ActiveRecord
         return $guid;
     }
 
-    /**
-     * Upload File.
-     * @param string $fileInput
-     * @param string $field
-     * @param string $table
-     * @throws mixed
-     */
     public function uploadImage($fileInput, $field, $table = '')
     {
         $image = UploadedFile::getInstance($this, $fileInput);
@@ -165,11 +141,6 @@ class BaseActiveRecord extends ActiveRecord
         }
     }
 
-    /**
-     * @param string $fileInput
-     * @param string $field
-     * @param string $table
-     */
     public function uploadGallery($fileInput, $field, $table = '')
     {
         $images = UploadedFile::getInstances($this, $fileInput);
@@ -190,18 +161,11 @@ class BaseActiveRecord extends ActiveRecord
         }
     }
 
-    /**
-     * Upload File Config.
-     * @param string $field
-     * @param string $deleteUrl
-     * @return array
-     */
     public function inputImageConfig($field, $deleteUrl)
     {
         $config = ['path' => [], 'config' => []];
         if (!$this->isNewRecord && !empty($this->$field)) {
             $image = $this->$field;
-
             $file = $this->uploadImagePath() . $image;
             if (file_exists($file)) {
                 $config['path'] = ['http://' . Yii::$app->params['domainName'] . '/uploads/' . $this->$field];
@@ -223,58 +187,37 @@ class BaseActiveRecord extends ActiveRecord
         return $config;
     }
 
-    /**
-     * Upload File Config.
-     * @param string $field
-     * @param string $deleteUrl
-     * @param string $type
-     * @return array
-     */
-    public function inputFileConfig($field, $deleteUrl, $type = 'object')
+    public function inputGalleryConfig($delUrl)
     {
-        $config = ['path' => [], 'config' => []];
-        if (!$this->isNewRecord && !empty($this->$field)) {
-            $image = $this->$field;
+        $config = [
+            'path' => [],
+            'config' => []
+        ];
+        if (!$this->isNewRecord && !empty($this->gallery)) {
 
-            $file = $this->uploadImagePath($image);
-            if (file_exists($file)) {
-                $config['path'] = [Url::to($_SERVER['REQUEST_SCHEME'] . '://' . explode(":", $_SERVER['HTTP_HOST'])[0] . '/uploads/' . $this->$field)];
-                $config['config'] = [
-                    [
-                        'type' => $type,
-                        'caption' => $image,
+            $files = glob(self::uploadImagePath() . $this->gallery . Yii::$app->params['allowedImageExtension'], GLOB_BRACE);
+
+            foreach ($files as $file) {
+                $filePath = explode('/', $file);
+                $imageName = end($filePath);
+                if (file_exists($file)) {
+                    $config['path'][] = Url::to(self::imageSourcePath() . $this->gallery . '/' . $imageName);
+                    $config['config'][] = [
+                        'caption' => $imageName,
                         'size' => filesize($file),
-                        'url' => $deleteUrl,
-                        'key' => $file,
+                        'url' => Url::to([$delUrl]),
+                        'key' => $this->gallery,
                         'extra' => [
                             'id' => $this->id,
-                            'field' => $field,
+                            'count' => count($files),
+                            'imageName' => $imageName,
+                            'className' => get_called_class()
                         ],
-                    ]
-                ];
+                    ];
+                }
             }
         }
         return $config;
-    }
-
-    public function removeFile($file)
-    {
-        $imagePath = $this->uploadImagePath($file);
-        $miniImagePath = $this->uploadImageMiniPath($file);
-
-        $arImages = explode(';', $imagePath);
-        $key = array_search($imagePath, $arImages);
-        unset($arImages[$key]);
-
-        $arImages = explode(';', $miniImagePath);
-        $key = array_search($miniImagePath, $arImages);
-        unset($arImages[$key]);
-
-        if (file_exists($imagePath))
-            unlink($imagePath);
-
-        if (file_exists($miniImagePath))
-            unlink($miniImagePath);
     }
 
     public function getTitleLang()

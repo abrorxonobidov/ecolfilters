@@ -2,19 +2,18 @@
 
 use yii\helpers\Html;
 
-/* @var $this yii\web\View */
-/* @var $model common\models\Lists */
+/**
+ * @var $this yii\web\View
+ * @var $model common\models\Lists
+ */
 
 $this->title = Yii::t('yii', 'Create');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('main', 'Lists'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('main', 'Рўйхат'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
-?>
-<div class="lists-create">
 
-    <h1><?= Html::encode($this->title) ?></h1>
 
-    <?= $this->render('_form', [
-        'model' => $model,
-    ]) ?>
+echo Html::tag('h1', $this->title);
 
-</div>
+echo $this->render('_form', [
+    'model' => $model,
+]);

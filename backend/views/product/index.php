@@ -46,6 +46,11 @@ echo GridView::widget([
             ],
         ],
         'order',
+        [
+            'attribute' => 'enabled',
+            'filter' => $searchModel::listsEnabled(),
+            'value' => 'enable'
+        ],
         ['class' => 'yii\grid\ActionColumn']
     ]
 ]);

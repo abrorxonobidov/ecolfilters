@@ -2,21 +2,16 @@
 
 namespace backend\controllers;
 
+use common\models\BaseActiveRecord;
+use common\models\Product;
 use Yii;
 use common\models\Lists;
 use common\models\ListSearch;
 use yii\web\NotFoundHttpException;
 
-/**
- * ListController implements the CRUD actions for Lists model.
- */
 class ListController extends BaseController
 {
 
-    /**
-     * Lists all Lists models.
-     * @return mixed
-     */
     public function actionIndex()
     {
         $searchModel = new ListSearch();
@@ -28,12 +23,6 @@ class ListController extends BaseController
         ]);
     }
 
-    /**
-     * Displays a single Lists model.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
     public function actionView($id)
     {
         return $this->render('view', [
@@ -41,17 +30,16 @@ class ListController extends BaseController
         ]);
     }
 
-    /**
-     * Creates a new Lists model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return mixed
-     */
     public function actionCreate()
     {
         $model = new Lists();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+            if ($model->save()) {
+                $model->uploadImage('previewImageHelper', 'preview_image', 'list');
+                $model->uploadGallery('helpGallery', 'gallery', 'list');
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
         }
 
         return $this->render('create', [
@@ -59,19 +47,16 @@ class ListController extends BaseController
         ]);
     }
 
-    /**
-     * Updates an existing Lists model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+            if ($model->save()) {
+                $model->uploadImage('previewImageHelper', 'preview_image', 'list');
+                $model->uploadGallery('helpGallery', 'gallery', 'list');
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
         }
 
         return $this->render('update', [
@@ -79,13 +64,6 @@ class ListController extends BaseController
         ]);
     }
 
-    /**
-     * Deletes an existing Lists model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();
@@ -93,13 +71,6 @@ class ListController extends BaseController
         return $this->redirect(['index']);
     }
 
-    /**
-     * Finds the Lists model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
-     * @return Lists the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
     protected function findModel($id)
     {
         if (($model = Lists::findOne($id)) !== null) {
