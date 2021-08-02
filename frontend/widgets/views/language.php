@@ -1,6 +1,23 @@
 <?php
-?>
 
+use yii\helpers\Html;
+
+$languages = Yii::$app->params['languages'];
+
+
+echo Html::beginTag('div', ['class' => 'dropdown lang_btn']);
+echo Html::button($languages[Yii::$app->language] . Html::tag('span', '', ['class' => 'caret']), [
+        'class' => 'dropdown-toggle',
+        'data-toggle' => 'dropdown'
+    ]);
+unset($languages[Yii::$app->language]);
+echo Html::beginTag('ul', ['class' => 'dropdown-menu']);
+foreach ($languages as $code => $language)
+    echo Html::tag('li', Html::a($language, ['', 'language' => $code]));
+echo Html::endTag('ul');
+echo Html::endTag('div');
+?>
+<!--
 <div class="dropdown lang_btn">
     <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         O`zbekcha
@@ -11,3 +28,4 @@
         <li><a href="#">Русский</a></li>
     </ul>
 </div>
+-->
