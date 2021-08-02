@@ -31,10 +31,15 @@ echo common\helpers\GeneralHelper::oneRow([
         ]
     ]),
     $form->field($model, 'order')->textInput(['value' => $model->getOrder()]),
-    //$form->field($model, 'video')->textInput(['maxlength' => true]),
-    //$form->field($model, 'link')->textInput(['maxlength' => true]),
     $form->field($model, 'enabled')->dropDownList($model::listsEnabled())
 ]);
+
+
+echo Yii::$app->request->get('ci') == 1 ? common\helpers\GeneralHelper::oneRow([
+    $form->field($model, 'link')->textInput(['maxlength' => true])->label('Page code'),
+    $form->field($model, 'video')->textInput(['maxlength' => true]),
+    ''
+]) : '';
 
 $previewConfig = $model->inputImageConfig('preview_image', 'list/file-remove');
 
@@ -91,7 +96,7 @@ foreach (Yii::$app->params['languages'] as $lang_code => $language)
         'label' => $language,
         'content' => '<br>' .
             $form->field($model, "title_$lang_code")->textarea(['rows' => 2]) .
-            $form->field($model, "preview_$lang_code")->textarea(['rows' => 3]) .
+            $form->field($model, "preview_$lang_code")->widget(dosamigos\ckeditor\CKEditor::class, $model->ckEditorConfig('p_' . $lang_code)) .
             $form->field($model, "description_$lang_code")->widget(dosamigos\ckeditor\CKEditor::class, $model->ckEditorConfig('d_' . $lang_code))
     ];
 

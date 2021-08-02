@@ -1,19 +1,11 @@
 <?php
+
 namespace frontend\controllers;
 
-use frontend\models\ResendVerificationEmailForm;
-use frontend\models\VerifyEmailForm;
+use common\models\Lists;
 use Yii;
-use yii\base\InvalidArgumentException;
-use yii\web\BadRequestHttpException;
 use yii\web\Controller;
-use yii\filters\VerbFilter;
-use yii\filters\AccessControl;
-use common\models\LoginForm;
-use frontend\models\PasswordResetRequestForm;
-use frontend\models\ResetPasswordForm;
-use frontend\models\SignupForm;
-use frontend\models\ContactForm;
+use yii\web\NotFoundHttpException;
 
 /**
  * Site controller
@@ -23,9 +15,8 @@ class PageController extends Controller
 
     public function actionView($code)
     {
-        return $this->render('/site/error', [
-            'message' => Yii::t('main', 'Маълумот тўлдирилмоқда'),
-            'name' => '',
+        return $this->render('view', [
+            'page' => $this->findPage($code)
         ]);
     }
 
@@ -53,4 +44,10 @@ class PageController extends Controller
         ]);
     }
 
+    protected function findPage($code)
+    {
+        if (($page = Lists::findOne(['link' => $code, 'enabled' => 1, 'category_id' => 1])) !== null)
+            return $page;
+        throw new NotFoundHttpException(Yii::t('yii', 'The requested page does not exist.'));
+    }
 }

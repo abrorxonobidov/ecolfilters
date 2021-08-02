@@ -21,6 +21,7 @@ echo DetailView::widget([
         'id',
         'category.titleLang',
         'date',
+        'link',
         [
             'attribute' => 'preview_image',
             'value' => Html::img($model::imageSourcePath() . $model->preview_image, ['class' => 'col-md-4'])
