@@ -99,6 +99,11 @@ class BaseActiveRecord extends ActiveRecord
         return 'http://' . Yii::$app->params['domainName'] . '/uploads/';
     }
 
+    public static function getUrlToFrontend($route, $params)
+    {
+        return 'http://' . Yii::$app->params['domainName'] . $route . http_build_query($params);
+    }
+
     public function uploadImageMiniPath($file)
     {
         return Yii::$app->params['imageUploadPath'] . 'mini/' . $file;

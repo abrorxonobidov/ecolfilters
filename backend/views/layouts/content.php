@@ -3,6 +3,9 @@
 /**
  * @var $content string
  */
+
+use yii\bootstrap\Modal;
+
 ?>
 <div class="content-wrapper">
     <section class="content">
@@ -10,6 +13,15 @@
         <?= $content ?>
     </section>
 </div>
+<?
+Modal::begin([
+    'id' => 'PjaxModal',
+
+    'size' => Modal::SIZE_LARGE,
+    'options' => ['tabindex' => ''],
+    'clientOptions' => ['backdrop' => 'static', 'keyboard' => false, 'validateonsubmit' => true,],
+]);
+Modal::end(); ?>
 
 <footer class="main-footer">
     <div class="pull-right hidden-xs">
@@ -194,3 +206,13 @@
 </aside>
 
 <div class='control-sidebar-bg'></div>-->
+<?php
+$js = <<<JS
+        $(document).ready(function() {
+          $('.pjaxModalButton').click(function(e){
+                callAjaxModal(e,this);
+           });
+        });
+JS;
+$this->registerJs($js, \yii\web\View::POS_END);
+?>
