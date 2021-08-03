@@ -40,7 +40,7 @@ class HeaderNotifications extends Widget
                         $count = Order::find()->where(['status' => 'new'])->count();
                         if ($count > 0) {
                             $items[] = [
-                                'icon' => 'fa fa-bell-o',
+                                'icon' => 'fa fa-cart-arrow-down',
                                 'title' => Yii::t('main', 'Янги буюртмалар'),
                                 'url' => ['/order/index', 'OrderSearch[status]' => 'new'],
                                 'count' => $count,

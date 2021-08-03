@@ -30,8 +30,8 @@ $user = Yii::$app->user->identity;
             <?= \backend\widgets\HeaderNotifications::widget([
                 'user' => $user,
                 'arTypes' => [
-                    'orders',
-//                    'new-orders',
+//                    'orders',
+                    'new-orders',
                 ]
             ]) ?>
             <ul class="nav navbar-nav">

@@ -24,6 +24,7 @@ class InnerAsset extends AssetBundle
         'js/main.js',
         'js/my.js',
         'js/magiczoomplus.js',
+        'js/chosen.jquery.min.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',

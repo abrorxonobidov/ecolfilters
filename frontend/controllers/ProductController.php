@@ -1,6 +1,7 @@
 <?php
 namespace frontend\controllers;
 
+use common\models\ProductSearch;
 use frontend\models\ResendVerificationEmailForm;
 use frontend\models\VerifyEmailForm;
 use Yii;
@@ -21,11 +22,14 @@ use frontend\models\ContactForm;
 class ProductController extends Controller
 {
 
-    public function actionCategory($id)
+    public function actionCategory()
     {
-        return $this->render('/site/error', [
-            'message' => Yii::t('main', 'Маълумот тўлдирилмоқда'),
-            'name' => '',
+        $params = Yii::$app->request->queryParams;
+        $searchModel = new ProductSearch();
+        $dataProvider = $searchModel->searchFrontend($params);
+        return $this->render('list', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
         ]);
     }
 
