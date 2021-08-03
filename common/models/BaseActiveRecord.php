@@ -24,6 +24,8 @@ use yii\web\UploadedFile;
  * @property User $creator
  * @property User $modifier
  * @property string $titleLang
+ * @property string $previewLang
+ * @property string $descriptionLang
  * @property string $title
  * @property string $helpGallery
  * @property string $previewImageHelper
@@ -231,6 +233,16 @@ class BaseActiveRecord extends ActiveRecord
         return $this->{'title_' . Yii::$app->language};
     }
 
+    public function getPreviewLang()
+    {
+        return $this->{'preview_' . Yii::$app->language};
+    }
+
+    public function getDescriptionLang()
+    {
+        return $this->{'description_' . Yii::$app->language};
+    }
+
     public static function getList()
     {
         $list = self::find()
@@ -311,6 +323,20 @@ class BaseActiveRecord extends ActiveRecord
                 ],
             ],
         ];
+    }
+
+    public function galleryItems($field = 'gallery')
+    {
+        $gallery_field = $this->{$field};
+        if (!$gallery_field) return [];
+        $images = glob(self::uploadImagePath() . $gallery_field . Yii::$app->params['allowedImageExtension'], GLOB_BRACE);
+        $gallery = [];
+        foreach ($images as $image) {
+            $filePath = explode('/', $image);
+            $fileName = end($filePath);
+            $gallery[] = '/uploads/' . $gallery_field . '/' . $fileName;
+        }
+        return $gallery;
     }
 
 }
