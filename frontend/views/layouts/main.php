@@ -1,7 +1,6 @@
 <?php
 
 use yii\helpers\Html;
-use frontend\assets\MainPageAsset;
 use yii\helpers\Url;
 
 /**
@@ -9,7 +8,7 @@ use yii\helpers\Url;
  * @var $content string
  */
 
-MainPageAsset::register($this);
+frontend\assets\InnerAsset::register($this);
 ?>
 
 <? $this->beginPage(); ?>
