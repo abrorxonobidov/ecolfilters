@@ -19,9 +19,9 @@ class OrderController extends BaseController
      */
     public function actionIndex()
     {
+        $params = Yii::$app->request->queryParams;
         $searchModel = new OrderSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
+        $dataProvider = $searchModel->search($params);
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
