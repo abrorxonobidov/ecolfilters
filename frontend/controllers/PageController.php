@@ -13,6 +13,14 @@ use yii\web\NotFoundHttpException;
 class PageController extends Controller
 {
 
+    public function actionPlace($code)
+    {
+        return $this->render('place', [
+            'page' => $this->findPage($code)
+        ]);
+    }
+
+
     public function actionView($code)
     {
         return $this->render('view', [

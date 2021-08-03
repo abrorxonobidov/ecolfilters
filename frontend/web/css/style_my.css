@@ -1,3 +1,30 @@
 .product-category-block {
     cursor: pointer;
 }
+
+.place-page .tab_box .nav-tabs li a {
+    min-width: 340px;
+}
+
+.place-page .order_link_2 {
+    margin: 80px 0 10px 0;
+}
+
+.place-page.product {
+    margin-top: 20px;
+}
+
+.place-page .selectors a {
+    margin-bottom: 10px;
+}
+
+.place-page .selectors img,
+.place-page .app-figure figure img {
+    border: 2px solid black !important;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.place-page .selectors a:hover img {
+    border: 2px solid #0f00bf;
+}
