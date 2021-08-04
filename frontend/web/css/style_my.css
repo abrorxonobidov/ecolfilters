@@ -28,3 +28,71 @@
 .place-page .selectors a:hover img {
     border: 2px solid #0f00bf;
 }
+.place-page .MagicZoom {
+    height: auto !important;
+}
+.main_menu .navbar-nav li.active a {
+    color: black;
+    font-weight: bold;
+}
+
+.static-banner-table {
+    height: 400px;
+    width: 80%;
+    margin: 0 auto 30px auto;
+}
+
+.simple-text {
+    font-family: "Montserrat-Regular";
+    font-size: 16px;
+    color: #707070;
+    line-height: 1.3;
+}
+
+.service-preview {
+    padding: 15px;
+    margin-left: 10px;
+}
+
+.image-row {
+    text-align: center;
+    width: 100%;
+    height: fit-content;
+    margin: 100px auto;
+}
+
+.image-row a {
+    display: inline-block;
+    padding: 5px;
+    margin: 5px;
+    background-color: #063ce4;
+    /*border-radius: 10px;*/
+}
+
+.image-row a:hover {
+    background-color: #0d8dd0;
+}
+
+.image-row a img {
+    height: 200px;
+    width: auto;
+    /*border-radius: 5px;*/
+}
+
+.my-order-link {
+    background-image: linear-gradient(
+            225deg
+            , #0557b1 0%, #0d8dd0 100%);
+    border-radius: 7px;
+    border: 1px solid #0557B1;
+    font-family: "Montserrat-Bold";
+    font-size: 20px;
+    color: #fff;
+    line-height: 1.3;
+    text-transform: uppercase;
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+    padding: 15px 30px;
+    margin: 15px;
+}

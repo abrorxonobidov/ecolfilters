@@ -3,6 +3,8 @@
 namespace frontend\controllers;
 
 use common\models\Lists;
+use common\models\Place;
+use common\models\ProductSearch;
 use Yii;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -15,8 +17,16 @@ class PageController extends Controller
 
     public function actionPlace($code)
     {
+
+        $params = Yii::$app->request->queryParams;
+        $searchModel = new ProductSearch();
+        $params['pli'] = Place::getIdByCode($code);
+        $dataProvider = $searchModel->searchFrontend($params);
+
         return $this->render('place', [
-            'page' => $this->findPage($code)
+            'page' => $this->findPageByCode($code),
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
         ]);
     }
 
@@ -24,7 +34,7 @@ class PageController extends Controller
     public function actionView($code)
     {
         return $this->render('view', [
-            'page' => $this->findPage($code)
+            'page' => $this->findPageByCode($code)
         ]);
     }
 
@@ -52,7 +62,15 @@ class PageController extends Controller
         ]);
     }
 
-    protected function findPage($code)
+    public function actionService($code)
+    {
+        $this->layout = 'service';
+        return $this->render('service', [
+            'page' => $this->findPageByCode($code)
+        ]);
+    }
+
+    protected function findPageByCode($code)
     {
         if (($page = Lists::findOne(['link' => $code, 'enabled' => 1, 'category_id' => 1])) !== null)
             return $page;

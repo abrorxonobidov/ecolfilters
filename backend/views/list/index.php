@@ -40,7 +40,7 @@ echo yii\grid\GridView::widget([
                 ]
             ])
         ],
-        'preview_uz',
+        'preview_uz:raw',
         [
             'attribute' => 'preview_image',
             'value' => function (Lists $model) {

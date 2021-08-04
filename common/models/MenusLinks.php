@@ -105,6 +105,18 @@ class MenusLinks extends BaseActiveRecord
      * @return yii\db\ActiveQuery|MenusLinksQuery
      */
     public function getChildren()
+
+    {
+        return $this->hasMany(MenusLinks::class, ['parent_id' => 'id']);
+    }
+
+
+    /**
+     * Gets query for [[MenusLinks]].
+     *
+     * @return yii\db\ActiveQuery|MenusLinksQuery
+     */
+    public function getItems()
     {
         return $this->hasMany(MenusLinks::class, ['parent_id' => 'id']);
     }

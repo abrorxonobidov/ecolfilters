@@ -47,6 +47,7 @@ return [
             'enableLanguageDetection' => false,
             'rules' => [
                 '' => '/site/index',
+                'product/category/<pci:\d+>' => 'product/category',
                 '<controller>/<action>/<id:\d+>' => '<controller>/<action>',
                 '<controller>/<action>/<code:\S+>' => '<controller>/<action>',
             ]

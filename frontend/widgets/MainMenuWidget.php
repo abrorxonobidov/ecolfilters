@@ -2,6 +2,7 @@
 
 namespace frontend\widgets;
 
+use common\helpers\DebugHelper;
 use Yii;
 use common\models\MenusLinks;
 use yii\base\Widget;

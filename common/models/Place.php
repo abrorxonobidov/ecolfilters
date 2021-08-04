@@ -84,4 +84,21 @@ class Place extends BaseActiveRecord
     {
         return new PlaceQuery(get_called_class());
     }
+
+    public static function codes()
+    {
+        return [
+            'kvartiralar' => 1,
+            'shaxsiy_uylar' => 2,
+            'ofis' => 3,
+            'sanoat' => 4,
+            'korxona' => 5,
+        ];
+    }
+
+    public static function getIdByCode($code)
+    {
+        return @self::codes()[$code];
+    }
+
 }
