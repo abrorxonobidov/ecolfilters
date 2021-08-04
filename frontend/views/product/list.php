@@ -17,7 +17,7 @@ $this->params['breadcrumbs'][] = $this->title; ?>
             'dataProvider' => $dataProvider,
             'itemView' => '_product',
             'options' => ['tag' => false],
-            'itemOptions' => ['tag' => false, 'class' => 'col-md-3 product_b', 'href' => \yii\helpers\Url::to(['/product/view', 'id' => $model->id])],
+            'itemOptions' => ['tag' => false],
             'layout' => " <div class='flex-row row'> {items}</div><div class='text-center'>{pager}</div>"
         ]); ?>
     </div>
