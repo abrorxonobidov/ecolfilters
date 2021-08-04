@@ -66,10 +66,3 @@ $this->title = $page->titleLang;
         </div>
     </div>
 </div>
-
-<script>
-    lightbox.option({
-        'resizeDuration': 200,
-        'wrapAround': true
-    })
-</script>

@@ -22,11 +22,11 @@ class InnerAsset extends AssetBundle
     ];
     public $js = [
         'js/jquery-ui.js',
+        'js/lightbox.js',
         'js/main.js',
         'js/my.js',
         'js/magiczoomplus.js',
         'js/chosen.jquery.min.js',
-        'js/lightbox.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',

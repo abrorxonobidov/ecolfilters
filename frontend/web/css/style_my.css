@@ -52,6 +52,9 @@
 .service-preview {
     padding: 15px;
     margin-left: 10px;
+    background-color: rgba(231, 231, 231, 0.86);
+    color: black;
+    border-radius: 13px;
 }
 
 .image-row {

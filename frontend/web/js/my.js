@@ -5,3 +5,8 @@ $(document).ready(function () {
             location.href = "http://" + location.hostname + $(this).data('url');
     })
 })
+
+lightbox.option({
+    'resizeDuration': 200,
+    'wrapAround': true
+})
