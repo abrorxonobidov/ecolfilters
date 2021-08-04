@@ -39,6 +39,8 @@ use yii\helpers\Url;
  * @property string|null $updated_at
  * @property int|null $creator_id
  * @property int|null $modifier_id
+ * @property string $technicLang
+ * @property string $videoLang
  *
  * @property Order[] $orders
  * @property Place $place
@@ -147,6 +149,16 @@ class Product extends BaseActiveRecord
     public static function find()
     {
         return new ProductQuery(get_called_class());
+    }
+
+    public function getTechnicLang()
+    {
+        return $this->{'technic_' . Yii::$app->language};
+    }
+
+    public function getVideoLang()
+    {
+        return $this->{'video_' . Yii::$app->language};
     }
 
 }
