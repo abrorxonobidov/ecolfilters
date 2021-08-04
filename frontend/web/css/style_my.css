@@ -13,11 +13,14 @@
 .place-page.product {
     margin-top: 20px;
 }
-
+.product-page-zoom .selectors a,
 .place-page .selectors a {
     margin-bottom: 10px;
+    background-color: black;
+    border-radius: 5px;
 }
-
+.product-page-zoom .selectors img,
+.product-page-zoom .app-figure figure img,
 .place-page .selectors img,
 .place-page .app-figure figure img {
     border: 2px solid black !important;
@@ -98,4 +101,8 @@
     transition: all 0.3s ease-in-out;
     padding: 15px 30px;
     margin: 15px;
+}
+
+.main_menu .navbar-nav li a {
+    padding: 20px 14px;
 }
