@@ -13,6 +13,7 @@ use yii\widgets\DetailView;
 $this->title = $model->titleLang;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('main', 'Маҳсулотлар'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
+$arVideoLink = explode('/', $model->videoLang);
 ?>
 <section class="view_product">
     <div class="container has_width">
@@ -72,7 +73,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             Html::tag('iframe', '', [
                                 'width' => '100%',
                                 'height' => '500',
-                                'src' => 'https://www.youtube.com/embed/' . end(explode('/', $model->videoLang)),
+                                'src' => 'https://www.youtube.com/embed/' . end($arVideoLink),
                             ])
                     ]
                 ]
