@@ -7,13 +7,18 @@ $languages = Yii::$app->params['languages'];
 
 echo Html::beginTag('div', ['class' => 'dropdown lang_btn']);
 echo Html::button($languages[Yii::$app->language] . Html::tag('span', '', ['class' => 'caret']), [
-        'class' => 'dropdown-toggle',
-        'data-toggle' => 'dropdown'
-    ]);
+    'class' => 'dropdown-toggle',
+    'data-toggle' => 'dropdown'
+]);
 unset($languages[Yii::$app->language]);
 echo Html::beginTag('ul', ['class' => 'dropdown-menu']);
-foreach ($languages as $code => $language)
-    echo Html::tag('li', Html::a($language, ['', 'language' => $code]));
+
+foreach ($languages as $code => $language) {
+    $params = Yii::$app->request->queryParams;
+    $params[0] = '';
+    $params['language'] = $code;
+    echo Html::tag('li', Html::a($language, $params));
+}
 echo Html::endTag('ul');
 echo Html::endTag('div');
 ?>

@@ -38,7 +38,7 @@ return [
     'No' => 'Yo`q',
     'No help for unknown command "{command}".' => '"{command}" noaniq komanda uchun ma`lumotnoma mavjud emas.',
     'No help for unknown sub-command "{command}".' => '"{command}" noaniq qism komanda uchun ma`lumotnoma mavjud emas.',
-    'No results found.' => 'Hech nima topilmadi.',
+    'No results found.' => 'Маълумот тўлдирилмоқда.',
     'Only files with these MIME types are allowed: {mimeTypes}.' => 'Faqat quyidagi MIME-turidagi fayllarni yuklashga ruhsat berilgan: {mimeTypes}.',
     'Only files with these extensions are allowed: {extensions}.' => 'Faqat quyidagi kengaytmali fayllarni yuklashga ruhsat berilgan: {extensions}.',
     'Page not found.' => 'Sahifa topilmadi.',

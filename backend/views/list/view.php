@@ -10,7 +10,10 @@ use yii\widgets\DetailView;
  */
 
 $this->title = $model->titleLang;
-$this->params['breadcrumbs'][] = ['label' => Yii::$app->request->get('ci') ? $model->category->titleLang : Yii::t('main', 'Рўйхат'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = [
+    'label' => Yii::$app->request->get('ci') ? $model->category->titleLang : Yii::t('main', 'Рўйхат'),
+    'url' => ['index', 'ci' => Yii::$app->request->get('ci')]
+];
 $this->params['breadcrumbs'][] = $this->title;
 
 echo common\helpers\GeneralHelper::actionButtons($model);

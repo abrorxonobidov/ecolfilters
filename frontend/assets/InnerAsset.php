@@ -15,6 +15,7 @@ class InnerAsset extends AssetBundle
         'css/chosen.css',
         'css/magiczoomplus.css',
         'css/jquery-ui.css',
+        'css/lightbox.css',
         'css/style.css',
         'css/media.css',
         'css/style_my.css',
@@ -25,6 +26,7 @@ class InnerAsset extends AssetBundle
         'js/my.js',
         'js/magiczoomplus.js',
         'js/chosen.jquery.min.js',
+        'js/lightbox.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',
