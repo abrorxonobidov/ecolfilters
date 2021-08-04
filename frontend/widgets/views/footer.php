@@ -1,6 +1,7 @@
 <?php
 
-?>
+use frontend\widgets\FooterMenuWidget;
+use frontend\widgets\SocialNetworksMenuWidget; ?>
 
 <section class="footer">
     <div class="container has_width">
@@ -24,64 +25,9 @@
             </div>
             <div class="clearfix"></div>
         </div>
-        <div class="col-md-8">
-            <ul class="footer_list">
-                <li>Bosh sahifa</li>
-                <li>
-                    <a href="#">Biz haqimizda</a>
-                </li>
-                <li>
-                    <a href="#">Xizmatlar</a>
-                </li>
-                <li>
-                    <a href="#">Mahsulotlar</a>
-                </li>
-                <li>
-                    <a href="#">Test-drive</a>
-                </li>
-                <li>
-                    <a href="#">Suvni tozalash</a>
-                </li>
-                <li>
-                    <a href="#">Aloqa</a>
-                </li>
-            </ul>
-            <ul class="footer_list">
-                <li>Toza suv</li>
-                <li>
-                    <a href="#">Xonadonda</a>
-                </li>
-                <li>
-                    <a href="#">Ofisda</a>
-                </li>
-                <li>
-                    <a href="#">Kottejda</a>
-                </li>
-                <li>
-                    <a href="#">Korxonada</a>
-                </li>
-            </ul>
-            <ul class="footer_list">
-                <li>Ma'lumot</li>
-                <li>
-                    <a href="#">Hamkorlar</a>
-                </li>
-                <li>
-                    <a href="#">Fikrlar</a>
-                </li>
-                <li>
-                    <a href="#">Statistika</a>
-                </li>
-            </ul>
-            <div class="clearfix"></div>
-        </div>
+        <?= FooterMenuWidget::widget() ?>
         <div class="col-md-4">
-            <ul class="social_network">
-                <li>Ijtimoiy tarmoqlar</li>
-                <li><a href="#"><img src="/img/facebook.png" alt=""/>Facebook</a></li>
-                <li><a href="#"><img src="/img/telegram.png" alt=""/>Telegram</a></li>
-                <li><a href="#"><img src="/img/instagram.png" alt=""/>Instagram</a></li>
-            </ul>
+            <?= SocialNetworksMenuWidget::widget() ?>
             <div class="clearfix"></div>
             <div class="address_b">
                 <p>Manzil: Toshkent shahri,</p>

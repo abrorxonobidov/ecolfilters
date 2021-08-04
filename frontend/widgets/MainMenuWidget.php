@@ -18,7 +18,7 @@ class MainMenuWidget extends Widget
                 'label' => "title_$lang",
                 'url' => 'link_in',
             ])
-            ->where(['enabled' => 1])
+            ->where(['enabled' => 1,'menu_id' => 1])
             ->andWhere("title_$lang > ''")
             ->orderBy(['order' => SORT_ASC, 'id' => SORT_ASC])
             ->asArray()
