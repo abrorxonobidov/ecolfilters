@@ -26,7 +26,7 @@ use Yii;
  *
  * @property Menus $menu
  * @property MenusLinks $parent
- * @property MenusLinks[] $menusLinks
+ * @property MenusLinks[] $children
  */
 class MenusLinks extends BaseActiveRecord
 {
@@ -104,7 +104,7 @@ class MenusLinks extends BaseActiveRecord
      *
      * @return yii\db\ActiveQuery|MenusLinksQuery
      */
-    public function getMenusLinks()
+    public function getChildren()
     {
         return $this->hasMany(MenusLinks::class, ['parent_id' => 'id']);
     }
