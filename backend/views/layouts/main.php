@@ -26,7 +26,7 @@ dmstr\web\AdminLteAsset::register($this);
 <div class="wrapper">
 
     <?= $this->render('header.php') ?>
-
+    <? \diecoding\toastr\ToastrFlash::widget(); ?>
     <?= $this->render('left.php') ?>
 
     <?= $this->render('content.php', [
