@@ -93,7 +93,7 @@ class BaseActiveRecord extends ActiveRecord
 
     public static function uploadImagePath()
     {
-        return Yii::getAlias('@frontend') . '/web/uploads/';
+        return Yii::$app->params['imageUploadPath'];
     }
 
     public static function imageSourcePath()
