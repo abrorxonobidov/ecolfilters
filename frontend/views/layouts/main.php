@@ -57,13 +57,3 @@ frontend\assets\InnerAsset::register($this);
 </body>
 </html>
 <? $this->endPage() ?>
-<?php
-$js = <<<JS
-        $(document).ready(function() {
-          $('.pjaxModalButton').click(function(e){
-                callAjaxModal(e,this);
-           });
-        });
-JS;
-$this->registerJs($js, \yii\web\View::POS_END);
-?>

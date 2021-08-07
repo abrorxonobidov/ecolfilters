@@ -96,3 +96,7 @@
     padding: 15px 30px;
     margin: 15px;
 }
+
+.product_rev_form_box.ordering:before{
+    background: url("../img/karzinka-small.png")  no-repeat;
+}

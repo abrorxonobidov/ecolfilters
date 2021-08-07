@@ -61,7 +61,7 @@ class MenusLinks extends BaseActiveRecord
     {
         return [
             'id' => Yii::t('main', 'ID'),
-            'menu_id' => Yii::t('main', 'Menu ID'),
+            'menu_id' => Yii::t('main', 'Меню тоифаси'),
             'parent_id' => Yii::t('main', 'Parent ID'),
             'title_uz' => Yii::t('main', 'Title Uz'),
             'title_oz' => Yii::t('main', 'Title Oz'),
@@ -105,7 +105,6 @@ class MenusLinks extends BaseActiveRecord
      * @return yii\db\ActiveQuery|MenusLinksQuery
      */
     public function getChildren()
-
     {
         return $this->hasMany(MenusLinks::class, ['parent_id' => 'id']);
     }

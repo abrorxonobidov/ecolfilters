@@ -1,5 +1,6 @@
 <?php
 
+use yii\bootstrap\Modal;
 use yii\helpers\Html;
 use frontend\assets\MainPageAsset;
 use yii\helpers\Url;
@@ -26,12 +27,12 @@ MainPageAsset::register($this);
 <body>
 <? $this->beginBody() ?>
 
-
+<? \diecoding\toastr\ToastrFlash::widget(); ?>
 <div class="wrapper">
     <section class="header">
         <div class="container has_width d_flex">
             <div class="col-md-2 col-xs-6">
-                <a href="<?=Url::to(['site/index'])?>" class="logo_img">
+                <a href="<?= Url::to(['site/index']) ?>" class="logo_img">
                     <img src="/img/logo.png" alt=""/>
                 </a>
             </div>
@@ -51,31 +52,21 @@ MainPageAsset::register($this);
         </div>
     </section>
 
-    <?= frontend\widgets\ProductCategoryWidget::widget()?>
+    <?= frontend\widgets\ProductCategoryWidget::widget() ?>
 
-    <?= frontend\widgets\Stages::widget()?>
+    <?= frontend\widgets\Stages::widget() ?>
 
     <?= $content ?>
 
-    <?= frontend\widgets\Statistic::widget()?>
 
-    <?= frontend\widgets\Footer::widget()?>
+    <?= frontend\widgets\Statistic::widget() ?>
 
-    <?= frontend\widgets\Test::widget()?>
+    <?= frontend\widgets\Footer::widget() ?>
+
+    <?= frontend\widgets\Test::widget() ?>
 
 </div>
-
 <? $this->endBody() ?>
 </body>
 </html>
 <? $this->endPage() ?>
-<?php
-$js = <<<JS
-        $(document).ready(function() {
-          $('.pjaxModalButton').click(function(e){
-                callAjaxModal(e,this);
-           });
-        });
-JS;
-$this->registerJs($js, \yii\web\View::POS_END);
-?>

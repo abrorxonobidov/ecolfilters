@@ -48,7 +48,7 @@ echo "<div class='clearfix'></div>";
 echo "<div class='pull-right'>";
 echo Html::a('Тозалаш', ['/order'], ['class' => 'btn btn-danger ink-reaction']);
 echo ' ';
-echo Html::submitButton('Қидириш', ['id' => '_search', 'class' => 'btn btn-success ink-reaction']);
+echo Html::submitButton(Yii::t('main','Қидириш'), ['id' => '_search', 'class' => 'btn btn-success ink-reaction']);
 echo "</div>";
 ActiveForm::end();
 ?>

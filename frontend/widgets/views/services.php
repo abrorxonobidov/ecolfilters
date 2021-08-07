@@ -3,7 +3,7 @@
 
 <section class="our_services">
     <div class="container has_width">
-        <div class="title">Bizning xizmatlarimiz</div>
+        <div class="title"><?=Yii::t('main','Бизнинг хизматларимиз')?>></div>
         <ul class="service_list">
             <li>
                 <a href="#">

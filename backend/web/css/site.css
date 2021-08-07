@@ -177,3 +177,13 @@ a.desc:after {
 .view-button {
     margin-left: 10px;
 }
+/* add red asterisk to required form fields */
+div.required label:after {
+    content: " *";
+    color: #e13431;
+}
+
+.sidebar .sidebar-menu li a span {
+    white-space: normal;
+    overflow: inherit;
+}

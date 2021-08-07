@@ -10,6 +10,7 @@ namespace backend\widgets;
 
 use common\helpers\DebugHelper;
 use common\models\Order;
+use common\models\Reviews;
 use common\models\User;
 use yii\bootstrap\Widget;
 use yii\db\Query;
@@ -43,6 +44,17 @@ class HeaderNotifications extends Widget
                                 'icon' => 'fa fa-cart-arrow-down',
                                 'title' => Yii::t('main', 'Янги буюртмалар'),
                                 'url' => ['/order/index', 'OrderSearch[status]' => 'new'],
+                                'count' => $count,
+                            ];
+                        }
+                        break;
+                    case 'new-reviews':
+                        $count = Reviews::find()->where(['status' => 'new'])->count();
+                        if ($count > 0) {
+                            $items[] = [
+                                'icon' => 'fa fa-comments-o',
+                                'title' => Yii::t('main', 'Янги фикрлар'),
+                                'url' => ['/reviews/index', 'ReviewsSearch[status]' => 'new'],
                                 'count' => $count,
                             ];
                         }
