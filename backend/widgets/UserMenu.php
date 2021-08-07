@@ -27,14 +27,14 @@ class UserMenu extends Widget
         $items = [
             ['label' => '&nbsp;', 'options' => ['class' => 'header'], 'encode' => false],
             [
-                'label' => Yii::t('app', 'Сайтга ўтиш'),
+                'label' => Yii::t('main', 'Сайтга ўтиш'),
                 'url' => 'http://'.Yii::$app->params['domainName'],
                 'icon' => 'globe'
             ]
         ];
 
         if ($this->user->isGuest) {
-            $items[] = ['label' => Yii::t('app', 'Вход'), 'url' => ['/site/login']];
+            $items[] = ['label' => Yii::t('main', 'Вход'), 'url' => ['/site/login']];
         } else {
             $items[] = ['label' => 'Маҳсулотлар', 'icon' => 'gift', 'url' => ['product/index']];
             $items[] = ['label' => 'Менюлар', 'icon' => 'navicon', 'url' => ['menus-links/index']];

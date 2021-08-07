@@ -8,7 +8,7 @@ use yii\widgets\Pjax;
 /* @var $searchModel common\modules\i18n_interface\models\SourceMessageSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Source Messages');
+$this->title = Yii::t('main', 'Source Messages');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="source-message-index">
@@ -17,8 +17,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a(Yii::t('app', 'Create'), ['create'], ['class' => 'btn btn-success']) ?>
-        <?= Html::a(Yii::t('app', 'Generate PhpMessageSource files'), ['build'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('main', 'Create'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('main', 'Generate PhpMessageSource files'), ['build'], ['class' => 'btn btn-success']) ?>
     </p>
     <?php Pjax::begin(); ?>
     <?= GridView::widget([

@@ -72,9 +72,9 @@ class Order extends BaseActiveRecord
             'phone' => Yii::t('main', 'Телефон'),
             'enabled' => Yii::t('main', 'Актив'),
             'created_at' => Yii::t('main', 'Буюртма берилган сана'),
-            'updated_at' => Yii::t('main', 'Таҳрирланган сана'),
-            'creator_id' => Yii::t('main', 'Муаллиф'),
-            'modifier_id' => Yii::t('main', 'Таҳрирчи'),
+            'updated_at' => Yii::t('main', 'Updated At'),
+            'creator_id' => Yii::t('main', 'Author ID'),
+            'modifier_id' => Yii::t('main', 'Modifier ID'),
             'status' => Yii::t('main', 'Буюртма ҳолати'),
             'comment' => Yii::t('main', 'Модератор изоҳи'),
         ];

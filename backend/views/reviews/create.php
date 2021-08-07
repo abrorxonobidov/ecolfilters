@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model common\models\Reviews */
 
-$this->title = Yii::t('main', 'Create Reviews');
+$this->title = Yii::t('main', 'Create');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('main', 'Reviews'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
