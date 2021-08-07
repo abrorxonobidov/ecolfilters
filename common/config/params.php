@@ -18,6 +18,5 @@ return [
         'ru' => 'Русский',
         'en' => 'English',
     ],
-    'imageUploadPath' => Yii::getAlias('@frontend') . '/web/uploads/',
     'allowedImageExtension' => "/{*.jpg,*.JPG,*.jpeg,*.gif,*.png}",
 ];
