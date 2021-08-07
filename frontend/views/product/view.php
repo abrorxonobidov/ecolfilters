@@ -11,7 +11,7 @@ use yii\widgets\DetailView;
  */
 
 $this->title = $model->titleLang;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('main', 'Маҳсулотлар'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('main', 'Маҳсулотлар'), 'url' => ['category']];
 $this->params['breadcrumbs'][] = $this->title;
 $arVideoLink = explode('/', $model->videoLang);
 ?>
@@ -29,7 +29,7 @@ $arVideoLink = explode('/', $model->videoLang);
                 ); ?>
             </nav>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 product-page-zoom">
             <?= frontend\widgets\MagicZoom::widget(['items' => $model->galleryItems()]) ?>
         </div>
         <div class="col-md-6">

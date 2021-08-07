@@ -45,7 +45,7 @@ class BaseController extends Controller {
     public function actionFileRemove()
     {
         $return = false;
-        $file = Yii::getAlias('@frontend') . '/web/uploads/' . Yii::$app->request->post('key');
+        $file = BaseActiveRecord::uploadImagePath() . Yii::$app->request->post('key');
         $id = Yii::$app->request->post('id');
         $field = Yii::$app->request->post('field');
         $className = Yii::$app->request->post('className');
@@ -65,7 +65,7 @@ class BaseController extends Controller {
     {
         $return = false;
         $className = Yii::$app->request->post('className');
-        $path = Yii::$app->params['imageUploadPath']
+        $path = BaseActiveRecord::uploadImagePath()
             . Yii::$app->request->post('key')
             . '/';
         $file = $path . Yii::$app->request->post('imageName');
