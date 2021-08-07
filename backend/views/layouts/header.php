@@ -32,6 +32,7 @@ $user = Yii::$app->user->identity;
                 'arTypes' => [
 //                    'orders',
                     'new-orders',
+                    'new-reviews',
                 ]
             ]) ?>
             <ul class="nav navbar-nav">

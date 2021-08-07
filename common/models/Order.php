@@ -43,7 +43,13 @@ class Order extends BaseActiveRecord
     public function rules()
     {
         return [
-            [['product_id'], 'required'],
+            [['name'], 'required'],
+            ['email', 'required', 'when' => function ($attribute) {
+                return empty($this->phone);
+            },'message' => Yii::t('main', 'Телефон ёки e-mail ни киритинг')],
+            ['phone', 'required', 'when' => function ($attribute) {
+                return empty($this->email);
+            },'message' => Yii::t('main', 'Телефон ёки e-mail ни киритинг')],
             [['product_id', 'enabled', 'creator_id', 'modifier_id'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['name', 'email', 'phone'], 'string', 'max' => 255],
@@ -66,9 +72,9 @@ class Order extends BaseActiveRecord
             'phone' => Yii::t('main', 'Телефон'),
             'enabled' => Yii::t('main', 'Актив'),
             'created_at' => Yii::t('main', 'Буюртма берилган сана'),
-            'updated_at' => Yii::t('main', 'Таҳрирланган сана'),
-            'creator_id' => Yii::t('main', 'Муаллиф'),
-            'modifier_id' => Yii::t('main', 'Таҳрирчи'),
+            'updated_at' => Yii::t('main', 'Updated At'),
+            'creator_id' => Yii::t('main', 'Author ID'),
+            'modifier_id' => Yii::t('main', 'Modifier ID'),
             'status' => Yii::t('main', 'Буюртма ҳолати'),
             'comment' => Yii::t('main', 'Модератор изоҳи'),
         ];
@@ -107,7 +113,7 @@ class Order extends BaseActiveRecord
     {
         $menu = [];
         foreach (self::getStatusList() as $status => $label) {
-            $menu[] = ['label' => $label, 'url' => ['/order/set-status', 'route' => $route, 'status' => $status, 'id' => $id], 'linkOptions'=>['class' => 'btn btn-default']];
+            $menu[] = ['label' => $label, 'url' => ['/order/set-status', 'route' => $route, 'status' => $status, 'id' => $id], 'linkOptions' => ['class' => 'btn btn-default']];
         }
         return $menu;
     }
@@ -115,6 +121,6 @@ class Order extends BaseActiveRecord
     public function getStatusName()
     {
         $statusList = self::getStatusList();
-        return $statusList[$this->status];
+        return $statusList[$this->status] ?? $this->status;
     }
 }

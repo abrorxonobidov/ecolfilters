@@ -52,8 +52,8 @@ frontend\assets\InnerAsset::register($this);
     <?= frontend\widgets\Test::widget()?>
 
 </div>
-
 <? $this->endBody() ?>
 </body>
 </html>
 <? $this->endPage() ?>
+

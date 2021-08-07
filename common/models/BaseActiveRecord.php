@@ -103,7 +103,10 @@ class BaseActiveRecord extends ActiveRecord
 
     public static function getUrlToFrontend($route, $params)
     {
-        return 'http://' . Yii::$app->params['domainName'] . $route . http_build_query($params);
+        $url = 'http://' . Yii::$app->params['domainName'] . $route;
+        if (!empty($params))
+            $url .= '?' . http_build_query($params);
+        return $url;
     }
 
     public function uploadImageMiniPath($file)
@@ -243,12 +246,14 @@ class BaseActiveRecord extends ActiveRecord
         return $this->{'description_' . Yii::$app->language};
     }
 
-    public static function getList()
+    public static function getList($titleField = null)
     {
+        if ($titleField === null)
+            $titleField = 'title_' . Yii::$app->language;
         $list = self::find()
             ->select([
                 'id',
-                'title' => 'title_' . Yii::$app->language
+                'title' => $titleField
             ])
             ->where(['enabled' => 1])
             ->asArray()

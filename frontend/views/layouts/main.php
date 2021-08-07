@@ -24,8 +24,6 @@ frontend\assets\InnerAsset::register($this);
 </head>
 <body>
 <? $this->beginBody() ?>
-
-
 <div class="wrapper">
     <section class="header">
         <div class="container has_width d_flex">
@@ -34,6 +32,7 @@ frontend\assets\InnerAsset::register($this);
                     <img src="/img/logo.png" alt=""/>
                 </a>
             </div>
+            <? \diecoding\toastr\ToastrFlash::widget(); ?>
             <div class="col-md-8 col-xs-12">
                 <?= frontend\widgets\MainMenuWidget::widget() ?>
             </div>

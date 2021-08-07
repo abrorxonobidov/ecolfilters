@@ -1,6 +1,7 @@
 <?php
 namespace frontend\controllers;
 
+use common\models\Order;
 use common\models\Product;
 use common\models\ProductSearch;
 use Yii;
@@ -32,9 +33,48 @@ class ProductController extends Controller
         ]);
     }
 
+    /**
+     * @param $id
+     * @return Product|null
+     * @throws NotFoundHttpException
+     */
     protected function findModel($id)
     {
         if (($model = Product::findOne($id)) !== null) {
+            return $model;
+        }
+
+        throw new NotFoundHttpException(Yii::t('yii', 'The requested page does not exist.'));
+    }
+
+    public function actionCreateOrder($pid)
+    {
+        $model = new Order();
+        $model->product_id = $pid;
+        if ($model->load(Yii::$app->request->post())) {
+            if ($model->save()) {
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
+        }
+
+        if (Yii::$app->request->isAjax)
+            return $this->renderAjax('create-order', [
+                'model' => $model,
+            ]);
+        else
+            return $this->render('create-order', [
+                'model' => $model,
+            ]);
+    }
+
+    /**
+     * @param $id
+     * @return Order|null
+     * @throws NotFoundHttpException
+     */
+    protected function findOrder($id)
+    {
+        if (($model = Order::findOne($id)) !== null) {
             return $model;
         }
 

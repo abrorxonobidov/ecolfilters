@@ -26,6 +26,7 @@ class InnerAsset extends AssetBundle
         'js/main.js',
         'js/my.js',
         'js/magiczoomplus.js',
+        'js/ajaxModal.js',
         'js/chosen.jquery.min.js',
     ];
     public $depends = [

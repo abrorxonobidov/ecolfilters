@@ -1,5 +1,9 @@
 # yii console commands
 /yii
+/yii.bat
+/yii.php
+/init
+/init.bat
 /yii_test
 /yii_test.bat
 

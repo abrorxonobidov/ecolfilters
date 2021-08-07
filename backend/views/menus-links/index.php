@@ -22,20 +22,38 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+//            ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
-            'menu_id',
-            'parent_id',
+            ['attribute' => 'id','contentOptions' => ['width' => '5%']],
+            [
+                'attribute' => 'menu_id',
+                'filter' => \common\models\Menus::getList('name'),
+                'value' => function ($data) {
+                    /** @var $data \common\models\MenusLinks */
+                    return $data->menu->name ?? $data->menu_id;
+                }
+            ],
+            [
+                'attribute' => 'parent_id',
+                'filter' => \common\models\MenusLinks::getList(),
+                'value' => function ($data) {
+                    /** @var $data \common\models\MenusLinks */
+                    return $data->parent->titleLang ?? $data->parent_id;
+                }
+            ],
             'title_uz',
-            'title_oz',
-            //'title_ru',
-            //'title_en',
-            //'link_in',
-            //'link_out:ntext',
-            //'order',
-            //'icon:ntext',
-            //'enabled',
+//            'title_oz',
+//            'title_ru',
+//            'title_en',
+            'link_in',
+            'link_out:ntext',
+            'order',
+            'icon:ntext',
+            [
+                'attribute' => 'enabled',
+                'filter' => $searchModel::listsEnabled(),
+                'value' => 'enable'
+            ],
             //'created_at',
             //'updated_at',
             //'creator_id',
