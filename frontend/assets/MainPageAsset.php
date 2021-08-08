@@ -17,15 +17,15 @@ class MainPageAsset extends AssetBundle
         'css/jquery-ui.css',
         'css/style.css',
         'css/media.css',
-        'css/style_my.css',
+        'css/style_my.css?v=1',
     ];
     public $js = [
         'js/jquery-ui.js',
+        'js/lightbox.js',
         'js/main.js',
         'js/highcharts.js',
         'js/chart.js',
-        'js/my.js',
-        'js/ajaxModal.js',
+        'js/my.js?v=1',
         //'js/chosen.jquery.min.js',
         //'js/magiczoomplus.js',
     ];

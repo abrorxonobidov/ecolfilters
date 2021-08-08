@@ -27,7 +27,7 @@ MainPageAsset::register($this);
 <body>
 <? $this->beginBody() ?>
 
-<? \diecoding\toastr\ToastrFlash::widget(); ?>
+<? diecoding\toastr\ToastrFlash::widget(); ?>
 <div class="wrapper">
     <section class="header">
         <div class="container has_width d_flex">

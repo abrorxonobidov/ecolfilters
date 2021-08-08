@@ -36,16 +36,16 @@ return [
         'datecontrol' => [
             'class' => '\kartik\datecontrol\Module',
             'displaySettings' => [
-                \kartik\datecontrol\Module::FORMAT_DATE => 'dd.MM.yyyy',
-                \kartik\datecontrol\Module::FORMAT_TIME => 'HH:mm:ss',
-                \kartik\datecontrol\Module::FORMAT_DATETIME => 'dd.MM.yyyy HH:mm:ss',
+                'date' => 'dd.MM.yyyy',
+                'time' => 'HH:mm:ss',
+                'datetime' => 'dd.MM.yyyy HH:mm:ss',
             ],
 
             // format settings for saving each date attribute (PHP format example)
             'saveSettings' => [
-                \kartik\datecontrol\Module::FORMAT_DATE => 'php:Y-m-d', // saves as unix timestamp
-                \kartik\datecontrol\Module::FORMAT_TIME => 'php:H:i:s',
-                \kartik\datecontrol\Module::FORMAT_DATETIME => 'php:Y-m-d H:i:s',
+                'date' => 'php:Y-m-d', // saves as unix timestamp
+                'time' => 'php:H:i:s',
+                'datetime' => 'php:Y-m-d H:i:s',
             ],
 
             // set your display timezone

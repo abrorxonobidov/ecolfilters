@@ -18,15 +18,14 @@ class InnerAsset extends AssetBundle
         'css/lightbox.css',
         'css/style.css',
         'css/media.css',
-        'css/style_my.css',
+        'css/style_my.css?v=1',
     ];
     public $js = [
         'js/jquery-ui.js',
         'js/lightbox.js',
         'js/main.js',
-        'js/my.js',
+        'js/my.js?v=1',
         'js/magiczoomplus.js',
-        'js/ajaxModal.js',
         'js/chosen.jquery.min.js',
     ];
     public $depends = [

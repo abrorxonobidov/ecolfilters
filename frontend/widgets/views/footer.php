@@ -20,6 +20,15 @@ use yii\helpers\Url; ?>
                     <?= Yii::t('main', 'Савол ва таклифларингиз бўлса ҳозироқ биз билан боғланинг') ?>
                 </span>
             </div>
+            <div class="col-md-4 col-sm-4 col-xs-6">
+                <span class="prof_service">
+                    <?= Yii::t('main', 'Профессионал таҳлил ва хизмат кўрсатиш') ?>
+                </span>
+                <?= yii\helpers\Html::a(Yii::t('main', 'Буюртма бериш'),
+                    ['order/create', 'pid' => Yii::$app->request->get('id')],
+                    ['class' => 'order_link pjaxModalButton'])
+                ?>
+            </div>
             <?= Ordering::widget() ?>
             <div class="clearfix"></div>
         </div>

@@ -17,6 +17,7 @@ class OrderController extends Controller
     /**
      * Creates a new Order model.
      * If creation is successful, the browser will be redirected to the 'view' page.
+     * @param null $pid
      * @return mixed
      */
     public function actionCreate($pid = null)

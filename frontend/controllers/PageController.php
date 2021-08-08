@@ -56,9 +56,10 @@ class PageController extends Controller
 
     public function actionNews($id)
     {
-        return $this->render('/site/error', [
-            'message' => Yii::t('main', 'Маълумот тўлдирилмоқда'),
-            'name' => '',
+
+        $model = $this->findModel($id);
+        return $this->render('news', [
+            'model' => $model,
         ]);
     }
 
@@ -73,6 +74,13 @@ class PageController extends Controller
     protected function findPageByCode($code)
     {
         if (($page = Lists::findOne(['link' => $code, 'enabled' => 1, 'category_id' => 1])) !== null)
+            return $page;
+        throw new NotFoundHttpException(Yii::t('yii', 'The requested page does not exist.'));
+    }
+
+    protected function findModel($id, $category = 3)
+    {
+        if (($page = Lists::findOne(['id' => $id, 'enabled' => 1, 'category_id' => $category])) !== null)
             return $page;
         throw new NotFoundHttpException(Yii::t('yii', 'The requested page does not exist.'));
     }
