@@ -2,59 +2,33 @@
 
 use yii\helpers\Url;
 
-/* @var $this yii\web\View */
+/**
+ * @var $this yii\web\View
+ * @var $news common\models\Lists[]
+ */
 
-$this->title = 'Тоза сув бу Ecofilters';
+$this->title = Yii::t('main', 'Тоза сув бу — ECOFILTERS');
 ?>
 
 <section class="news_block">
     <div class="container has_width">
         <div class="title">
-            Yangiliklar
+            <?= Yii::t('main', 'Янгиликлар') ?>
         </div>
         <div class="news_list">
-            <div class="news_box">
-                <a href="<?= Url::to(['page/news', 'id' => 1]) ?>">
-                    <span class="news_img"><img src="/img/news_1.jpg" alt=""/></span>
-                    <span class="news_link">30 kun bepul EcoFilters - yumshoq suvni his qiling</span>
-                    <i class="date">15.05.2021</i>
-                </a>
-            </div>
-            <div class="news_box">
-                <a href="<?= Url::to(['page/news', 'id' => 1]) ?>">
-                    <span class="news_img"><img src="/img/news_2.jpg" alt=""/></span>
-                    <span class="news_link">30 kun bepul EcoFilters - yumshoq suvni his qiling</span>
-                    <i class="date">15.05.2021</i>
-                </a>
-            </div>
-            <div class="news_box">
-                <a href="<?= Url::to(['page/news', 'id' => 1]) ?>">
-                    <span class="news_img"><img src="/img/news_3.jpg" alt=""/></span>
-                    <span class="news_link">30 kun bepul EcoFilters - yumshoq suvni his qiling</span>
-                    <i class="date">15.05.2021</i>
-                </a>
-            </div>
-            <div class="news_box">
-                <a href="<?= Url::to(['page/news', 'id' => 1]) ?>">
-                    <span class="news_img"><img src="/img/news_4.jpg" alt=""/></span>
-                    <span class="news_link">30 kun bepul EcoFilters - yumshoq suvni his qiling</span>
-                    <i class="date">15.05.2021</i>
-                </a>
-            </div>
-            <div class="news_box">
-                <a href="<?= Url::to(['page/news', 'id' => 1]) ?>">
-                    <span class="news_img"><img src="/img/news_1.jpg" alt=""/></span>
-                    <span class="news_link">30 kun bepul EcoFilters - yumshoq suvni his qiling</span>
-                    <i class="date">15.05.2021</i>
-                </a>
-            </div>
-            <div class="news_box">
-                <a href="<?= Url::to(['page/news', 'id' => 1]) ?>">
-                    <span class="news_img"><img src="/img/news_2.jpg" alt=""/></span>
-                    <span class="news_link">30 kun bepul EcoFilters - yumshoq suvni his qiling</span>
-                    <i class="date">15.05.2021</i>
-                </a>
-            </div>
+            <? foreach ($news as $model) { ?>
+                <div class="news_box">
+                    <a href="<?= Url::to(['page/news', 'id' => $model->id]) ?>">
+                        <span class="news_img"><img src="/uploads/<?= $model->preview_image ?>" alt=""/></span>
+                        <span class="news_link">
+                            <?= $model->titleLang ?>
+                        </span>
+                        <i class="date">
+                            <?= date('d.m.Y', strtotime($model->date)) ?>
+                        </i>
+                    </a>
+                </div>
+            <? } ?>
         </div>
     </div>
 </section>

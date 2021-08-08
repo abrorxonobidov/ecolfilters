@@ -1,6 +1,8 @@
 <?php
+
 namespace frontend\controllers;
 
+use common\models\ListSearch;
 use frontend\models\ResendVerificationEmailForm;
 use frontend\models\VerifyEmailForm;
 use Yii;
@@ -37,8 +39,29 @@ class SiteController extends Controller
     public function actionIndex()
     {
         $this->layout = 'mainPage';
+        $lang = Yii::$app->language;
+        $news = ListSearch::find()
+            ->select([
+                'id',
+                'date',
+                "title_$lang",
+                "preview_$lang",
+                'preview_image',
+            ])
+            ->where([
+                'category_id' => 3,
+                'enabled' => 1,
+            ])
+            ->orderBy([
+                'date' => SORT_DESC,
+                'order' => SORT_ASC
+            ])
+            ->limit(6)
+            ->all();
 
-        return $this->render('index');
+        return $this->render('index', [
+            'news' => $news
+        ]);
     }
 
 }

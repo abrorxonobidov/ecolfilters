@@ -62,9 +62,8 @@ $this->params['breadcrumbs'][] = $this->title;
                         'header' => Yii::t('main', 'Маҳсулот'),
                         'headerOptions' => ['class' => 'col-sm-3'],
                         'format' => 'raw',
-                        'value' => function ($data) {
-                            /** @var \common\models\Order $data */
-                            $model = $data->product;
+                        'value' => function (common\models\Order $data) {
+                            if (($model = $data->product) === null) return null;
                             $img = '';
                             if ($model->preview_image)
                                 $img = Html::img($model::imageSourcePath() . $model->preview_image, ['class' => 'img-responsive img-thumbnail']);
