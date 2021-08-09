@@ -183,7 +183,7 @@ class SourceMessageController extends Controller
      * Returns message file path for the specified language and category.
      *
      * @param string $language the target language
-     * @return string path to message file
+     * @return array path to message file
      */
     public function getMessageFilePath($language)
     {
@@ -212,13 +212,14 @@ class SourceMessageController extends Controller
     public function actionBuild()
     {
         $categories = (new SourceMessage())->getCategories();
+
         $languages = ['uz', 'ru', 'en', 'oz'];
         foreach ($languages as $language) {
             foreach ($categories as $category) {
-                $fileName = $this->getMessageFilePath($category, $language);
+                $fileName = Yii::getAlias('@common') . "\messages\\$language\\" . $category . ".php";
                 if (file_exists($fileName))
                     unlink($fileName);
-                $messages = Message::find()->alias('m')->select(new Expression("s.message AS key,m.translation AS value"))->innerJoin('source_message s', "m.id=s.id")->where(['m.language' => $language, 's.category' => $category])->asArray()->all();
+                $messages = Message::find()->alias('m')->select(new Expression("s.message AS 'key',m.translation AS 'value'"))->innerJoin('source_message s', new Expression("m.id=s.id"))->where(['m.language' => $language, 's.category' => $category])->asArray()->all();
                 $fh = fopen($fileName, "w");
                 if (!is_resource($fh)) {
                     return false;
