@@ -15,7 +15,7 @@ foreach ($cats as $cat) { ?>
             <i> </i>
             <?
             if ($cat->test_drive) {
-                echo Html::a('Test drive' . Html::tag('i', '', ['class' => 'glyphicon glyphicon-menu-right']),
+                echo Html::a(Yii::t('main','Test drive') . Html::tag('i', '', ['class' => 'glyphicon glyphicon-menu-right']),
                     ['page/test-drive', 'id' => $cat->id],
                     ['class' => 'test_link']);
             }

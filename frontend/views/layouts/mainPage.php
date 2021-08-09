@@ -47,8 +47,8 @@ MainPageAsset::register($this);
     <section class="block_2">
         <span><img src="/img/section_2_image.jpg" alt=""/></span>
         <div class="sec_2_text">
-            Toza suv - <br>bu EcoFilters
-            <i>Uy va ofis uchun innovatsion<br> suvni tozalash tizimlari</i>
+            <?=Yii::t('main', 'Тоза сув — <br>бу  ECOFILTERS')?>
+            <i><?=Yii::t('main','Уй ва офис учун инновацион<br> сувни тозалаш тизимлари')?></i>
         </div>
     </section>
 

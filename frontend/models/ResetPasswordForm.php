@@ -29,11 +29,11 @@ class ResetPasswordForm extends Model
     public function __construct($token, $config = [])
     {
         if (empty($token) || !is_string($token)) {
-            throw new InvalidArgumentException('Password reset token cannot be blank.');
+            throw new InvalidArgumentException(Yii::t('main','Password reset token cannot be blank.'));
         }
         $this->_user = User::findByPasswordResetToken($token);
         if (!$this->_user) {
-            throw new InvalidArgumentException('Wrong password reset token.');
+            throw new InvalidArgumentException(Yii::t('main','Wrong password reset token.'));
         }
         parent::__construct($config);
     }

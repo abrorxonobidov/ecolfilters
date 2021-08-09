@@ -4,7 +4,7 @@
 
 <section class="statistic">
     <div class="container has_width">
-        <div class="title">Statistika</div>
+        <div class="title"><?=Yii::t('main','Статистика')?></div>
         <div class="col-md-5">
             <div class="col-md-6">
                 <div id="container"></div>

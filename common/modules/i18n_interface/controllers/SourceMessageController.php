@@ -127,31 +127,20 @@ class SourceMessageController extends Controller
 
     public function actionImport()
     {
-        $uzAppMessages = $this->loadMessagesFromFile($this->getMessageFilePath('main', 'uz'));
-        $ruAppMessages = $this->loadMessagesFromFile($this->getMessageFilePath('main', 'ru'));
-        $ozAppMessages = $this->loadMessagesFromFile($this->getMessageFilePath('main', 'oz'));
-        $enAppMessages = $this->loadMessagesFromFile($this->getMessageFilePath('main', 'en'));
-        $uzYiiMessages = $this->loadMessagesFromFile($this->getMessageFilePath('yii', 'uz'));
-        $ruYiiMessages = $this->loadMessagesFromFile($this->getMessageFilePath('yii', 'ru'));
-        $enYiiMessages = $this->loadMessagesFromFile($this->getMessageFilePath('yii', 'en'));
-        $ozYiiMessages = $this->loadMessagesFromFile($this->getMessageFilePath('yii', 'oz'));
+        $MessagesFiles['uz'] = $this->getMessageFilePath('uz');
+        $MessagesFiles['ru'] = $this->getMessageFilePath('ru');
+        $MessagesFiles['oz'] = $this->getMessageFilePath('oz');
+        $MessagesFiles['en'] = $this->getMessageFilePath('en');
         $messageSources = [];
-        foreach ($uzAppMessages as $source => $message)
-            $messageSources['app'][$source]['uz'] = $message;
-        foreach ($uzYiiMessages as $source => $message)
-            $messageSources['yii'][$source]['uz'] = $message;
-        foreach ($ruAppMessages as $source => $message)
-            $messageSources['app'][$source]['ru'] = $message;
-        foreach ($ruYiiMessages as $source => $message)
-            $messageSources['yii'][$source]['ru'] = $message;
-        foreach ($ozAppMessages as $source => $message)
-            $messageSources['app'][$source]['oz'] = $message;
-        foreach ($ozYiiMessages as $source => $message)
-            $messageSources['yii'][$source]['oz'] = $message;
-        foreach ($enAppMessages as $source => $message)
-            $messageSources['app'][$source]['en'] = $message;
-        foreach ($enYiiMessages as $source => $message)
-            $messageSources['yii'][$source]['en'] = $message;
+        foreach ($MessagesFiles as $lang => $filesPath) {
+            foreach ($filesPath as $filePath) {
+                $category = basename($filePath, '.php');
+                $messages = $this->loadMessagesFromFile($filePath);
+                foreach ($messages as $source => $message)
+                    $messageSources[$category][$source][$lang] = $message;
+            }
+        }
+//        DebugHelper::printSingleObject($messageSources);
         $transaction = Yii::$app->db->beginTransaction();
         try {
             foreach ($messageSources as $category => $sources) {
@@ -193,13 +182,12 @@ class SourceMessageController extends Controller
     /**
      * Returns message file path for the specified language and category.
      *
-     * @param string $category the message category
      * @param string $language the target language
      * @return string path to message file
      */
-    public function getMessageFilePath($category, $language)
+    public function getMessageFilePath($language)
     {
-        $messageFile = Yii::getAlias('@common/messages') . "/$language/$category.php";
+        $messageFile = glob(Yii::getAlias('@common') . "\messages\\$language\\{*.php}", GLOB_BRACE);
         return $messageFile;
     }
 
@@ -239,7 +227,7 @@ class SourceMessageController extends Controller
                 fclose($fh);
             }
         }
-        Yii::$app->session->setFlash('success','Success');
+        Yii::$app->session->setFlash('success', 'Success');
         $this->redirect('index');
     }
 
