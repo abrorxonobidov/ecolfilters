@@ -61,13 +61,18 @@ class SourceMessage extends \yii\db\ActiveRecord
 
     public function getTranslationsLangs()
     {
-        if ($langs = Message::find()->select('array_agg(language) as language')->where(['id' => $this->id])->one())
+        // postgresql
+        //  if ($langs = Message::find()->select('array_agg(language) as language')->where(['id' => $this->id])->one())
+        //mysql
+        if ($langs = Message::find()->select('group_concat(language) as language')->where(['id' => $this->id])->one())
             return $langs->language;
     }
 
     public function getTranslations()
     {
-        if ($langs = Message::find()->select('array_agg(translation) as translation')->where(['id' => $this->id])->one())
+        // postgresql
+        // if ($langs = Message::find()->select('array_agg(translation) as translation')->where(['id' => $this->id])->one())
+         if ($langs = Message::find()->select('group_concat(translation) as translation')->where(['id' => $this->id])->one())
             return $langs->translation;
     }
 

@@ -41,7 +41,7 @@ class GeneralHelper
             ]) .
             Html::a(Html::icon('pencil') . ' ' . Yii::t('yii', 'Update'), ['update', 'id' => $model->id, 'ci' => Yii::$app->request->get('ci')], ['class' => 'view-button btn btn-primary pull-right']) .
             Html::a(Html::icon('plus') . ' ' . Yii::t('yii', 'Create'), ['create', 'ci' => Yii::$app->request->get('ci')], ['class' => 'view-button btn btn-success pull-right']) .
-            Html::a(Html::icon('list') . ' ' . Yii::t('main', 'Ro‘yxat'), ['index', 'ci' => Yii::$app->request->get('ci')], ['class' => 'view-button btn btn-info pull-right'])
+            Html::a(Html::icon('list') . ' ' . Yii::t('main', 'Рўйхат'), ['index', 'ci' => Yii::$app->request->get('ci')], ['class' => 'view-button btn btn-info pull-right'])
         ]);
     }
 }

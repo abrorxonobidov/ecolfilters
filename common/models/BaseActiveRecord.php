@@ -53,13 +53,13 @@ class BaseActiveRecord extends ActiveRecord
             'id' => Yii::t('main', 'ID'),
             'title' => Yii::t('main', 'Title'),
             'titleLang' => Yii::t('main', 'Title'),
-            'enabled' => Yii::t('main', 'Aktiv'),
-            'created_at' => Yii::t('main', 'Yaratilgan sana'),
-            'updated_at' => Yii::t('main', 'Tahrirlangan sana'),
-            'creator_id' => Yii::t('main', 'Yaratuvchi') . ' ID',
-            'modifier_id' => Yii::t('main', 'Tahrirlovchi') . ' ID',
-            'creator.full_name' => Yii::t('main', 'Yaratuvchi'),
-            'modifier.full_name' => Yii::t('main', 'Tahrirlovchi'),
+            'enabled' => Yii::t('main', 'Актив'),
+            'created_at' => Yii::t('main', 'Яратилган сана'),
+            'updated_at' => Yii::t('main', 'Таҳрирланган сана'),
+            'creator_id' => Yii::t('main', 'Яратувчи') . ' ID',
+            'modifier_id' => Yii::t('main', 'Таҳрирловчи') . ' ID',
+            'creator.full_name' => Yii::t('main', 'Яратувчи'),
+            'modifier.full_name' => Yii::t('main', 'Таҳрирловчи'),
         ];
     }
 

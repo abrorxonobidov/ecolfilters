@@ -47,25 +47,6 @@ class ProductController extends Controller
         throw new NotFoundHttpException(Yii::t('yii', 'The requested page does not exist.'));
     }
 
-    public function actionCreateOrder($pid)
-    {
-        $model = new Order();
-        $model->product_id = $pid;
-        if ($model->load(Yii::$app->request->post())) {
-            if ($model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
-            }
-        }
-
-        if (Yii::$app->request->isAjax)
-            return $this->renderAjax('create-order', [
-                'model' => $model,
-            ]);
-        else
-            return $this->render('create-order', [
-                'model' => $model,
-            ]);
-    }
 
     /**
      * @param $id
