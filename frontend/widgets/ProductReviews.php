@@ -5,12 +5,13 @@ namespace frontend\widgets;
 
 
 use common\models\Product;
+use common\models\Reviews;
 use yii\base\Widget;
 
 /**
  * Class ProductReviews
  * @package frontend\widgets
- * @property  Product$product
+ * @property  Product $product
  */
 class ProductReviews extends Widget
 {
@@ -18,6 +19,10 @@ class ProductReviews extends Widget
 
     public function run()
     {
-        return $this->render('product_reviews');
+        $review = new Reviews();
+        $review->product_id = $this->product->id;
+        return $this->render('product_reviews', [
+            'review' => $review
+        ]);
     }
 }

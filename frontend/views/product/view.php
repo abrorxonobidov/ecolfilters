@@ -1,9 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use yii\bootstrap\Tabs;
 use yii\widgets\Breadcrumbs;
-use yii\widgets\DetailView;
 
 /**
  * @var $this yii\web\View
@@ -49,7 +47,7 @@ $arVideoLink = explode('/', $model->videoLang);
         <div class="tab_box">
             <?= yii\bootstrap\Tabs::widget([
                 'id' => 'product-detail-tab',
-                'linkOptions' => ['role'=>'presentation'],
+                'linkOptions' => ['role' => 'presentation'],
                 'tabContentOptions' => [
                     'class' => 'tab-content about_product_b'
                 ],
@@ -83,6 +81,6 @@ $arVideoLink = explode('/', $model->videoLang);
 </section>
 <section class="product_reviews">
     <div class="container has_width">
-        <?=\frontend\widgets\ProductReviews::widget(['product' => $model])?>
+        <?= frontend\widgets\ProductReviews::widget(['product' => $model]) ?>
     </div>
 </section>

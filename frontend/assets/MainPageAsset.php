@@ -15,9 +15,9 @@ class MainPageAsset extends AssetBundle
         //'css/chosen.css',
         //'css/magiczoomplus.css',
         'css/jquery-ui.css',
-        'css/style.css',
-        'css/media.css',
-        'css/style_my.css?v=1',
+        'css/style.css?v=2',
+        'css/media.css?v=2',
+        'css/style_my.css?v=2',
     ];
     public $js = [
         'js/jquery-ui.js',
@@ -25,7 +25,7 @@ class MainPageAsset extends AssetBundle
         'js/main.js',
         'js/highcharts.js',
         'js/chart.js',
-        'js/my.js?v=1',
+        'js/my.js?v=2',
         //'js/chosen.jquery.min.js',
         //'js/magiczoomplus.js',
     ];

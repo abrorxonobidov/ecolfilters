@@ -124,3 +124,16 @@
 .product_rev_form_box {
     margin: 0;
 }
+
+#review-form .form-control {
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 1px solid;
+    box-shadow: none;
+    border-radius: 0;
+}
+#review-form textarea {
+    min-height: 60px;
+    resize: vertical;
+}

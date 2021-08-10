@@ -777,7 +777,7 @@ a.order_link:hover, button.order_link_2:hover{
 /**********************************************/
 
 .sec_2_text_in{
-    z-index: 1;
+    z-index: 0;
     font-size: 32px;
     margin-top: -100px;
     margin-left: 320px;
@@ -909,8 +909,6 @@ a.product_b:hover{
     margin-top: 60px;
 }
 .form_box{
-    position: relative;
-    z-index: 5;
     width: 48%;
     display: inline-flex;
     margin-right: 12px;

@@ -16,15 +16,15 @@ class InnerAsset extends AssetBundle
         'css/magiczoomplus.css',
         'css/jquery-ui.css',
         'css/lightbox.css',
-        'css/style.css',
-        'css/media.css',
-        'css/style_my.css?v=1',
+        'css/style.css?v=2',
+        'css/media.css?v=2',
+        'css/style_my.css?v=2',
     ];
     public $js = [
         'js/jquery-ui.js',
         'js/lightbox.js',
         'js/main.js',
-        'js/my.js?v=1',
+        'js/my.js?v=2',
         'js/magiczoomplus.js',
         'js/chosen.jquery.min.js',
     ];

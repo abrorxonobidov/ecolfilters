@@ -51,9 +51,9 @@ class Reviews extends BaseActiveRecord
             [['status'], 'in', 'range' => [self::STATUS_NEW, self::STATUS_ACCEPTED, self::STATUS_REJECTED]],
             [['type_id'], 'in', 'range' => [self::TYPE_PRODUCT]],
             [['name', 'phone'], 'string', 'max' => 255],
-            [['author_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['author_id' => 'id']],
-            [['modifier_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['modifier_id' => 'id']],
-            [['product_id'], 'exist', 'skipOnError' => true, 'targetClass' => Product::className(), 'targetAttribute' => ['product_id' => 'id']],
+            [['author_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['author_id' => 'id']],
+            [['modifier_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['modifier_id' => 'id']],
+            [['product_id'], 'exist', 'skipOnError' => true, 'targetClass' => Product::class, 'targetAttribute' => ['product_id' => 'id']],
         ];
     }
 
@@ -70,9 +70,9 @@ class Reviews extends BaseActiveRecord
             'updated_at' => Yii::t('main', 'Updated At'),
             'type_id' => Yii::t('main', 'Тип отзыва'),
             'product_id' => Yii::t('main', 'Product ID'),
-            'name' => Yii::t('main', 'Ваша имя'),
-            'description' => Yii::t('main', 'Ваш отзыв'),
-            'phone' => Yii::t('main', 'Ваш номер телефона'),
+            'name' => Yii::t('main', 'Ф.И.Ш'),
+            'description' => Yii::t('main', 'Изоҳингиз'),
+            'phone' => Yii::t('main', 'Телефон рақамингиз'),
             'status' => Yii::t('main', 'Status'),
         ];
     }
@@ -84,7 +84,7 @@ class Reviews extends BaseActiveRecord
      */
     public function getAuthor()
     {
-        return $this->hasOne(User::className(), ['id' => 'author_id']);
+        return $this->hasOne(User::class, ['id' => 'author_id']);
     }
 
     /**
@@ -94,7 +94,7 @@ class Reviews extends BaseActiveRecord
      */
     public function getModifier()
     {
-        return $this->hasOne(User::className(), ['id' => 'modifier_id']);
+        return $this->hasOne(User::class, ['id' => 'modifier_id']);
     }
 
     /**
@@ -104,7 +104,7 @@ class Reviews extends BaseActiveRecord
      */
     public function getProduct()
     {
-        return $this->hasOne(Product::className(), ['id' => 'product_id']);
+        return $this->hasOne(Product::class, ['id' => 'product_id']);
     }
 
     public static function getTypeList()
