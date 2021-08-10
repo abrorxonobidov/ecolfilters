@@ -2,48 +2,34 @@
 
 namespace common\modules\i18n_interface\models;
 
-use Yii;
-use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\modules\i18n_interface\models\SourceMessage;
 
-/**
- * SourceMessageSearch represents the model behind the search form about `common\modules\i18n_interface\models\SourceMessage`.
- */
 class SourceMessageSearch extends SourceMessage
 {
 
-
-    /**
-     * @inheritdoc
-     */
     public function rules()
     {
         return [
             [['id'], 'integer'],
-            [['category', 'message', 'messagess'], 'safe'],
+            [['category', 'message', 'concat_massage', 'languages'], 'safe'],
         ];
     }
 
-    /**
-     * @inheritdoc
-     */
-    public function scenarios()
-    {
-        // bypass scenarios() implementation in the parent class
-        return Model::scenarios();
-    }
-
-    /**
-     * Creates data provider instance with search query applied
-     *
-     * @param array $params
-     *
-     * @return ActiveDataProvider
-     */
     public function search($params)
     {
-        $query = SourceMessage::find()->alias('source');
+        $query = SourceMessage::find()
+            ->alias('source')
+            ->select([
+                'source.id',
+                'source.category',
+                'source.message',
+                'concat_massage' => "CONCAT_WS('',uz.translation, ', ',oz.translation, ', ',ru.translation, ', ',en.translation)",
+                'languages' => "CONCAT_WS('', uz.language, ' ', oz.language, ' ', ru.language, ' ', en.language)"
+            ])
+            ->leftJoin(['uz' => Message::tableName()], "uz.id = source.id AND uz.language = 'uz'")
+            ->leftJoin(['oz' => Message::tableName()], "oz.id = source.id AND oz.language = 'oz'")
+            ->leftJoin(['ru' => Message::tableName()], "ru.id = source.id AND ru.language = 'ru'")
+            ->leftJoin(['en' => Message::tableName()], "en.id = source.id AND en.language = 'en'");
 
         // add conditions that should always apply here
 
@@ -61,22 +47,26 @@ class SourceMessageSearch extends SourceMessage
 
         $this->load($params);
 
-        if (!$this->validate()) {
-            // uncomment the following line if you do not want to return any records when validation fails
-            // $query->where('0=1');
-            return $dataProvider;
-        }
+        if (!$this->validate()) return $dataProvider;
 
-        $query->joinWith('messages');
+        $query
+            ->andFilterWhere([
+                'source.id' => $this->id
+            ]);
 
-        // grid filtering conditions
-        $query->andFilterWhere([
-            'source.id' => $this->id,
-        ]);
-
-        $query->andFilterWhere(['like', 'source.category', $this->category])
+        $query
+            ->andFilterWhere(['like', 'source.category', $this->category])
             ->andFilterWhere(['like', 'source.message', $this->message])
-            ->andFilterWhere(['like', 'message.translation', $this->messagess]);
+            ->andFilterWhere([
+                'like',
+                "CONCAT_WS('',uz.translation, ', ',oz.translation, ', ',ru.translation, ', ',en.translation)",
+                $this->concat_massage
+            ])
+            ->andFilterWhere([
+                'like',
+                "CONCAT_WS('', uz.language, ' ', oz.language, ' ', ru.language, ' ', en.language)",
+                $this->languages
+            ]);
 
         return $dataProvider;
     }

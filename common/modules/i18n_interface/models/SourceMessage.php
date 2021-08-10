@@ -3,6 +3,7 @@
 namespace common\modules\i18n_interface\models;
 
 use Yii;
+use yii\db\ActiveRecord;
 use yii\helpers\ArrayHelper;
 
 /**
@@ -14,12 +15,15 @@ use yii\helpers\ArrayHelper;
  *
  * @property Message[] $messages
  * @property string $translations
+ * @property string $concat_massage
+ * @property string $languages
  * @property array $translates_ar
  */
-class SourceMessage extends \yii\db\ActiveRecord
+class SourceMessage extends ActiveRecord
 {
 
-    public $messagess;
+    public $concat_massage;
+    public $languages;
 
     public $translates_ar;
 
@@ -33,67 +37,52 @@ class SourceMessage extends \yii\db\ActiveRecord
         ];
     }
 
-    /**
-     * @inheritdoc
-     */
     public static function tableName()
     {
         return 'source_message';
     }
 
-    /**
-     * @inheritdoc
-     */
     public function rules()
     {
         return [
-            [['message', 'messagess'], 'string'],
-            [['translates_ar'], 'safe'],
+            [['message', 'concat_massage'], 'string'],
+            [['translates_ar', 'languages'], 'safe'],
             [['category'], 'string', 'max' => 255],
         ];
     }
 
-    /**
-     * @inheritdoc
-     */
     public function attributeLabels()
     {
         return [
             'id' => 'ID',
-            'category' => 'Category',
-            'message' => 'Message',
+            'category' => Yii::t('main', 'Категория'),
+            'message' => Yii::t('main', 'Сўз'),
+            'concat_massage' => Yii::t('main', 'Таржималар'),
+            'languages' => Yii::t('main', 'Тиллар'),
         ];
     }
 
     /**
-     * @return \yii\db\ActiveQuery
+     * @return yii\db\ActiveQuery
      */
     public function getMessages()
     {
-        return $this->hasMany(Message::className(), ['id' => 'id']);
+        return $this->hasMany(Message::class, ['id' => 'id']);
     }
 
-    public function getTranslationsLangs()
-    {
-        // postgresql
-        //  if ($langs = Message::find()->select('array_agg(language) as language')->where(['id' => $this->id])->one())
-        //mysql
-        if ($langs = Message::find()->select('group_concat(language) as language')->where(['id' => $this->id])->one())
-            return $langs->language;
-    }
-
-    public function getTranslations()
-    {
-        // postgresql
-        // if ($langs = Message::find()->select('array_agg(translation) as translation')->where(['id' => $this->id])->one())
-         if ($langs = Message::find()->select('group_concat(translation) as translation')->where(['id' => $this->id])->one())
-            return $langs->translation;
-    }
 
     public function getCategories()
     {
-        $categories = ArrayHelper::map(self::find()->select('category')->groupBy('category')->asArray()->all(), 'category', 'category');
-        return $categories;
+        return
+            ArrayHelper::map(
+                self::find()
+                    ->select('category')
+                    ->groupBy('category')
+                    ->asArray()
+                    ->all(),
+                'category',
+                'category'
+            );
     }
 
 }
