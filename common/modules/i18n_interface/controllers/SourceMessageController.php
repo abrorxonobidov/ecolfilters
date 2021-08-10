@@ -68,8 +68,20 @@ class SourceMessageController extends Controller
     {
         $model = new SourceMessage();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+            if ($model->save()) {
+                if ($model->translates_ar)
+                    foreach ($model->translates_ar as $code => $text) {
+                        $message = new Message();
+                        $message->id = $model->id;
+                        $message->language = $code;
+                        $message->translation = $text;
+                        $message->save();
+                    }
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
+            else
+                DebugHelper::printSingleObject($model->errors, 1);
         } else {
             return $this->render('create', [
                 'model' => $model,

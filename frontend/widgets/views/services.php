@@ -13,7 +13,7 @@
                 <li>
                     <a href="<?= yii\helpers\Url::to([$service->link]) ?>">
                         <span class="ser_img">
-                            <img src="/img/<?= $service->preview_image ?>" alt=""/>
+                            <img src="/uploads/<?= $service->preview_image ?>" alt=""/>
                         </span>
                         <span class="ser_name">
                             <?= $service->titleLang ?>

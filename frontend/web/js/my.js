@@ -1,3 +1,8 @@
+const lang = $('html').attr('lang');
+
+let apiUrl = (controllerAction) => window.location.origin + '/' + lang + '/' + controllerAction;
+
+
 $(document).ready(function () {
     $('.product-category-block').click(function () {
         let url = $(this).data('url');
@@ -13,7 +18,7 @@ $(document).ready(function () {
 
     form.on('beforeSubmit', function (){
         $.post({
-            url: 'http://ecofilters.lo/uz/api/send-review',
+            url: apiUrl('api/send-review'),
             data: form.serialize()
         }).done(res => {
             form.trigger("reset");
@@ -34,14 +39,14 @@ $(document).ready(function () {
     linkShowMore.click(function () {
         let offset = $(this).data('offset');
         $.get({
-            url: 'http://ecofilters.lo/uz/api/reviews',
+            url: apiUrl('api/reviews'),
             data: $(this).data()
         }).done(res => {
             if (res.count) {
                 $(this).data('offset', offset + 3) ;
                 $('#review-list').append(res.html);
             } else
-                toastr.warning(res.text);
+                if (offset > 0) toastr.warning(res.text);
         }).catch(e => {
             toastr.error('An error occurred');
             console.log(e);

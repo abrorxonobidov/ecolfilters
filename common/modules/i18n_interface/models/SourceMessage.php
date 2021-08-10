@@ -14,11 +14,24 @@ use yii\helpers\ArrayHelper;
  *
  * @property Message[] $messages
  * @property string $translations
+ * @property array $translates_ar
  */
 class SourceMessage extends \yii\db\ActiveRecord
 {
 
     public $messagess;
+
+    public $translates_ar;
+
+    public static function languages()
+    {
+        return [
+            'uz' => 'uz',
+            'ru' => 'ru',
+            'oz' => 'oz',
+            'en' => 'en'
+        ];
+    }
 
     /**
      * @inheritdoc
@@ -35,6 +48,7 @@ class SourceMessage extends \yii\db\ActiveRecord
     {
         return [
             [['message', 'messagess'], 'string'],
+            [['translates_ar'], 'safe'],
             [['category'], 'string', 'max' => 255],
         ];
     }

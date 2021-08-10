@@ -11,7 +11,7 @@ use yii\helpers\Html;
     <div class="col-md-5 col-sm-5 col-xs-12">
         <div class="product_rev_form_box">
             <span class="review_title">
-                <?=Yii::t('main', '')?>
+                <?= Yii::t('main', 'Изоҳ қолдириш') ?>
             </span>
             <?
             $form = ActiveForm::begin([

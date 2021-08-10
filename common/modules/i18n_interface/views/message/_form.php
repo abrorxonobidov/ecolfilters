@@ -1,6 +1,5 @@
 <?php
 
-use common\modules\multilingual\models\Languages;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -15,7 +14,7 @@ use yii\widgets\ActiveForm;
 
 <!--    --><?//= $form->field($model, 'id')->textInput() ?>
 
-    <?= $form->field($model, 'language')->dropDownList(['uz'=>'uz','ru'=>'ru','oz'=>'oz','en'=>'en']) ?>
+    <?= $form->field($model, 'language')->dropDownList([common\modules\i18n_interface\models\SourceMessage::languages()]) ?>
 
     <?= $form->field($model, 'translation')->textarea(['rows' => 6]) ?>
 
