@@ -11,7 +11,7 @@ use yii\widgets\Breadcrumbs;
 $this->title = $model->titleLang;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('main', 'Маҳсулотлар'), 'url' => ['category']];
 $this->params['breadcrumbs'][] = $this->title;
-$arVideoLink = explode('/', $model->videoLang);
+$arVideoLink = explode('/', $model->video_ru);
 ?>
 <section class="view_product">
     <div class="container has_width">
@@ -32,8 +32,16 @@ $arVideoLink = explode('/', $model->videoLang);
         </div>
         <div class="col-md-6">
             <span class="view_product_title"><?= $model->titleLang ?></span>
-            <span class="product_price product_price_in"><i><?= $model->price ?></i> <?= Yii::t('main', 'сўм') ?></span>
-            <button type="button" class="order_link_2"><?= Yii::t('main', 'Буюртма бериш') ?></button>
+            <span class="product_price product_price_in">
+                <i><?= $model->price ?></i>
+                <?= $model->price ? Yii::t('main', 'сўм') : '' ?>
+            </span>
+            <!--<button type="button" class="order_link_2"><? /*= Yii::t('main', 'Буюртма бериш') */ ?></button>-->
+            <?= yii\helpers\Html::a(Yii::t('main', 'Буюртма бериш'),
+                ['order/create',
+                    'pid' => Yii::$app->request->get('id')],
+                ['class' => 'my-order-link pjaxModalButton'])
+            ?>
             <div class="characteristics_info">
                 <span><?= Yii::t('main', 'Тавсифи') ?></span>
                 <?= $model->previewLang ?>

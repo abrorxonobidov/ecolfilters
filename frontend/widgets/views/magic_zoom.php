@@ -55,4 +55,4 @@ echo Html::endTag('div');*/
             </a>
         <? } ?>
     </div>
-</div>-
+</div>

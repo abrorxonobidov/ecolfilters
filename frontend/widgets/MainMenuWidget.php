@@ -2,6 +2,7 @@
 
 namespace frontend\widgets;
 
+use common\helpers\DebugHelper;
 use Yii;
 use common\models\MenusLinks;
 use yii\base\Widget;
@@ -43,8 +44,8 @@ class MainMenuWidget extends Widget
     {
         foreach ($menus as &$menu) {
             $menu['url'] = $menu['url'] > '' ? [$menu['url']] : '#';
-            if (isset($menu['children']))
-                $this->setUrls($menu['children']);
+            if (isset($menu['items']))
+                $this->setUrls($menu['items']);
         }
     }
 }

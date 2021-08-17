@@ -21,7 +21,8 @@ MainPageAsset::register($this);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <? $this->registerCsrfMetaTags() ?>
-    <title><?= Html::encode($this->title) ?></title>
+    <title><?= Html::encode(strip_tags($this->title)) ?></title>
+    <link rel="shortcut icon" href="favicon.png"/>
     <? $this->head() ?>
 </head>
 <body>
@@ -47,8 +48,8 @@ MainPageAsset::register($this);
     <section class="block_2">
         <span><img src="/img/section_2_image.jpg" alt=""/></span>
         <div class="sec_2_text">
-            <?=Yii::t('main', 'Тоза сув — <br>бу  ECOFILTERS')?>
-            <i><?=Yii::t('main','Уй ва офис учун инновацион<br> сувни тозалаш тизимлари')?></i>
+            <?= Yii::t('main', 'Тоза сув — <br>бу ECOFILTERS') ?>
+            <i><?= Yii::t('main', 'Уй ва офис учун инновацион<br> сувни тозалаш тизимлари') ?></i>
         </div>
     </section>
 

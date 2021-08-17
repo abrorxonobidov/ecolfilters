@@ -54,9 +54,15 @@ if ($page->video) {
         </div>
         <div class="row">
             <div class="col-md-12 text-center">
-                <button type="button" class="order_link_2">
-                    <?= Yii::t('main', 'Буюртма бериш') ?>
-                </button>
+                <!--<button type="button" class="order_link_2">
+                    <?/*= Yii::t('main', 'Буюртма бериш') */?>
+                </button>-->
+                <br>
+                <br>
+                <?= yii\helpers\Html::a(Yii::t('main', 'Буюртма бериш'),
+                    ['order/create'],
+                    ['class' => 'my-order-link pjaxModalButton'])
+                ?>
             </div>
         </div>
     </div>

@@ -7,8 +7,7 @@ use yii\helpers\Url;
 <section class="block_7">
     <div class="container has_width">
         <div class="title">
-            <i>Suvni tozalsh uchun</i>
-            5ta bosqich
+            <?= Yii::t('main', '<i>Сувни тозалаш учун</i> 5 та босқич') ?>
         </div>
         <ul class="step_list">
             <li>
@@ -23,7 +22,7 @@ use yii\helpers\Url;
                     <span class="step_img"><img src="/img/step_2.jpg" alt=""/></span>
                     <span class="mini_logo"><img src="/img/search_filter.png" alt=""/></span>
                     <span class="step_text">
-                        <?=Yii::t('main', 'Сувни таҳлил қилиш')?>
+                        <?= Yii::t('main', 'Сувни таҳлил қилиш') ?>
                     </span>
                 </a>
             </li>

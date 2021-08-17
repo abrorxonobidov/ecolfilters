@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model common\models\Order */
 
-$this->title = Yii::t('yii', 'Буюртма бериш');
+$this->title = Yii::t('main', 'Буюртма бериш');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="product_rev_form_box ordering">

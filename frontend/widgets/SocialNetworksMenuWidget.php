@@ -43,10 +43,9 @@ class SocialNetworksMenuWidget extends Widget
     private function setUrls(&$menus)
     {
         foreach ($menus as &$menu) {
-            $menu['url'] = $menu['url'] > '' ? [$menu['url']] : '#';
+            $menu['url'] = $menu['url'] > '' ? $menu['url'] : '#';
             if (isset($menu['children']))
                 $this->setUrls($menu['children']);
         }
-
     }
 }

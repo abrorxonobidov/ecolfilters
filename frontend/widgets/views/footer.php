@@ -3,7 +3,7 @@
 use frontend\widgets\FooterMenuWidget;
 use frontend\widgets\Ordering;
 use frontend\widgets\SocialNetworksMenuWidget;
-use yii\helpers\Url; ?>
+?>
 
 <section class="footer">
     <div class="container has_width">
@@ -11,8 +11,8 @@ use yii\helpers\Url; ?>
             <div class="col-md-4 col-sm-4 col-xs-6">
                 <div class="contact_b">
                     <?= Yii::t('main', 'Боғланиш') ?>
-                    <i><?= Yii::t('main', 'contactPhone') ?></i>
-                    <i><?= Yii::t('main', 'contactEmail') ?></i>
+                    <i>+998 99 999 99 99</i>
+                    <i>mail@ecofilters.uz</i>
                 </div>
             </div>
             <div class="col-md-4 col-sm-4 col-xs-6">
@@ -38,14 +38,18 @@ use yii\helpers\Url; ?>
             <div class="clearfix"></div>
             <div class="address_b">
                 <?= Yii::t('main', '<p><strong>Манзил:</strong> Тошкент шаҳри,</p><p>Навоий кўчаси 158Б</p>') ?>
-                <a href="#"><img src="/img/location.png" alt=""/><?= Yii::t('main', 'Харитада кўрсатиш') ?></a>
+                <a href="https://g.page/HiltonTashkentCity?share" target="_blank">
+                    <img src="/img/location.png" alt=""/><?= Yii::t('main', 'Харитада кўрсатиш') ?>
+                </a>
             </div>
         </div>
         <div class="clearfix"></div>
         <div class="company_name">
-            <?= Yii::t('main', '"ecofilters" компанияси') ?>
+            ECOFILTERS
             <i>&copy; <?= date('Y') > 2021 ? '2021-' . date('Y') : date('Y') ?></i>
         </div>
-
+        <br>
+        <br>
+        <br>
     </div>
 </section>

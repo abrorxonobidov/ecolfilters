@@ -20,6 +20,7 @@ frontend\assets\InnerAsset::register($this);
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <? $this->registerCsrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
+    <link rel="shortcut icon" href="favicon.png" />
     <? $this->head() ?>
 </head>
 <body>

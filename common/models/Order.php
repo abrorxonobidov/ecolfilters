@@ -67,7 +67,7 @@ class Order extends BaseActiveRecord
         return [
             'id' => Yii::t('main', 'Буюртма идентификацион рақами'),
             'product_id' => Yii::t('main', 'Маҳсулот'),
-            'name' => Yii::t('main', 'Буюртмачи Ф.И.О.'),
+            'name' => Yii::t('main', 'Ф.И.Ш'),
             'email' => Yii::t('main', 'Email'),
             'phone' => Yii::t('main', 'Телефон'),
             'enabled' => Yii::t('main', 'Актив'),

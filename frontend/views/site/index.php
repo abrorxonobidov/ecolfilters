@@ -7,7 +7,7 @@ use yii\helpers\Url;
  * @var $news common\models\Lists[]
  */
 
-$this->title = Yii::t('main', 'Тоза сув бу — ECOFILTERS');
+$this->title = Yii::t('main', 'Тоза сув — <br>бу ECOFILTERS');
 ?>
 
 <section class="news_block">
