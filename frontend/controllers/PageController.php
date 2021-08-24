@@ -3,6 +3,7 @@
 namespace frontend\controllers;
 
 use common\models\Lists;
+use common\models\ListSearch;
 use common\models\Place;
 use common\models\ProductSearch;
 use Yii;
@@ -60,6 +61,16 @@ class PageController extends Controller
         $model = $this->findModel($id);
         return $this->render('news', [
             'model' => $model,
+        ]);
+    }
+
+    public function actionNewsList()
+    {
+
+        $dataProvider = ListSearch::searchNews();
+
+        return $this->render('/site/index', [
+            'dataProvider' => $dataProvider,
         ]);
     }
 

@@ -14,6 +14,11 @@ use yii\web\NotFoundHttpException;
 class ProductController extends Controller
 {
 
+    public function actionIndex()
+    {
+        return $this->render('index');
+    }
+
     public function actionCategory()
     {
         $params = Yii::$app->request->queryParams;

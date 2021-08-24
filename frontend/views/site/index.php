@@ -1,10 +1,8 @@
 <?php
 
-use yii\helpers\Url;
-
 /**
  * @var $this yii\web\View
- * @var $news common\models\Lists[]
+ * @var $dataProvider yii\data\ArrayDataProvider
  */
 
 $this->title = Yii::t('main', 'Тоза сув — <br>бу ECOFILTERS');
@@ -15,20 +13,19 @@ $this->title = Yii::t('main', 'Тоза сув — <br>бу ECOFILTERS');
         <div class="title">
             <?= Yii::t('main', 'Янгиликлар') ?>
         </div>
-        <div class="news_list">
-            <? foreach ($news as $model) { ?>
-                <div class="news_box">
-                    <a href="<?= Url::to(['page/news', 'id' => $model->id]) ?>">
-                        <span class="news_img"><img src="/uploads/<?= $model->preview_image ?>" alt=""/></span>
-                        <span class="news_link">
-                            <?= $model->titleLang ?>
-                        </span>
-                        <i class="date">
-                            <?= date('d.m.Y', strtotime($model->date)) ?>
-                        </i>
-                    </a>
-                </div>
-            <? } ?>
-        </div>
+
+        <?= yii\widgets\ListView::widget([
+            'dataProvider' => $dataProvider,
+            'layout' => "{items} \n <div class='text-center'> {pager}</div>",
+            'itemView' => '_news_item',
+            'itemOptions' => [
+                'tag' => 'div',
+                'class' => 'news_box'
+            ],
+            'options' => [
+                'tag' => 'div',
+                'class' => 'news_list'
+            ]
+        ]) ?>
     </div>
 </section>

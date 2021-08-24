@@ -19,7 +19,7 @@ frontend\assets\InnerAsset::register($this);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <? $this->registerCsrfMetaTags() ?>
-    <title><?= Html::encode($this->title) ?></title>
+    <title><?= Html::encode(strip_tags($this->title)) ?></title>
     <link rel="shortcut icon" href="favicon.png" />
     <? $this->head() ?>
 </head>

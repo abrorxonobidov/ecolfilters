@@ -2,7 +2,9 @@
 
 namespace common\models;
 
+use Yii;
 use yii\data\ActiveDataProvider;
+use yii\data\ArrayDataProvider;
 
 class ListSearch extends Lists
 {
@@ -40,5 +42,33 @@ class ListSearch extends Lists
             ->andFilterWhere(['like', 'preview_uz', $this->preview_uz]);
 
         return $dataProvider;
+    }
+
+    public static function searchNews($limit = null)
+    {
+        $lang = Yii::$app->language;
+        return new ArrayDataProvider([
+            'allModels' => Lists::find()
+                ->select([
+                    'id',
+                    'date',
+                    "title_$lang",
+                    "preview_$lang",
+                    'preview_image',
+                ])
+                ->where([
+                    'category_id' => 3,
+                    'enabled' => 1,
+                ])
+                ->orderBy([
+                    'date' => SORT_DESC,
+                    'order' => SORT_ASC
+                ])
+                ->limit($limit)
+                ->all(),
+            'pagination' => [
+                'pageSize' => 6
+            ]
+        ]);
     }
 }

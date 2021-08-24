@@ -47,7 +47,7 @@ MainPageAsset::register($this);
     </section>
     <section class="block_2">
         <span><img src="/img/section_2_image.jpg" alt=""/></span>
-        <div class="sec_2_text">
+        <div class="sec_2_text" style="background-color: rgba(255, 255, 255, 0.5); border-radius: 10px; padding: 20px;">
             <?= Yii::t('main', 'Тоза сув — <br>бу ECOFILTERS') ?>
             <i><?= Yii::t('main', 'Уй ва офис учун инновацион<br> сувни тозалаш тизимлари') ?></i>
         </div>
