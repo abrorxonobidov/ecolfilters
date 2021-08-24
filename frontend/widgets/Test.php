@@ -17,10 +17,10 @@ class Test extends Widget
                 'style' => '
                     position: fixed; 
                     bottom: 0; color: red; 
-                    font-size: 20px;
+                    font-size: 11px;
                     background: #d5d5d5;
                     z-index: 10000;
-                    padding: 18px 0;
+                    padding: 2px 0;
                     '
             ]);
     }

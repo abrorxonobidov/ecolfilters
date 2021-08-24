@@ -39,11 +39,17 @@ class PageController extends Controller
         ]);
     }
 
-    public function actionTestDrive($id)
+    public function actionTestDrive($id = 1)
     {
-        return $this->render('/site/error', [
-            'message' => Yii::t('main', 'Маълумот тўлдирилмоқда'),
-            'name' => '',
+        $params = Yii::$app->request->queryParams;
+
+        $params['product_category_id'] = $id;
+        $searchModel = new ProductSearch();
+        $dataProvider = $searchModel->searchFrontend($params);
+        return $this->render('test_drive', [
+            'page' => $this->findPageByCode("test_drive_$id"),
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
         ]);
     }
 
