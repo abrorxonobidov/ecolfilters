@@ -44,7 +44,7 @@ class MenusLinks extends BaseActiveRecord
     public function rules()
     {
         return [
-            [['menu_id', 'title_uz'], 'required'],
+            [['menu_id', 'title_uz', 'order'], 'required'],
             [['menu_id', 'parent_id', 'order', 'enabled', 'creator_id', 'modifier_id'], 'integer'],
             [['link_out', 'icon'], 'string'],
             [['created_at', 'updated_at'], 'safe'],
@@ -118,6 +118,27 @@ class MenusLinks extends BaseActiveRecord
     public function getItems()
     {
         return $this->hasMany(MenusLinks::class, ['parent_id' => 'id']);
+    }
+
+
+    public function getParentList()
+    {
+            $data = self::find()
+                ->select([
+                    'id',
+                    'title' => 'title_' . Yii::$app->language
+                ])
+                ->filterWhere([
+                    'menu_id' => $this->menu_id,
+                ])
+                ->andWhere('parent_id IS NULL')
+                ->asArray()
+                ->all();
+            $return = [];
+            foreach ($data as $item)
+                $return[$item['id']] = $item['title'];
+
+        return $return;
     }
 
     /**

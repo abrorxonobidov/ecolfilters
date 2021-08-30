@@ -46,6 +46,13 @@ class MenusLinkSearch extends MenusLinks
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'sort' => [
+                'defaultOrder' => [
+                    'menu_id' => SORT_ASC,
+                    'order' => SORT_ASC,
+                    'id' => SORT_ASC
+                ]
+            ]
         ]);
 
         $this->load($params);

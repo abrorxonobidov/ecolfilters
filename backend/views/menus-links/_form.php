@@ -12,9 +12,11 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'menu_id')->textInput() ?>
+    <?= $form->field($model, 'menu_id')->dropDownList(common\models\Menus::getList('name')) ?>
 
-    <?= $form->field($model, 'parent_id')->textInput() ?>
+    <?= $form->field($model, 'parent_id')->dropDownList($model->getParentList(), [
+            'prompt' => Yii::t('main', 'Танланг')
+    ]) ?>
 
     <?= $form->field($model, 'title_uz')->textInput(['maxlength' => true]) ?>
 
@@ -32,15 +34,12 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'icon')->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'enabled')->textInput() ?>
+    <?= $form->field($model, 'enabled')->dropDownList($model::listsEnabled()) ?>
 
-    <?= $form->field($model, 'created_at')->textInput() ?>
-
-    <?= $form->field($model, 'updated_at')->textInput() ?>
-
-    <?= $form->field($model, 'creator_id')->textInput() ?>
-
-    <?= $form->field($model, 'modifier_id')->textInput() ?>
+<!--    --><?//= $form->field($model, 'created_at')->textInput() ?>
+<!--    --><?//= $form->field($model, 'updated_at')->textInput() ?>
+<!--    --><?//= $form->field($model, 'creator_id')->textInput() ?>
+<!--    --><?//= $form->field($model, 'modifier_id')->textInput() ?>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('main', 'Сақлаш'), ['class' => 'btn btn-success']) ?>
