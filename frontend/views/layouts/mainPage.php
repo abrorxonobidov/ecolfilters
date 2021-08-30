@@ -60,7 +60,7 @@ MainPageAsset::register($this);
     <?= $content ?>
 
 
-    <?= frontend\widgets\Statistic::widget() ?>
+    <?//= frontend\widgets\Statistic::widget() ?>
 
     <?= frontend\widgets\Footer::widget() ?>
 
