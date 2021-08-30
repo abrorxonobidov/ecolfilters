@@ -41,6 +41,7 @@ class UserMenu extends Widget
             $items[] = ['label' => 'Буюртмалар', 'icon' => 'cart-arrow-down', 'url' => ['order/index']];
             $items[] = ['label' => 'Янгиликлар', 'icon' => 'newspaper-o', 'url' => ['list/index', 'ci' => 3]];
             $items[] = ['label' => 'Саҳифалар', 'icon' => 'address-book-o', 'url' => ['list/index', 'ci' => 1]];
+            $items[] = ['label' => 'Бизнинг ҳамкорларимиз', 'icon' => 'users', 'url' => ['list/index', 'ci' => 6]];
             $items[] = ['label' => 'Хизматлар', 'icon' => 'truck', 'url' => ['list/index', 'ci' => 2]];
             $items[] = ['label' => 'Фикрлар', 'icon' => 'comments-o', 'url' => ['/reviews']];
             $items[] = ['label' => 'Cўзлар таржималари', 'icon' => 'language', 'url' => ['/i18n_interface/source-message/index']];

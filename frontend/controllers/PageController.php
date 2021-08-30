@@ -88,6 +88,14 @@ class PageController extends Controller
         ]);
     }
 
+    public function actionAbout()
+    {
+        $page = $this->findPageByCode('about');
+        return $this->render('about', [
+            'page' => $page,
+        ]);
+    }
+
     protected function findPageByCode($code)
     {
         if (($page = Lists::findOne(['link' => $code, 'enabled' => 1, 'category_id' => 1])) !== null)

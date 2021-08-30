@@ -28,6 +28,7 @@ use Yii;
  * @property string|null $inner_image
  * @property string|null $video
  * @property string|null $link
+ * @property string|null $map
  * @property string|null $date
  * @property int $enabled
  * @property string|null $created_at
@@ -55,7 +56,7 @@ class Lists extends BaseActiveRecord
         return [
             [['category_id', 'title_uz'], 'required'],
             [['category_id', 'order', 'region_id', 'enabled', 'creator_id', 'modifier_id'], 'integer'],
-            [['preview_uz', 'preview_oz', 'preview_ru', 'preview_en', 'description_uz', 'description_oz', 'description_ru', 'description_en'], 'string'],
+            [['preview_uz', 'preview_oz', 'preview_ru', 'preview_en', 'description_uz', 'description_oz', 'description_ru', 'description_en', 'map'], 'string'],
             [['date', 'created_at', 'updated_at'], 'safe'],
             [['title_uz', 'title_oz', 'title_ru', 'title_en', 'preview_image', 'gallery', 'inner_image', 'video', 'link'], 'string', 'max' => 255],
             [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => ListCategory::class, 'targetAttribute' => ['category_id' => 'id']],
@@ -89,6 +90,7 @@ class Lists extends BaseActiveRecord
             'inner_image' => Yii::t('main', 'Inner Image'),
             'video' => Yii::t('main', 'Video'),
             'link' => Yii::t('main', 'Page code'),
+            'map' => Yii::t('main', 'Google Харита'),
             'date' => Yii::t('main', 'Date'),
             'enabled' => Yii::t('main', 'Enabled'),
             'created_at' => Yii::t('main', 'Created At'),

@@ -36,9 +36,7 @@ echo DetailView::widget([
             'label' => Yii::t('main', 'Галерея'),
             'format' => 'html',
             'value' => function (common\models\Lists $model) {
-                if (!$model->gallery) {
-                    return '';
-                }
+                if (!$model->gallery) return '';
                 $images = glob($model::uploadImagePath() . $model->gallery . Yii::$app->params['allowedImageExtension'], GLOB_BRACE);
                 $gallery = [];
                 foreach ($images as $image) {
@@ -50,6 +48,11 @@ echo DetailView::widget([
             }
         ],
         'order',
+        [
+            'attribute' => 'map',
+            'format' => 'raw',
+            'visible' => Yii::$app->request->get('ci') == 1
+        ],
         //'region_id',
         //'inner_image',
         //'video',

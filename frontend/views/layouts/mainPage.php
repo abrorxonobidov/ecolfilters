@@ -30,7 +30,7 @@ MainPageAsset::register($this);
 
 <? diecoding\toastr\ToastrFlash::widget(); ?>
 <div class="wrapper">
-    <section class="header">
+    <section id="headMenu" class="header">
         <div class="container has_width d_flex">
             <div class="col-md-2 col-xs-6">
                 <a href="<?= Url::to(['site/index']) ?>" class="logo_img">

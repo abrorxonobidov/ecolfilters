@@ -60,6 +60,20 @@ html, body{
 
 /***********************head_menu********************/
 
+.headMenuFixed{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    left: 0;
+    z-index: 1010;
+    margin: 0;
+    padding: 10px 0;
+    border: none;
+    -webkit-box-shadow: 0 3px 20px -4px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0 3px 20px -4px rgba(0,0,0,0.75);
+    box-shadow: 0 3px 20px -4px rgba(0,0,0,0.75);
+}
+
 .main_menu{
     position: relative;
 }
@@ -259,7 +273,7 @@ a.logo_img{
     font-size: 54px;
     line-height: 1.3;
     color: #000;
-    z-index: 2;
+    z-index: 1;
     text-align: center;
 }
 .sec_3_text > i{
@@ -445,7 +459,7 @@ a.logo_img{
     position: absolute;
     left: 0;
     bottom: 0;
-    z-index: 1;
+    z-index: 0;
 }
 .step_list li:nth-child(3n + 0){
     margin: 15px 0;
@@ -490,7 +504,7 @@ a.logo_img{
     position: absolute;
     right: 40px;
     bottom: 25px;
-    z-index: 2;
+    z-index: 1;
 }
 .step_list li a .step_text{
     display: flex;
@@ -504,7 +518,7 @@ a.logo_img{
     position: absolute;
     left: 40px;
     bottom: 20px;
-    z-index: 3;
+    z-index: 1;
     text-align: left;
 }
 

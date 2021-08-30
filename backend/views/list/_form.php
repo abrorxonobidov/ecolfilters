@@ -41,6 +41,10 @@ echo Yii::$app->request->get('ci') == 1 ? common\helpers\GeneralHelper::oneRow([
     ''
 ]) : '';
 
+echo Yii::$app->request->get('ci') == 1 ? $form->field($model, 'map')
+    ->textarea(['maxlength' => true, 'rows' => 5])
+    ->label(Yii::t('main', 'Google Харита')) : '';
+
 $previewConfig = $model->inputImageConfig('preview_image', 'list/file-remove');
 
 echo $form->field($model, 'previewImageHelper')
@@ -48,7 +52,7 @@ echo $form->field($model, 'previewImageHelper')
         'options' => ['accept' => 'image/*'],
         'pluginOptions' => [
             'previewFileType' => 'image',
-            'allowedFileExtensions' => ['jpg', 'gif', 'png', 'jpeg'],
+            'allowedFileExtensions' => ['jpg', 'gif', 'png', 'jpeg', 'svg'],
             'initialPreview' => $previewConfig['path'],
             'initialPreviewAsData' => true,
             'initialPreviewConfig' => $previewConfig['config'],
@@ -73,7 +77,7 @@ echo $form->field($model, 'helpGallery[]')
             'multiple' => true
         ],
         'pluginOptions' => [
-            'allowedFileExtensions' => ['jpg', 'gif', 'png', 'jpeg', 'mp4'],
+            'allowedFileExtensions' => ['jpg', 'gif', 'png', 'jpeg', 'mp4', 'svg'],
             'initialPreview' => $galleyConfig['path'],
             'initialPreviewAsData' => true,
             'initialPreviewConfig' => $galleyConfig['config'],

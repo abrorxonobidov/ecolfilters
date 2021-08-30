@@ -137,3 +137,7 @@
     min-height: 60px;
     resize: vertical;
 }
+
+.headMenuFixed {
+    padding: 0;
+}
