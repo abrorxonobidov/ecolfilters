@@ -17,7 +17,7 @@ class MagicZoom extends Widget
 
     public function run()
     {
-        return count($this->items) <= 1 ? '' : $this->render('magic_zoom', [
+        return count($this->items) < 1 ? '' : $this->render('magic_zoom', [
             'items' => $this->items
         ]);
     }
