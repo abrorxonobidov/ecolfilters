@@ -23,6 +23,7 @@ class Partners extends Widget
                 'enabled' => 1,
                 'category_id' => 6
             ])
+            ->orderBy('order')
             ->all();
         return $this->render('partners', [
             'partners' => $partners,

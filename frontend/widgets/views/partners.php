@@ -14,13 +14,10 @@ use yii\helpers\Html;
 <div class="row">
     <? foreach ($partners as $key => $partner) { ?>
         <div class="col-md-3 col-sm-6 text-center">
-            <div style="min-height: 100px">
+            <div class="partner-item">
                 <?= Html::img('/uploads/' . $partner->preview_image) ?>
-
             </div>
-            <br>
-            <br>
-            <p class="simple-text"><?= $partner->titleLang ?></p>
+            <p class="simple-text"><b><?= $partner->titleLang ?></b></p>
         </div>
         <?
         if ($key % 4 == 3) echo '</div><br><br><div class="row">';
