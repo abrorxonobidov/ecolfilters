@@ -18,7 +18,7 @@ $(document).ready(function () {
 
     form.on('beforeSubmit', function (){
         $.post({
-            url: apiUrl('api/send-review'),
+            url: apiUrl(form.data('url')),
             data: form.serialize()
         }).done(res => {
             form.trigger("reset");

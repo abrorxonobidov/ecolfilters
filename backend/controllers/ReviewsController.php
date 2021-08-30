@@ -2,33 +2,16 @@
 
 namespace backend\controllers;
 
-use common\helpers\DebugHelper;
 use Yii;
 use common\models\Reviews;
 use common\models\ReviewsSearch;
-use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
  * ReviewsController implements the CRUD actions for Reviews model.
  */
-class ReviewsController extends Controller
+class ReviewsController extends BaseController
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function behaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
-            ],
-        ];
-    }
 
     /**
      * Lists all Reviews models.
@@ -37,9 +20,26 @@ class ReviewsController extends Controller
     public function actionIndex()
     {
         $searchModel = new ReviewsSearch();
+        $searchModel->type_id = ReviewsSearch::TYPE_PRODUCT;
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    /**
+     * Lists all Reviews models.
+     * @return mixed
+     */
+    public function actionFeedback()
+    {
+        $searchModel = new ReviewsSearch();
+        $searchModel->type_id = ReviewsSearch::TYPE_FEEDBACK;
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('feedback', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
@@ -129,6 +129,7 @@ class ReviewsController extends Controller
     /**
      * Set status an existing Order model.
      * If set status is successful, the browser will be redirected to the 'index' page.
+     * @param $route
      * @param integer $id
      * @param string $status
      * @return mixed

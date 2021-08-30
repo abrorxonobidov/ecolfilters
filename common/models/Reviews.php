@@ -29,6 +29,7 @@ class Reviews extends BaseActiveRecord
     const STATUS_ACCEPTED = 'accepted';
     const STATUS_REJECTED = 'rejected';
     const TYPE_PRODUCT = 1;
+    const TYPE_FEEDBACK = 20;
 
     /**
      * {@inheritdoc}
@@ -49,7 +50,7 @@ class Reviews extends BaseActiveRecord
             [['created_at', 'updated_at'], 'safe'],
             [['description', 'status'], 'string'],
             [['status'], 'in', 'range' => [self::STATUS_NEW, self::STATUS_ACCEPTED, self::STATUS_REJECTED]],
-            [['type_id'], 'in', 'range' => [self::TYPE_PRODUCT]],
+            [['type_id'], 'in', 'range' => [self::TYPE_PRODUCT, self::TYPE_FEEDBACK]],
             [['name', 'phone'], 'string', 'max' => 255],
             [['author_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['author_id' => 'id']],
             [['modifier_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['modifier_id' => 'id']],
@@ -64,16 +65,18 @@ class Reviews extends BaseActiveRecord
     {
         return [
             'id' => Yii::t('main', 'ID'),
-            'author_id' => Yii::t('main', 'Author ID'),
-            'modifier_id' => Yii::t('main', 'Modifier ID'),
-            'created_at' => Yii::t('main', 'Created At'),
-            'updated_at' => Yii::t('main', 'Updated At'),
-            'type_id' => Yii::t('main', 'Тип отзыва'),
-            'product_id' => Yii::t('main', 'Product ID'),
+            'author_id' => Yii::t('main', 'Муаллиф') . ' ID',
+            'modifier_id' => Yii::t('main', 'Таҳрирловчи') . ' ID',
+            'created_at' => Yii::t('main', 'Яратилган сана'),
+            'updated_at' => Yii::t('main', 'Таҳрирланган сана'),
+            'type_id' => Yii::t('main', 'Изоҳ тури'),
+            'product_id' => Yii::t('main', 'Маҳсулот') . ' ID',
             'name' => Yii::t('main', 'Ф.И.Ш'),
             'description' => Yii::t('main', 'Изоҳингиз'),
             'phone' => Yii::t('main', 'Телефон рақамингиз'),
             'status' => Yii::t('main', 'Status'),
+            'modifier.username' => Yii::t('main', 'Таҳрирловчи'),
+            'typeName' => Yii::t('main', 'Изоҳ тури')
         ];
     }
 
@@ -123,6 +126,14 @@ class Reviews extends BaseActiveRecord
         ];
     }
 
+    public static function feedbackStatusList()
+    {
+        return [
+            self::STATUS_NEW => Yii::t('main', 'Янги'),
+            self::STATUS_ACCEPTED => Yii::t('main', 'Кўрилган'),
+        ];
+    }
+
     public static function getStatusListButtons($id, $route)
     {
         $menu = [];
@@ -137,6 +148,13 @@ class Reviews extends BaseActiveRecord
         $statusList = self::getStatusList();
         return $statusList[$this->status];
     }
+
+    public function feedbackStatusName()
+    {
+        $statusList = self::feedbackStatusList();
+        return $statusList[$this->status];
+    }
+
 
     public function getTypeName()
     {

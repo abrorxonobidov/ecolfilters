@@ -6,6 +6,7 @@ use common\models\Lists;
 use common\models\ListSearch;
 use common\models\Place;
 use common\models\ProductSearch;
+use frontend\models\Feedback;
 use Yii;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -93,6 +94,17 @@ class PageController extends Controller
         $page = $this->findPageByCode('about');
         return $this->render('about', [
             'page' => $page,
+        ]);
+    }
+
+
+    public function actionContact()
+    {
+        $page = $this->findPageByCode('contact');
+        $review = new Feedback();
+        return $this->render('contact', [
+            'page' => $page,
+            'review' => $review
         ]);
     }
 

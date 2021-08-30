@@ -1,8 +1,9 @@
 <?php
 
-use yii\helpers\Html;
+use yii\bootstrap\Html;
 use yii\grid\GridView;
 use yii\helpers\Url;
+use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\ReviewsSearch */
@@ -33,68 +34,70 @@ $this->params['breadcrumbs'][] = $this->title;
             <h3 class="box-title"><?= Html::encode($this->title) ?></h3>
         </div>
         <div class="box-body" style="">
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'options' => ['class' => 'table-responsive'],
-        'columns' => [
-            [
-                'header' => Yii::t('main', 'Асосий маълумотлар'),
-//                'contentOptions' => ['class' => 'col-md-3'],
-                'format' => 'raw',
-                'value' => function ($model) {
-                    /** @var \common\models\Reviews $model */
-                    return \yii\widgets\DetailView::widget([
-                        'model' => $model,
-                        'attributes' => [
-                            ['attribute' => 'id'],
-                            ['attribute' => 'created_at'],
-                            ['attribute' => 'updated_at'],
-                            ['attribute' => 'modifier_id',
-                                'value' => $model->modifier->username ?? $model->modifier_id
-                            ],
-                            ['attribute' => 'type_id',
-                                'value' => $model->getTypeName(),
-                            ],
-                        ]
-                    ]);
-                }
-            ],
-            [
-                'header' => Yii::t('main', 'Фикр қолдирувчи'),
-//                'headerOptions' => ['class' => 'col-md-6'],
-                'format' => 'raw',
-                'value' => function ($model) {
-                    /** @var \common\models\Reviews $model */
-                    return \yii\widgets\DetailView::widget([
-//                        'options' => ['class' => 'table-responsive'],
-                        'model' => $model,
-                        'attributes' => [
-                            ['attribute' => 'name'],
-                            ['attribute' => 'phone'],
-                            ['attribute' => 'description'],
-                        ]
-                    ]);
-                }
-            ],
-            [
-                'header' => Yii::t('main', 'Фикр ҳолати'),
-//                'contentOptions' => ['class' => 'col-md-3'],
-                'format' => 'raw',
-                'value' => function ($model) {
-                    /** @var \common\models\Reviews $model */
-//                    $buttons = Html::a(Yii::t('main', 'Таҳрирлаш'), ['/reviews/update', 'id' => $model->id, 'route' => Url::to()], ['class' => 'btn btn-default btn-block pjaxModalButton']);
-                    $buttons = Html::tag('strong',$model->getStatusName());
-                    $buttons .= \yii\bootstrap\ButtonDropdown::widget([
-                        'label' => Yii::t('main', 'Холатини ўзгартириш'),
-                        'options' => ['class' => 'btn btn-primary btn-block'],
-                        'dropdown' => [
-                            'items' => $model::getStatusListButtons($model->id, Url::to()),
-                        ],
-                    ]);
-                    return $buttons;
-                }
-            ],
-        ],
-    ]); ?>
+            <?= GridView::widget([
+                'dataProvider' => $dataProvider,
+                'filterModel' => $searchModel,
+                'options' => ['class' => 'table-responsive'],
+                'columns' => [
+                    [
+                        'header' => Yii::t('main', 'Асосий маълумотлар'),
+                        // 'contentOptions' => ['class' => 'col-md-3'],
+                        'format' => 'raw',
+                        'value' => function (common\models\Reviews $model) {
+                            return DetailView::widget([
+                                'model' => $model,
+                                'options' => ['class' => 'table table-responsive table-bordered'],
+                                'attributes' => [
+                                    'id',
+                                    'created_at',
+                                    'updated_at',
+                                    'modifier.username',
+                                    'typeName'
+                                ]
+                            ]);
+                        }
+                    ],
+                    [
+                        'header' => Yii::t('main', 'Фикр қолдирувчи'),
+                        // 'headerOptions' => ['class' => 'col-md-6'],
+                        'format' => 'raw',
+                        'value' => function (common\models\Reviews $model) {
+                            return
+                                Yii::t('main', 'Маҳсулот') . ': ' .
+
+                                Html::a($model->product->titleLang, ['product/view', 'id' => $model->product_id], ['class' => 'btn btn-link'])
+                                 . "<hr>" .
+                                DetailView::widget([
+                                'options' => ['class' => 'table table-responsive table-bordered'],
+                                'model' => $model,
+                                'attributes' => [
+                                    ['attribute' => 'name'],
+                                    ['attribute' => 'phone'],
+                                    ['attribute' => 'description'],
+                                ]
+                            ]);
+                        }
+                    ],
+                    [
+                        'header' => Yii::t('main', 'Фикр ҳолати'),
+                        'contentOptions' => ['class' => 'col-md-2'],
+                        'format' => 'raw',
+                        'value' => function (common\models\Reviews $model) {
+                            //$buttons = Html::a(Yii::t('main', 'Таҳрирлаш'), ['/reviews/update', 'id' => $model->id, 'route' => Url::to()], ['class' => 'btn btn-default btn-block pjaxModalButton']);
+                            $buttons = Html::tag('strong', $model->getStatusName());
+                            $buttons .= Html::beginTag('br') . yii\bootstrap\ButtonDropdown::widget([
+                                    'label' => Html::icon('pencil'),
+                                    'encodeLabel' => false,
+                                    'options' => ['class' => 'btn btn-primary'],
+                                    'dropdown' => [
+                                        'items' => $model::getStatusListButtons($model->id, Url::to()),
+                                    ],
+                                ]);
+                            return $buttons;
+                        }
+                    ]
+                ]
+            ]); ?>
+        </div>
+    </div>
 </div>

@@ -43,7 +43,8 @@ class UserMenu extends Widget
             $items[] = ['label' => 'Саҳифалар', 'icon' => 'address-book-o', 'url' => ['list/index', 'ci' => 1]];
             $items[] = ['label' => 'Бизнинг ҳамкорларимиз', 'icon' => 'users', 'url' => ['list/index', 'ci' => 6]];
             $items[] = ['label' => 'Хизматлар', 'icon' => 'truck', 'url' => ['list/index', 'ci' => 2]];
-            $items[] = ['label' => 'Фикрлар', 'icon' => 'comments-o', 'url' => ['/reviews']];
+            $items[] = ['label' => 'Фикрлар', 'icon' => 'comments-o', 'url' => ['/reviews/index']];
+            $items[] = ['label' => 'Қайта алоқа', 'icon' => 'envelope', 'url' => ['/reviews/feedback']];
             $items[] = ['label' => 'Cўзлар таржималари', 'icon' => 'language', 'url' => ['/i18n_interface/source-message/index']];
         }
         return $this->render('userMenu',

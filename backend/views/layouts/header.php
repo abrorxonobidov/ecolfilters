@@ -33,6 +33,7 @@ $user = Yii::$app->user->identity;
 //                    'orders',
                     'new-orders',
                     'new-reviews',
+                    'feedback',
                 ]
             ]) ?>
             <ul class="nav navbar-nav">

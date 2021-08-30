@@ -17,7 +17,8 @@ use yii\helpers\Html;
             $form = ActiveForm::begin([
                 'id' => 'review-form',
                 'options' => [
-                    'class' => 'rev_form'
+                    'class' => 'rev_form',
+                    'data-url' => 'api/send-review'
                 ]
             ]);
 

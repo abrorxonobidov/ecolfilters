@@ -24,7 +24,7 @@ class InnerAsset extends AssetBundle
         'js/jquery-ui.js',
         'js/lightbox.js',
         'js/main.js?v=5',
-        'js/my.js?v=2',
+        'js/my.js?v=5',
         'js/magiczoomplus.js',
         'js/chosen.jquery.min.js',
     ];

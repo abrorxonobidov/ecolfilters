@@ -25,7 +25,7 @@ class MainPageAsset extends AssetBundle
         'js/main.js?v=5',
         'js/highcharts.js',
         'js/chart.js',
-        'js/my.js?v=2',
+        'js/my.js?v=5',
         //'js/chosen.jquery.min.js',
         //'js/magiczoomplus.js',
     ];
