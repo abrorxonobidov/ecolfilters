@@ -27,6 +27,10 @@ echo yii\grid\GridView::widget([
         ],
         'title_uz',
         [
+            'attribute' => 'link',
+            'visible' => Yii::$app->request->get('ci') == 1
+        ],
+        [
             'attribute' => 'date',
             'format' => ['date', 'php:Y-m-d'],
             'filter' => kartik\date\DatePicker::widget([

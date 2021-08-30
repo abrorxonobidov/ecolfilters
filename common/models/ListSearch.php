@@ -13,7 +13,7 @@ class ListSearch extends Lists
     {
         return [
             [['id', 'category_id', 'order', 'enabled'], 'integer'],
-            [['title_uz', 'preview_uz', 'date'], 'safe'],
+            [['title_uz', 'preview_uz', 'link', 'date'], 'safe'],
         ];
     }
 
@@ -38,6 +38,7 @@ class ListSearch extends Lists
         ]);
 
         $query
+            ->andFilterWhere(['like', 'link', $this->link])
             ->andFilterWhere(['like', 'title_uz', $this->title_uz])
             ->andFilterWhere(['like', 'preview_uz', $this->preview_uz]);
 

@@ -11,7 +11,8 @@ use yii\widgets\DetailView;
 
 $this->title = $model->titleLang;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('main', 'Маҳсулотлар'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+$this->params['breadcrumbs'][] = yii\helpers\StringHelper::countWords($this->title) > 3 ?
+    substr($this->title, 0, 40) . ' ...' : $this->title;
 
 echo common\helpers\GeneralHelper::actionButtons($model);
 

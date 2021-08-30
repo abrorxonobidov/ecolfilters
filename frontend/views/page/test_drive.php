@@ -17,7 +17,7 @@ $this->title = $page->titleLang;
     <div class="container has_width">
         <h1>
             <span class="view_product_title">
-                <?= $page->link ?>
+                <?= Yii::t('main', 'Test drive') ?>
             </span>
         </h1>
         <div class="row">
@@ -26,9 +26,10 @@ $this->title = $page->titleLang;
                     <!--<span><? /*= Yii::t('main', 'Характеристика') */ ?></span>-->
                     <?= $page->titleLang ?>
                 </div>
+                <br>
             </div>
-            <div class="col-md-6">
-                <img src="/img/naqsh.png" alt="">
+            <div class="col-md-6 text-center">
+                <?= $page->preview_image ? Html::img('/uploads/' . $page->preview_image) : '' ?>
             </div>
         </div>
         <div class="row">
@@ -44,26 +45,31 @@ $this->title = $page->titleLang;
                 ?>
             </div>
         </div>
+        <br>
+        <br>
+        <br>
         <div class="row">
-            <div class="col-md-6">
-                <img src="/img/naqsh.png" alt="">
+            <div class="col-md-6 text-center">
+                <?
+                $gallery = $page->galleryItems();
+                if (count($gallery) >= 1)
+                    echo Html::img($gallery[0]);
+                ?>
+                <br>
             </div>
             <div class="col-md-6">
                 <div class="simple-text characteristics_info">
                     <!--<span><? /*= Yii::t('main', 'Характеристика') */ ?></span>-->
-                    <?= $page->titleLang ?>
+                    <?= $page->previewLang ?>
                 </div>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-12">
                 <div class="simple-text characteristics_info">
                     <!--<span><? /*= Yii::t('main', 'Характеристика') */ ?></span>-->
-                    <?= $page->titleLang ?>
+                    <?= $page->descriptionLang ?>
                 </div>
-            </div>
-            <div class="col-md-6">
-                <img src="/img/naqsh.png" alt="">
             </div>
         </div>
     </div>

@@ -1,19 +1,24 @@
 <?php
 
-use yii\helpers\Html;
-use yii\helpers\HtmlPurifier;
-
-/** @var $model \common\models\Product */
-/** @var $index integer */
+/**
+ * @var $model common\models\Product
+ */
 ?>
-<a href="<?= \yii\helpers\Url::to(['/product/view', 'id' => $model->id]) ?>" class="col-md-3 product_b">
+<a href="<?= yii\helpers\Url::to(['/product/view', 'id' => $model->id]) ?>" class="col-md-3 product_b">
     <div class="thumbnail">
         <div class="caption">
-            <span class="product_img"><?= Html::img($model->preview_image ? '/uploads/' . $model->preview_image : '/uploads/default_p_i.jpg') ?></span>
+            <span class="product_img">
+                <?= yii\helpers\Html::img($model->preview_image
+                    ? '/uploads/' . $model->preview_image
+                    : '/img/product_default_image.jpg') ?>
+            </span>
             <span class="product_text"><?= $model->titleLang ?></span>
         </div>
     </div>
-    <?php if ($model->price): ?>
-        <span class="product_price"><i><?= $model->price ?></i> <?= Yii::t('main', 'сўм') ?></span>
-    <?php endif; ?>
+    <? if ($model->price) { ?>
+        <span class="product_price">
+            <i><?= $model->price ?></i>
+            <?= Yii::t('main', 'сўм') ?>
+        </span>
+    <? } ?>
 </a>

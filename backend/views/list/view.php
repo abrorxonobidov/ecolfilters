@@ -14,7 +14,8 @@ $this->params['breadcrumbs'][] = [
     'label' => Yii::$app->request->get('ci') ? $model->category->titleLang : Yii::t('main', 'Рўйхат'),
     'url' => ['index', 'ci' => Yii::$app->request->get('ci')]
 ];
-$this->params['breadcrumbs'][] = $this->title;
+$this->params['breadcrumbs'][] = yii\helpers\StringHelper::countWords($this->title) > 3 ?
+    substr($this->title, 0, 40) . ' ...' : $this->title;
 
 echo common\helpers\GeneralHelper::actionButtons($model);
 
