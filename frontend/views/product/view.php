@@ -27,7 +27,7 @@ $arVideoLink = explode('/', $model->video_ru);
                 ); ?>
             </nav>
         </div>
-        <div class="col-md-6 product-page-zoom">
+        <div class="col-md-7 product-page-zoom">
             <?
             $gallery = $model->galleryItems();
             if (count($gallery) < 1)
@@ -38,7 +38,7 @@ $arVideoLink = explode('/', $model->video_ru);
                 ];
             echo frontend\widgets\MagicZoom::widget(['items' => $gallery]) ?>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-5">
             <span class="view_product_title"><?= $model->titleLang ?></span>
             <span class="product_price product_price_in">
                 <i><?= $model->price ?></i>

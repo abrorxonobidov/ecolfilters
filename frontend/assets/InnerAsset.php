@@ -18,7 +18,7 @@ class InnerAsset extends AssetBundle
         'css/lightbox.css',
         'css/style.css?v=5',
         'css/media.css?v=2',
-        'css/style_my.css?v=5',
+        'css/style_my.css?v=6',
     ];
     public $js = [
         'js/jquery-ui.js',
