@@ -8,6 +8,7 @@
 
 namespace backend\widgets;
 
+use dmstr\widgets\Menu;
 use Yii;
 use yii\bootstrap\Widget;
 use yii\web\User;
@@ -28,28 +29,32 @@ class UserMenu extends Widget
             ['label' => '&nbsp;', 'options' => ['class' => 'header'], 'encode' => false],
             [
                 'label' => Yii::t('main', 'Сайтга ўтиш'),
-                'url' => 'http://'.Yii::$app->params['domainName'],
+                'url' => 'http://' . Yii::$app->params['domainName'],
                 'icon' => 'globe'
             ]
         ];
 
         if ($this->user->isGuest) {
-            $items[] = ['label' => Yii::t('main', 'Вход'), 'url' => ['/site/login']];
+            $items[] = ['label' => Yii::t('main', 'Вход'), 'icon' => 'sign-in', 'url' => ['/site/login']];
         } else {
-            $items[] = ['label' => 'Маҳсулотлар', 'icon' => 'gift', 'url' => ['product/index']];
-            $items[] = ['label' => 'Менюлар', 'icon' => 'navicon', 'url' => ['menus-links/index']];
-            $items[] = ['label' => 'Буюртмалар', 'icon' => 'cart-arrow-down', 'url' => ['order/index']];
-            $items[] = ['label' => 'Янгиликлар', 'icon' => 'newspaper-o', 'url' => ['list/index', 'ci' => 3]];
-            $items[] = ['label' => 'Саҳифалар', 'icon' => 'address-book-o', 'url' => ['list/index', 'ci' => 1]];
-            $items[] = ['label' => 'Бизнинг ҳамкорларимиз', 'icon' => 'users', 'url' => ['list/index', 'ci' => 6]];
-            $items[] = ['label' => 'Хизматлар', 'icon' => 'truck', 'url' => ['list/index', 'ci' => 2]];
-            $items[] = ['label' => 'Фикрлар', 'icon' => 'comments-o', 'url' => ['/reviews/index']];
-            $items[] = ['label' => 'Қайта алоқа', 'icon' => 'envelope', 'url' => ['/reviews/feedback']];
-            $items[] = ['label' => 'Cўзлар таржималари', 'icon' => 'language', 'url' => ['/i18n_interface/source-message/index']];
-        }
-        return $this->render('userMenu',
-            [
-                'items' => $items
+            $items = array_merge($items, [
+                ['label' => 'Маҳсулотлар', 'icon' => 'gift', 'url' => ['/product/index']],
+                ['label' => 'Менюлар', 'icon' => 'navicon', 'url' => ['/menus-links/index']],
+                ['label' => 'Буюртмалар', 'icon' => 'cart-arrow-down', 'url' => ['/order/index']],
+                ['label' => 'Янгиликлар', 'icon' => 'newspaper-o', 'url' => ['/list/index', 'ci' => 3]],
+                ['label' => 'Саҳифалар', 'icon' => 'address-book-o', 'url' => ['/list/index', 'ci' => 1]],
+                ['label' => 'Бизнинг ҳамкорларимиз', 'icon' => 'users', 'url' => ['/list/index', 'ci' => 6]],
+                ['label' => 'Хизматлар', 'icon' => 'truck', 'url' => ['/list/index', 'ci' => 2]],
+                ['label' => 'Фикрлар', 'icon' => 'comments-o', 'url' => ['/reviews/index']],
+                ['label' => 'Қайта алоқа', 'icon' => 'envelope', 'url' => ['/reviews/feedback']],
+                ['label' => 'Cўзлар таржималари', 'icon' => 'language', 'url' => ['/i18n_interface/source-message/index']],
             ]);
+        }
+        return Menu::widget(
+            [
+                'options' => ['class' => 'sidebar-menu tree', 'data-widget' => 'tree'],
+                'items' => $items
+            ]
+        );
     }
 }

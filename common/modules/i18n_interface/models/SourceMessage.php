@@ -33,7 +33,7 @@ class SourceMessage extends ActiveRecord
             'uz' => 'uz',
             'ru' => 'ru',
             'oz' => 'oz',
-            'en' => 'en'
+            'en' => 'en',
         ];
     }
 

@@ -45,8 +45,8 @@ class Message extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'language' => 'Language',
-            'translation' => 'Translation',
+            'language' => Yii::t('main', 'Тил'),
+            'translation' => Yii::t('main', 'Таржима')
         ];
     }
 

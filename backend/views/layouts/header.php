@@ -1,4 +1,5 @@
 <?php
+
 use yii\helpers\Html;
 
 /**
@@ -41,7 +42,7 @@ $user = Yii::$app->user->identity;
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <img src="/img/user2-160x160.jpg" class="user-image" alt="User Image"/>
                         <span class="hidden-xs">
-                            <?= Yii::$app->user->identity->username?>
+                            <?= Yii::$app->user->identity->username ?>
                         </span>
                     </a>
                     <ul class="dropdown-menu">
@@ -71,7 +72,8 @@ $user = Yii::$app->user->identity;
                             </div>-->
                             <div class="pull-right">
                                 <?= Html::a(
-                                    'Sign out',
+                                    Html::tag('i', '', ['class' => 'fa fa-sign-out'])
+                                    . ' Sign out',
                                     ['/site/logout'],
                                     ['data-method' => 'post', 'class' => 'btn btn-default btn-flat']
                                 ) ?>

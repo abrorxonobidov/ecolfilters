@@ -68,25 +68,26 @@ class SourceMessageController extends Controller
     {
         $model = new SourceMessage();
 
+        foreach (SourceMessage::languages() as $code => $lang)
+            $model->translates_ar[$code] = '';
+
         if ($model->load(Yii::$app->request->post())) {
             if ($model->save()) {
-                if ($model->translates_ar)
-                    foreach ($model->translates_ar as $code => $text) {
-                        $message = new Message();
-                        $message->id = $model->id;
-                        $message->language = $code;
-                        $message->translation = $text;
-                        $message->save();
-                    }
+                foreach ($model->translates_ar as $code => $translation) {
+                    $message = new Message();
+                    $message->id = $code;
+                    $message->language = $code;
+                    $message->translation = $translation;
+                    $message->save();
+                }
                 return $this->redirect(['view', 'id' => $model->id]);
-            }
-            else
+            } else
                 DebugHelper::printSingleObject($model->errors, 1);
-        } else {
-            return $this->render('create', [
-                'model' => $model,
-            ]);
         }
+        return $this->render('create', [
+            'model' => $model,
+        ]);
+
     }
 
     /**
@@ -98,8 +99,14 @@ class SourceMessageController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $model->translates_ar = $this->findTranslations($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            foreach ($model->translates_ar as $code => $translation) {
+                $message = $this->findChildModel($model, $code);
+                $message->translation = $translation;
+                $message->save();
+            }
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
@@ -135,6 +142,55 @@ class SourceMessageController extends Controller
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
+    }
+
+
+    /**
+     * Finds the SourceMessage model based on its primary key value.
+     * If the model is not found, a 404 HTTP exception will be thrown.
+     * @param SourceMessage $parent
+     * @param string $lang
+     * @return Message the loaded model
+     */
+    protected function findChildModel($parent, $lang)
+    {
+        if (($model = Message::findOne(['id' => $parent->id, 'language' => $lang])) !== null) {
+            return $model;
+        } else {
+            $model = new Message();
+            $model->id = $parent->id;
+            $model->language = $lang;
+            return $model;
+        }
+    }
+
+    /**
+     * Finds the SourceMessage model based on its primary key value.
+     * If the model is not found, a 404 HTTP exception will be thrown.
+     * @param integer $id
+     * @return array the loaded model
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    protected function findTranslations($id)
+    {
+        $model = Message::find()
+            ->where(['id' => $id])
+            ->orderBy(['language' => SORT_DESC])
+            ->asArray()
+            ->all();
+
+        //if ($model == null)
+        //    throw new NotFoundHttpException('The requested page does not exist.');
+
+        $lang_codes = array_column($model, 'language');
+
+        $model = array_combine($lang_codes, $model);
+
+        $languages = SourceMessage::languages();
+        foreach ($languages as $code => $language)
+            $languages[$code] = isset($model[$code]) ? $model[$code]['translation'] : '';
+
+        return $languages;
     }
 
     public function actionImport()

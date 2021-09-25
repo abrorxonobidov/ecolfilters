@@ -1,7 +1,5 @@
 <?php
 
-use yii\helpers\Html;
-
 /**
  * @var $page common\models\Lists
  * @var $searchModel common\models\ProductSearch
@@ -21,20 +19,22 @@ $this->title = $page->titleLang;
                 <?= $page->titleLang ?>
             </span>
         </h1>
-        <table class="static-banner-table" style="background: url('<?= $page::imageSourcePath() . $page->preview_image ?>') center" cellspacing="0" cellpadding="0" border="0">
-            <tr class="row">
-                <td class="col-md-4">
+        <div class="static-banner-table"
+             style="background: url('<?= $page::imageSourcePath() . $page->preview_image ?>')">
+            <div class="row">
+                <div class="col-md-6">
                     <div class="simple-text service-preview">
                         <?= $page->previewLang ?>
                     </div>
-                </td>
-                <td class="col-md-8 text-right">
-                    <button type="button" class="my-order-link">
+                </div>
+                <div class="col-md-6 text-center">
+                    <a type="button" class="order_link pjaxModalButton"
+                       href="<?= yii\helpers\Url::to(['order/create']) ?>">
                         <?= Yii::t('main', 'Буюртма бериш') ?>
-                    </button>
-                </td>
-            </tr>
-        </table>
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
 
@@ -47,9 +47,10 @@ $this->title = $page->titleLang;
         </div>
         <div class="row">
             <div class="col-md-12 text-center">
-                <button type="button" class="my-order-link">
+                <a type="button" class="my-order-link pjaxModalButton"
+                   href="<?= yii\helpers\Url::to(['order/create']) ?>">
                     <?= Yii::t('main', 'Буюртма бериш') ?>
-                </button>
+                </a>
             </div>
         </div>
     </div>

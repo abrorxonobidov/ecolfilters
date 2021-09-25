@@ -18,17 +18,17 @@ use yii\widgets\ActiveForm;
 
     <div class="row">
         <?
-        foreach (common\modules\i18n_interface\models\SourceMessage::languages() as $code => $language) {
-            echo
-            Html::tag('div',
-                $form->field($model, "translates_ar[$code]")->textarea(['rows' => 6])->label($language),
-                ['class' => 'col-md-3']);
-        }
+        foreach ($model->translates_ar as $code => $message)
+            echo $form->field($model, "translates_ar[$code]", [
+                'options' => ['class' => 'col-md-3']
+            ])
+                ->textarea(['rows' => 6, 'value' => $message])
+                ->label($code)
         ?>
     </div>
 
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? Yii::t('main', 'Create') : Yii::t('main', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton($model->isNewRecord ? Yii::t('yii', 'Create') : Yii::t('main', 'Сақлаш'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

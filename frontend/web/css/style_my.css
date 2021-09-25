@@ -13,12 +13,14 @@
 .place-page.product {
     margin-top: 20px;
 }
+
 .product-page-zoom .selectors a,
 .place-page .selectors a {
     margin-bottom: 10px;
     background-color: black;
     border-radius: 5px;
 }
+
 .product-page-zoom .selectors img,
 .product-page-zoom .app-figure figure img,
 .place-page .selectors img,
@@ -31,9 +33,11 @@
 .place-page .selectors a:hover img {
     border: 2px solid #0f00bf;
 }
+
 .place-page .MagicZoom {
     height: auto !important;
 }
+
 .main_menu .navbar-nav li.active a {
     color: black;
     font-weight: bold;
@@ -46,7 +50,7 @@
 }
 
 .simple-text {
-    font-family: "Montserrat-Regular";
+    font-family: "Montserrat-Regular", serif;
     font-size: 16px;
     color: #707070;
     line-height: 1.3;
@@ -54,7 +58,7 @@
 
 .service-preview {
     padding: 15px;
-    margin-left: 10px;
+    margin: 0 10px;
     background-color: rgba(231, 231, 231, 0.86);
     color: black;
     border-radius: 13px;
@@ -88,11 +92,10 @@
 .my-order-link {
     display: inline-block;
     background-image: linear-gradient(
-            225deg
-            , #0557b1 0%, #0d8dd0 100%);
+            225deg, #0557b1 0%, #0d8dd0 100%);
     border-radius: 7px;
     border: 1px solid #0557B1;
-    font-family: "Montserrat-Bold";
+    font-family: "Montserrat-Bold", serif;
     font-size: 20px;
     color: #fff;
     line-height: 1.3;
@@ -116,6 +119,7 @@
     margin: 34px 0 0 0;
 
 }
+
 .rev_form .form-group input {
     border-bottom: 1px solid;
     border-radius: 0;
@@ -140,6 +144,7 @@
     box-shadow: none;
     border-radius: 0;
 }
+
 #review-form textarea {
     min-height: 60px;
     resize: vertical;
@@ -153,6 +158,7 @@
     position: relative;
     height: 150px;
 }
+
 .partner-item img {
     position: absolute;
     top: 0;
@@ -176,6 +182,49 @@
 .characteristics_info {
     margin-bottom: 30px;
 }
+
 .productFilter {
     width: 100%;
+}
+
+.static-banner-table .col-md-6 {
+    height: 400px;
+}
+
+.static-banner-table .service-preview {
+    top: 50%;
+    width: 90%;
+    position: absolute;
+    transform: translate(0, -50%);
+}
+
+.static-banner-table .order_link {
+    top: 50%;
+    right: 10%;
+    position: absolute;
+    transform: translate(0, -50%);
+    margin: 0;
+    width: auto;
+}
+
+@media screen and (max-width: 991px) {
+    .static-banner-table .col-md-6 {
+        height: auto;
+    }
+
+    .static-banner-table .service-preview {
+        position: inherit;
+        margin-top: 50px;
+        transform: none;
+        top: auto;
+        width: auto;
+    }
+
+    .static-banner-table .order_link {
+        position: initial;
+        transform: none;
+        top: auto;
+        width: auto;
+        margin: 20px 0;
+    }
 }

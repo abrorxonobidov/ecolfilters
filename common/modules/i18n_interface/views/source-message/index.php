@@ -23,9 +23,19 @@ Pjax::begin();
 echo GridView::widget([
     'dataProvider' => $dataProvider,
     'filterModel' => $searchModel,
+    'summary' => '{begin}-{end} / {totalCount}',
+    'summaryOptions' => [
+        'class' => 'text-bold text-right'
+    ],
     'columns' => [
         'id',
-        'category',
+        [
+            'attribute' => 'category',
+            'filter' => [
+                'main' => 'main',
+                'yii' => 'yii'
+            ]
+        ],
         'message:ntext',
         'concat_massage',
         'languages',
