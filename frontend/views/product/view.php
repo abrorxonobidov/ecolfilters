@@ -1,6 +1,6 @@
 <?php
 
-use yii\helpers\Html;
+use yii\bootstrap\Html;
 use yii\widgets\Breadcrumbs;
 
 /**
@@ -11,20 +11,13 @@ use yii\widgets\Breadcrumbs;
 $this->title = $model->titleLang;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('main', 'Маҳсулотлар'), 'url' => ['category']];
 $this->params['breadcrumbs'][] = $this->title;
-$arVideoLink = explode('/', $model->video_ru);
+$arVideoLink = $model->video_ru ? explode('/', $model->video_ru) : null;
 ?>
 <section class="view_product">
     <div class="container has_width">
         <div class="bread_crumb">
             <nav aria-label="breadcrumb">
-                <?= Breadcrumbs::widget(
-                    [
-                        'tag' => 'ol',
-                        'itemTemplate' => "<li class='breadcrumb-item'>{link}</li>\n",
-                        'activeItemTemplate' => "<li class='breadcrumb-item active'>{link}</li>\n",
-                        'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-                    ]
-                ); ?>
+                <?= Breadcrumbs::widget(['links' => $this->params['breadcrumbs']]); ?>
             </nav>
         </div>
         <div class="col-md-7 product-page-zoom">
@@ -44,16 +37,23 @@ $arVideoLink = explode('/', $model->video_ru);
                 <i><?= $model->price ?></i>
                 <?= $model->price ? Yii::t('main', 'сўм') : '' ?>
             </span>
-            <!--<button type="button" class="order_link_2"><? /*= Yii::t('main', 'Буюртма бериш') */ ?></button>-->
-            <?= yii\helpers\Html::a(Yii::t('main', 'Буюртма бериш'),
+            <?= Html::a(Yii::t('main', 'Буюртма бериш'),
                 ['order/create',
                     'pid' => Yii::$app->request->get('id')],
                 ['class' => 'my-order-link pjaxModalButton'])
             ?>
             <div class="characteristics_info">
                 <span><?= Yii::t('main', 'Тавсифи') ?></span>
-                <?= $model->previewLang ?>
+                <div><?= $model->previewLang ?></div>
             </div>
+            <p class="text-center">
+                <?= Html::a(Html::icon('transfer') . ' ' . Yii::t('main', 'Таққослаш'),
+                    ['product/compare', 'c_id' => $model->id],
+                    ['class' => 'order_link']);
+                ?>
+            </p>
+            <br>
+            <br>
         </div>
 
     </div>
@@ -70,25 +70,20 @@ $arVideoLink = explode('/', $model->video_ru);
                 'items' => [
                     [
                         'label' => Yii::t('main', 'Маълумот'),
-                        'content' =>
-                        //Html::tag('span', Yii::t('main', 'Техник тавсифи'), ['class' => 'about_product_title']) .
-                            Html::tag('div', $model->descriptionLang)
+                        'content' => Html::tag('div', $model->descriptionLang)
                     ],
                     [
                         'label' => Yii::t('main', 'Техник тавсифи'),
-                        'content' =>
-                        //Html::tag('span', Yii::t('main', 'Техник тавсифи'), ['class' => 'about_product_title']) .
-                            Html::tag('div', $model->technicLang)
+                        'content' => Html::tag('div', $model->technicLang),
+                        'active' => true
                     ],
                     [
                         'label' => Yii::t('main', 'Видео'),
-                        'content' =>
-                        //Html::tag('span', Yii::t('main', 'Видео'), ['class' => 'about_product_title']) .
-                            Html::tag('iframe', '', [
-                                'width' => '100%',
-                                'height' => '500',
-                                'src' => 'https://www.youtube.com/embed/' . end($arVideoLink),
-                            ])
+                        'content' => $arVideoLink ? Html::tag('iframe', '', [
+                            'width' => '100%',
+                            'height' => '500',
+                            'src' => 'https://www.youtube.com/embed/' . end($arVideoLink),
+                        ]) : ''
                     ]
                 ]
             ]); ?>

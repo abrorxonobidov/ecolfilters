@@ -17,7 +17,7 @@ class MainPageAsset extends AssetBundle
         'css/jquery-ui.css',
         'css/style.css?v=5',
         'css/media.css?v=2',
-        'css/style_my.css?v=11',
+        'css/style_my.css?v=12',
     ];
     public $js = [
         'js/jquery-ui.js',

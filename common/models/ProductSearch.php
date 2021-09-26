@@ -6,15 +6,13 @@ use yii\data\ActiveDataProvider;
 
 /**
  * ProductSearch represents the model behind the search form of `common\models\Product`.
- * @property $pli
- * @property $pci
+ * @property int|null $pli
+ * @property int|null $pci
  */
 class ProductSearch extends Product
 {
-    /** @var null|integer $pci */
-    public $pci= null;
-    /** @var null|integer $pli */
-    public $pli= null;
+    public $pci = null;
+    public $pli = null;
 
     /**
      * {@inheritdoc}
@@ -65,22 +63,23 @@ class ProductSearch extends Product
     public function searchFrontend($params)
     {
         $query = Product::find()
-        ->where([
-            'enabled' => 1
-        ]);
+            ->where([
+                'enabled' => 1
+            ]);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'pagination' => ['pageSize' => 8]
         ]);
 
-        $this->load($params,'');
+        $this->load($params, '');
 
         if (!$this->validate()) return $dataProvider;
 
         $query->andFilterWhere([
             'product_category_id' => $this->pci,
             'place_id' => $this->pli,
+            'id' => $this->id
         ]);
 
         return $dataProvider;

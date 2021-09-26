@@ -30,4 +30,4 @@ $( '.productFilter').change(function() {
 let queryParam = '?pci='+$('select[name=\"pci\"]').val()+'&pli='+$('select[name=\"pli\"]').val();
     window.location.replace(url+queryParam);
 });
-") ?>
+", 3) ?>

@@ -1,4 +1,5 @@
 <?php
+
 namespace frontend\controllers;
 
 use common\models\Order;
@@ -35,6 +36,33 @@ class ProductController extends Controller
         $model = $this->findModel($id);
         return $this->render('view', [
             'model' => $model,
+        ]);
+    }
+
+    public function actionCompare($c_id)
+    {
+        $s = new ProductSearch();
+        $searchModel = clone $s;
+        $s->id = $c_id;
+        $mainDataProvider = $s->searchFrontend([]);
+
+        $params = Yii::$app->request->queryParams;
+        $dataProvider = $searchModel->searchFrontend($params);
+
+        return $this->render('compare', [
+            'searchModel' => $searchModel,
+            's' => $s,
+            'mainDataProvider' => $mainDataProvider,
+            'dataProvider' => $dataProvider
+        ]);
+    }
+
+
+    public function actionCompareView($c_id, $x_id)
+    {
+        return $this->render('compare_view', [
+            'c' => $this->findModel($c_id),
+            'x' => $this->findModel($x_id),
         ]);
     }
 

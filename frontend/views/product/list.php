@@ -18,7 +18,13 @@ $this->params['breadcrumbs'][] = $this->title; ?>
             'itemView' => '_product',
             'options' => ['tag' => false],
             'itemOptions' => ['tag' => false],
-            'layout' => " <div class='flex-row row'> {items}</div><div class='text-center'>{pager}</div>"
+            'layout' =>
+                Html::tag('div', '{items}', ['class' => 'flex-row row']) .
+                Html::tag('div', '{pager}', ['class' => 'text-center']),
+            'emptyText' => Yii::t('main', 'Маълумот топилмади'),
+            'emptyTextOptions' => [
+                'class' => 'product-alert alert alert-info'
+            ]
         ]); ?>
     </div>
 </section>
