@@ -26,8 +26,19 @@ dmstr\web\AdminLteAsset::register($this);
 <div class="wrapper">
 
     <?= $this->render('header.php') ?>
-    <? \diecoding\toastr\ToastrFlash::widget(); ?>
-    <?= $this->render('left.php') ?>
+
+    <? diecoding\toastr\ToastrFlash::widget(); ?>
+
+    <aside class="main-sidebar">
+
+        <section class="sidebar">
+
+            <?= backend\widgets\UserMenu::widget(['user' => Yii::$app->user]) ?>
+
+        </section>
+
+    </aside>
+
 
     <?= $this->render('content.php', [
         'content' => $content

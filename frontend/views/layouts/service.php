@@ -50,8 +50,6 @@ frontend\assets\InnerAsset::register($this);
 
     <?= frontend\widgets\Footer::widget()?>
 
-    <?= frontend\widgets\Test::widget()?>
-
 </div>
 <? $this->endBody() ?>
 </body>

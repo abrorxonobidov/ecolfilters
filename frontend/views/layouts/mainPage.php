@@ -45,13 +45,8 @@ MainPageAsset::register($this);
             </div>
         </div>
     </section>
-    <section class="block_2">
-        <span><img src="/img/section_2_image.jpg" alt=""/></span>
-        <div class="sec_2_text" style="background-color: rgba(255, 255, 255, 0.5); border-radius: 10px; padding: 20px;">
-            <?= Yii::t('main', 'Тоза сув — <br>бу ECOFILTERS') ?>
-            <i><?= Yii::t('main', 'Уй ва офис учун инновацион<br> сувни тозалаш тизимлари') ?></i>
-        </div>
-    </section>
+
+    <?= frontend\widgets\MainPageBanner::widget() ?>
 
     <?= frontend\widgets\ProductCategoryWidget::widget() ?>
 
@@ -63,8 +58,6 @@ MainPageAsset::register($this);
     <?//= frontend\widgets\Statistic::widget() ?>
 
     <?= frontend\widgets\Footer::widget() ?>
-
-    <?= frontend\widgets\Test::widget() ?>
 
 </div>
 <? $this->endBody() ?>

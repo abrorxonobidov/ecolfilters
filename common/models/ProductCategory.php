@@ -12,6 +12,7 @@ use Yii;
  * @property string|null $title_oz
  * @property string|null $title_ru
  * @property string|null $title_en
+ * @property string|null $image
  * @property int $enabled
  * @property int $test_drive
  * @property int $order
@@ -24,6 +25,8 @@ use Yii;
  */
 class ProductCategory extends BaseActiveRecord
 {
+    public $imageHelper;
+
     /**
      * {@inheritdoc}
      */
@@ -41,7 +44,7 @@ class ProductCategory extends BaseActiveRecord
             [['title_uz', 'order'], 'required'],
             [['enabled', 'order', 'test_drive', 'creator_id', 'modifier_id'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
-            [['title_uz', 'title_oz', 'title_ru', 'title_en'], 'string', 'max' => 255],
+            [['title_uz', 'title_oz', 'title_ru', 'title_en', 'image'], 'string', 'max' => 255],
         ];
     }
 
@@ -52,13 +55,14 @@ class ProductCategory extends BaseActiveRecord
     {
         return [
             'id' => Yii::t('main', 'ID'),
-            'title_uz' => Yii::t('main', 'Title Uz'),
-            'title_oz' => Yii::t('main', 'Title Oz'),
-            'title_ru' => Yii::t('main', 'Title Ru'),
-            'title_en' => Yii::t('main', 'Title En'),
-            'order' => Yii::t('main', 'Order'),
+            'title_uz' => Yii::t('main', 'Номланиши') . ' Uz',
+            'title_oz' => Yii::t('main', 'Номланиши') . ' Oz',
+            'title_ru' => Yii::t('main', 'Номланиши') . ' Ru',
+            'title_en' => Yii::t('main', 'Номланиши') . ' En',
+            'image' => Yii::t('main', 'Расм'),
+            'order' => Yii::t('main', 'Тартиб'),
             'test_drive' => Yii::t('main', 'Test drive'),
-            'enabled' => Yii::t('main', 'Enabled'),
+            'enabled' => Yii::t('main', 'Статус'),
             'created_at' => Yii::t('main', 'Created At'),
             'updated_at' => Yii::t('main', 'Updated At'),
             'creator_id' => Yii::t('main', 'Creator ID'),

@@ -19,8 +19,8 @@ $this->title = $page->titleLang;
                 <?= $page->titleLang ?>
             </span>
         </h1>
-        <div class="static-banner-table"
-             style="background: url('<?= $page::imageSourcePath() . $page->preview_image ?>')">
+        <div class="static-banner-table hidden-xs"
+             style="background: url('<?= $page::imageSourcePath() . $page->preview_image ?>') no-repeat center; background-size: cover">
             <div class="row">
                 <div class="col-md-6">
                     <div class="simple-text service-preview">

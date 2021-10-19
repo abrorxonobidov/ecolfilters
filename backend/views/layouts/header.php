@@ -5,8 +5,8 @@ use yii\helpers\Html;
 /**
  * @var $this yii\web\View
  * @var $content string
+ * @var common\models\User $user
  */
-/** @var \common\models\User $user */
 $user = Yii::$app->user->identity;
 ?>
 
@@ -28,7 +28,7 @@ $user = Yii::$app->user->identity;
         </ul>
 
         <div class="navbar-custom-menu">
-            <?= \backend\widgets\HeaderNotifications::widget([
+            <?= backend\widgets\HeaderNotifications::widget([
                 'user' => $user,
                 'arTypes' => [
 //                    'orders',
@@ -46,30 +46,7 @@ $user = Yii::$app->user->identity;
                         </span>
                     </a>
                     <ul class="dropdown-menu">
-                        <!--<li class="user-header">
-                            <img src="/img/user2-160x160.jpg" class="img-circle"
-                                 alt="User Image"/>
-
-                            <p>
-                                Alexander Pierce - Web Developer
-                                <small>Member since Nov. 2012</small>
-                            </p>
-                        </li>
-                        <li class="user-body">
-                            <div class="col-xs-4 text-center">
-                                <a href="#">Followers</a>
-                            </div>
-                            <div class="col-xs-4 text-center">
-                                <a href="#">Sales</a>
-                            </div>
-                            <div class="col-xs-4 text-center">
-                                <a href="#">Friends</a>
-                            </div>
-                        </li>-->
                         <li class="user-footer">
-                            <!--<div class="pull-left">
-                                <a href="#" class="btn btn-default btn-flat">Profile</a>
-                            </div>-->
                             <div class="pull-right">
                                 <?= Html::a(
                                     Html::tag('i', '', ['class' => 'fa fa-sign-out'])
@@ -81,10 +58,6 @@ $user = Yii::$app->user->identity;
                         </li>
                     </ul>
                 </li>
-
-                <!--<li>
-                    <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
-                </li>-->
             </ul>
         </div>
     </nav>

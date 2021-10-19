@@ -44,8 +44,8 @@
 }
 
 .static-banner-table {
-    height: 400px;
-    width: 80%;
+    height: 800px;
+    width: 100%;
     margin: 0 auto 30px auto;
 }
 
@@ -59,7 +59,7 @@
 .service-preview {
     padding: 15px;
     margin: 0 10px;
-    background-color: rgba(231, 231, 231, 0.86);
+    /*background-color: rgba(231, 231, 231, 0.86);*/
     color: black;
     border-radius: 13px;
 }
@@ -189,7 +189,7 @@
 }
 
 .static-banner-table .col-md-6 {
-    height: 400px;
+    height: 800px;
 }
 
 .static-banner-table .service-preview {

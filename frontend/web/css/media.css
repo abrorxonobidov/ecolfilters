@@ -573,6 +573,9 @@
     button.order_link_2{
         width: 45%;
     }
+    a.MagicZoom {
+        margin-left: 0 !important;
+    }
 }
 @media screen and (max-width: 700px){
     .block_2:before{
@@ -717,7 +720,7 @@
 }
 @media screen and (max-width: 500px){
     .block_2, .block_3, .block_4, .block_5, .block_6{
-        height: auto;
+        height: 300px;
     }
     .block_3:before, .block_5:before{
         display: none;

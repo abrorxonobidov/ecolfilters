@@ -39,6 +39,7 @@ class UserMenu extends Widget
         } else {
             $items = array_merge($items, [
                 ['label' => 'Маҳсулотлар', 'icon' => 'gift', 'url' => ['/product/index']],
+                ['label' => 'Маҳсулот категориялари', 'icon' => 'gift', 'url' => ['/product-category/index']],
                 ['label' => 'Менюлар', 'icon' => 'navicon', 'url' => ['/menus-links/index']],
                 ['label' => 'Буюртмалар', 'icon' => 'cart-arrow-down', 'url' => ['/order/index']],
                 ['label' => 'Янгиликлар', 'icon' => 'newspaper-o', 'url' => ['/list/index', 'ci' => 3]],

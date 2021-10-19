@@ -15,6 +15,7 @@ class ProductCategoryWidget extends Widget {
             ->select([
                 'id',
                 'title' => "title_$lang",
+                'image',
                 'test_drive'
             ])
             ->where(['enabled' => 1])

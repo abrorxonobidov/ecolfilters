@@ -41,6 +41,41 @@ if ($page->video) {
                 <?= $page->titleLang ?>
             </span>
         </h1>
+        <div class="static-banner-table hidden-xs"
+             style="background: url('<?= $page::imageSourcePath() . $page->preview_image ?>') no-repeat center; background-size: cover">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="simple-text service-preview">
+                        <?= $page->previewLang ?>
+                    </div>
+                </div>
+                <div class="col-md-6 text-center">
+                    <a type="button" class="order_link pjaxModalButton"
+                       href="<?= yii\helpers\Url::to(['order/create']) ?>">
+                        <?= Yii::t('main', 'Буюртма бериш') ?>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="place-page about_product">
+    <div class="container has_width">
+        <div class="tab_box">
+            <?= $tab_items ? yii\bootstrap\Tabs::widget([
+                'id' => 'place-page-tab',
+                'tabContentOptions' => [
+                    'class' => 'tab-content about_product_b'
+                ],
+                'items' => $tab_items
+            ]) : '' ?>
+        </div>
+    </div>
+</section>
+
+<section class="place-page view_product">
+    <div class="container has_width">
         <div class="row">
             <div class="col-md-6">
                 <div class="simple-text characteristics_info">
@@ -64,20 +99,6 @@ if ($page->video) {
                     ['class' => 'my-order-link pjaxModalButton'])
                 ?>
             </div>
-        </div>
-    </div>
-</section>
-
-<section class="place-page about_product">
-    <div class="container has_width">
-        <div class="tab_box">
-            <?= $tab_items ? yii\bootstrap\Tabs::widget([
-                'id' => 'place-page-tab',
-                'tabContentOptions' => [
-                    'class' => 'tab-content about_product_b'
-                ],
-                'items' => $tab_items
-            ]) : '' ?>
         </div>
     </div>
 </section>
