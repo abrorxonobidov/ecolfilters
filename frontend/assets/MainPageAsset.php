@@ -16,7 +16,7 @@ class MainPageAsset extends AssetBundle
         //'css/magiczoomplus.css',
         'css/jquery-ui.css',
         'css/style.css?v=5',
-        'css/media.css?v=3',
+        'css/media.css?v=5',
         'css/style_my.css?v=13',
     ];
     public $js = [
