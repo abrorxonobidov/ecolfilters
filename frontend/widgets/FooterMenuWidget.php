@@ -27,7 +27,8 @@ class FooterMenuWidget extends Widget
                     'label' => "m.title_$lang",
                     'url' => 'm.link_in',
                     'm.parent_id',
-                ]);
+                ])
+                ->where(['m.enabled' => 1]);
             }])
             ->andWhere("p.title_$lang > ''")
             ->orderBy(['p.order' => SORT_ASC, 'p.id' => SORT_ASC])
