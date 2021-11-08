@@ -45,6 +45,7 @@ use Yii;
  * @property Order[] $orders
  * @property Place $place
  * @property ProductCategory $productCategory
+ * @property string $actualPrice
  */
 class Product extends BaseActiveRecord
 {
@@ -160,6 +161,16 @@ class Product extends BaseActiveRecord
     public function getVideoLang()
     {
         return $this->{'video_' . Yii::$app->language};
+    }
+
+    public function getPriceUSDtoSUM()
+    {
+        return number_format($this->price_usd * Currency::getLastRate(), 0, ',', '.');
+    }
+
+    public function getActualPrice()
+    {
+        return $this->price_usd ? $this->getPriceUSDtoSUM() : $this->price;
     }
 
 }

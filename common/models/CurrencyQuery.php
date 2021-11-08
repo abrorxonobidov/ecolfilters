@@ -2,17 +2,19 @@
 
 namespace common\models;
 
+use yii\db\ActiveQuery;
+
 /**
  * This is the ActiveQuery class for [[Currency]].
  *
  * @see Currency
  */
-class CurrencyQuery extends \yii\db\ActiveQuery
+class CurrencyQuery extends ActiveQuery
 {
-    /*public function active()
+    public function active()
     {
-        return $this->andWhere('[[status]]=1');
-    }*/
+        return $this->andWhere('[[enabled]]=1');
+    }
 
     /**
      * {@inheritdoc}

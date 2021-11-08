@@ -52,6 +52,7 @@ class ProductSearch extends Product
         $query
             ->andFilterWhere(['like', 'price_usd', $this->price_usd])
             ->andFilterWhere(['like', 'title_uz', $this->title_uz])
+            ->andFilterWhere(['like', 'price_usd', $this->price_usd])
             ->andFilterWhere(['like', 'price', $this->price]);
 
         return $dataProvider;

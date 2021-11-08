@@ -17,9 +17,11 @@
             <span class="product_text"><?= $model->titleLang ?></span>
         </div>
     </div>
-    <? if ($model->price) { ?>
+    <?
+    $price = $model->actualPrice;
+    if ($price) { ?>
         <span class="product_price">
-            <i><?= $model->price ?></i>
+            <i><?= $price ?></i>
             <?= Yii::t('main', 'сўм') ?>
         </span>
     <? } ?>

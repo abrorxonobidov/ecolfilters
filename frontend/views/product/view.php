@@ -34,8 +34,9 @@ $arVideoLink = $model->video_ru ? explode('/', $model->video_ru) : null;
         <div class="col-md-5">
             <span class="view_product_title"><?= $model->titleLang ?></span>
             <span class="product_price product_price_in">
-                <i><?= $model->price ?></i>
-                <?= $model->price ? Yii::t('main', 'сўм') : '' ?>
+                <? $price = $model->actualPrice; ?>
+                <i><?= $price ?></i>
+                <?= $price ? Yii::t('main', 'сўм') : '' ?>
             </span>
             <?= Html::a(Yii::t('main', 'Буюртма бериш'),
                 ['order/create',

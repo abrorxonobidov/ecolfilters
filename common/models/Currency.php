@@ -56,4 +56,15 @@ class Currency extends BaseActiveRecord
     {
         return new CurrencyQuery(get_called_class());
     }
+
+    public static function getLastRate()
+    {
+        return @self::find()
+            ->select('rate')
+            ->active()
+            ->orderBy('id DESC')
+            ->limit(1)
+            ->asArray()
+            ->column()[0];
+    }
 }

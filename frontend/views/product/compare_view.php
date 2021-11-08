@@ -41,9 +41,10 @@ $xArVideoLink = $x->video_ru ? explode('/', $x->video_ru) : null;
                 <div class="col-lg-5 col-sm-12">
                     <h2><?= $c->titleLang ?></h2>
                     <span class="product_price product_price_in">
-                <i><?= $c->price ?></i>
-                <?= $c->price ? Yii::t('main', 'сўм') : '' ?>
-            </span>
+                        <? $price = $c->actualPrice; ?>
+                        <i><?= $price ?></i>
+                        <?= $price ? Yii::t('main', 'сўм') : '' ?>
+                    </span>
                     <?= Html::a(Yii::t('main', 'Буюртма бериш'),
                         ['order/create', 'pid' => $c->id],
                         ['class' => 'my-order-link pjaxModalButton'])
@@ -75,8 +76,9 @@ $xArVideoLink = $x->video_ru ? explode('/', $x->video_ru) : null;
                 <div class="col-lg-5 col-sm-12">
                     <h2><?= $x->titleLang ?></h2>
                     <span class="product_price product_price_in">
-                        <i><?= $x->price ?></i>
-                        <?= $x->price ? Yii::t('main', 'сўм') : '' ?>
+                        <? $price = $x->actualPrice; ?>
+                        <i><?= $price ?></i>
+                        <?= $price ? Yii::t('main', 'сўм') : '' ?>
                     </span>
                     <?= Html::a(Yii::t('main', 'Буюртма бериш'),
                         ['order/create', 'pid' => $x->id],
