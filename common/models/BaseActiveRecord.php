@@ -53,6 +53,7 @@ class BaseActiveRecord extends ActiveRecord
             'id' => Yii::t('main', 'ID'),
             'title' => Yii::t('main', 'Title'),
             'titleLang' => Yii::t('main', 'Title'),
+            'enable' => Yii::t('main', 'Актив'),
             'enabled' => Yii::t('main', 'Актив'),
             'created_at' => Yii::t('main', 'Яратилган сана'),
             'updated_at' => Yii::t('main', 'Таҳрирланган сана'),
