@@ -23,7 +23,9 @@ echo common\helpers\GeneralHelper::oneRow([
     $form->field($model, 'product_category_id')->dropDownList(common\models\ProductCategory::getList(), ['prompt' => $model->selectText()]),
     $form->field($model, 'place_id')->dropDownList(common\models\Place::getList(), ['prompt' => $model->selectText()]),
     $form->field($model, 'price')->textInput(['maxlength' => true]),
-    $form->field($model, 'enabled')->dropDownList($model::listsEnabled())
+    $form->field($model, 'price_usd')->textInput(),
+    $form->field($model, 'enabled')->dropDownList($model::listsEnabled()),
+    ''
 ]);
 
 $previewConfig = $model->inputImageConfig('preview_image', 'product/file-remove');

@@ -46,6 +46,7 @@ echo DetailView::widget([
             }
         ],
         'price',
+        'price_usd',
         'enable',
         'created_at',
         'updated_at',

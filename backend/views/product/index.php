@@ -20,6 +20,7 @@ echo GridView::widget([
     'columns' => [
         'id',
         'title_uz',
+        'price_usd',
         'price',
         [
             'attribute' => 'product_category_id',

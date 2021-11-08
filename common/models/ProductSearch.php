@@ -21,7 +21,7 @@ class ProductSearch extends Product
     {
         return [
             [['id', 'product_category_id', 'place_id', 'order', 'enabled'], 'integer'],
-            [['title_uz', 'price'], 'safe'],
+            [['title_uz', 'price', 'price_usd'], 'safe'],
             [['pci', 'pli'], 'integer'],
         ];
     }
@@ -50,6 +50,7 @@ class ProductSearch extends Product
         ]);
 
         $query
+            ->andFilterWhere(['like', 'price_usd', $this->price_usd])
             ->andFilterWhere(['like', 'title_uz', $this->title_uz])
             ->andFilterWhere(['like', 'price', $this->price]);
 
