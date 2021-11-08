@@ -64,11 +64,11 @@ class MetaTagsSearch extends MetaTags
             'updated_at' => $this->updated_at,
             'creator_id' => $this->creator_id,
             'modifier_id' => $this->modifier_id,
+            'target_class'=>  $this->target_class
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])
             ->andFilterWhere(['like', 'content', $this->content])
-            ->andFilterWhere(['like', 'target_class', $this->target_class])
             ->andFilterWhere(['like', 'url', $this->url]);
 
         return $dataProvider;

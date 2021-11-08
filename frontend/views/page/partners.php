@@ -5,6 +5,8 @@
  */
 
 $this->title = Yii::t('main', 'Бизнинг ҳамкорларимиз');
+
+echo frontend\widgets\MetaTagsWidget::widget(['target_class' => common\models\ListCategory::class, 'target_id' => 6]);
 ?>
 
 <section class="place-page view_product">

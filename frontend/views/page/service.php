@@ -8,7 +8,7 @@
 
 $this->title = $page->titleLang;
 
-
+echo frontend\widgets\MetaTagsWidget::widget(['target_class' => $page::className(), 'target_id' => $page->id]);
 ?>
 
 

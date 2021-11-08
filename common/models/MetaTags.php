@@ -74,7 +74,8 @@ class MetaTags extends BaseActiveRecord
             Product::class => Yii::t('main', 'Махсуотлар'),
             ProductCategory::class => Yii::t('main', 'Махсуотлар категорияси'),
             Lists::class => Yii::t('main', 'Сахифалар'),
-            Place::class => Yii::t('main', 'Жойлар'),
+            ListCategory::class => Yii::t('main', 'Руйхат категорияси'),
+            //Place::class => Yii::t('main', 'Жойлар'),
         ];
     }
 
@@ -84,7 +85,7 @@ class MetaTags extends BaseActiveRecord
 
         $query = (new ActiveQuery($this->target_class::className()))
             ->select(['title' => 'title_' . Yii::$app->language])
-            ->where($this->target_id)
+            ->where(['id' => $this->target_id])
             ->asArray()
             ->one();
 

@@ -11,6 +11,8 @@ use yii\helpers\Url;
 $this->title = $model->titleLang;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('main', 'Янгиликлар'), 'url' => ['page/news-list']];
 $this->params['breadcrumbs'][] = $this->title;
+
+echo frontend\widgets\MetaTagsWidget::widget(['target_class' => $model::className(), 'target_id' => $model->id]);
 ?>
 
 <section class="place-model view_product">
@@ -32,7 +34,9 @@ $this->params['breadcrumbs'][] = $this->title;
                 ); ?>
             </nav>
         </div>
-        <table class="static-banner-table" style="background: url('<?= $model::imageSourcePath() . $model->preview_image ?>') center" cellspacing="0" cellpadding="0" border="0">
+        <table class="static-banner-table"
+               style="background: url('<?= $model::imageSourcePath() . $model->preview_image ?>') center"
+               cellspacing="0" cellpadding="0" border="0">
             <tr class="row">
                 <td class="col-md-4"></td>
                 <td class="col-md-8 text-right"></td>

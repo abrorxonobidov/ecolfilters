@@ -12,6 +12,8 @@ $this->title = $model->titleLang;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('main', 'Маҳсулотлар'), 'url' => ['category']];
 $this->params['breadcrumbs'][] = $this->title;
 $arVideoLink = $model->video_ru ? explode('/', $model->video_ru) : null;
+
+echo frontend\widgets\MetaTagsWidget::widget(['target_class' => $model::className(), 'target_id' => $model->id]);
 ?>
 <section class="view_product">
     <div class="container has_width">

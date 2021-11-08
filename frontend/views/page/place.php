@@ -8,6 +8,8 @@ use yii\helpers\Html;
  * @var $dataProvider yii\data\ActiveDataProvider
  */
 
+echo frontend\widgets\MetaTagsWidget::widget(['target_class' => $page::className(), 'target_id' => $page->id]);
+
 $this->title = $page->titleLang;
 $tab_items = [];
 if ($page->descriptionLang)

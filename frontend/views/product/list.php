@@ -7,6 +7,7 @@ use yii\helpers\Html;
  * @var $searchModel common\models\ProductSearch
  * @var $dataProvider yii\data\ActiveDataProvider
  */
+echo frontend\widgets\MetaTagsWidget::widget(['target_class' => common\models\ProductCategory::className(), 'target_id' => $searchModel->pci]);
 
 $this->title = Yii::t('main', 'Маҳсулотлар');
 $this->params['breadcrumbs'][] = $this->title; ?>
