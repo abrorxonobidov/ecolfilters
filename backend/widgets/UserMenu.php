@@ -50,6 +50,7 @@ class UserMenu extends Widget
                 ['label' => 'Қайта алоқа', 'icon' => 'envelope', 'url' => ['/reviews/feedback']],
                 ['label' => 'Cўзлар таржималари', 'icon' => 'language', 'url' => ['/i18n_interface/source-message/index']],
                 ['label' => 'Валюта курси', 'icon' => 'dollar', 'url' => ['/currency/index']],
+                ['label' => 'Meta Tag', 'icon' => 'code', 'url' => ['/meta-tags/index']],
             ]);
         }
         return Menu::widget(
