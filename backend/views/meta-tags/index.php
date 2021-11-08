@@ -17,7 +17,12 @@ echo GridView::widget([
     'dataProvider' => $dataProvider,
     'filterModel' => $searchModel,
     'columns' => [
-        'id',
+        [
+            'attribute' => 'id',
+            'contentOptions' => [
+                'class' => 'col-md-1'
+            ]
+        ],
         'name',
         'content',
         [

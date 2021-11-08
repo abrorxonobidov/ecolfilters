@@ -2,22 +2,17 @@
 
 use yii\helpers\Html;
 
-/* @var $this yii\web\View */
-/* @var $model common\models\MetaTags */
+/**
+ * @var $this yii\web\View
+ * @var $model common\models\MetaTags
+ */
 
-$this->title = Yii::t('main', 'Update Meta Tags: {name}', [
-    'name' => $model->name,
-]);
+$this->title = Yii::t('yii', 'Update');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('main', 'Meta Tags'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = Yii::t('main', 'Update');
-?>
-<div class="meta-tags-update">
+$this->params['breadcrumbs'][] = $this->title;
 
-    <h1><?= Html::encode($this->title) ?></h1>
+echo Html::tag('h1', $this->title);
 
-    <?= $this->render('_form', [
-        'model' => $model,
-    ]) ?>
-
-</div>
+echo $this->render('_form', [
+    'model' => $model,
+]);

@@ -74,7 +74,7 @@ class MetaTags extends BaseActiveRecord
             Product::class => Yii::t('main', 'Махсуотлар'),
             ProductCategory::class => Yii::t('main', 'Махсуотлар категорияси'),
             Lists::class => Yii::t('main', 'Сахифалар'),
-            ListCategory::class => Yii::t('main', 'Руйхат категорияси'),
+            //ListCategory::class => Yii::t('main', 'Руйхат категорияси'),
             //Place::class => Yii::t('main', 'Жойлар'),
         ];
     }

@@ -1,46 +1,38 @@
 <?php
 
-use yii\helpers\Html;
+use yii\bootstrap\Html;
 use yii\widgets\DetailView;
+use common\helpers\GeneralHelper;
 
-/* @var $this yii\web\View */
-/* @var $model common\models\MetaTags */
+/**
+ * @var $this yii\web\View
+ * @var $model common\models\MetaTags
+ */
 
 $this->title = $model->name;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('main', 'Meta Tags'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
-\yii\web\YiiAsset::register($this);
-?>
-<div class="meta-tags-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+echo GeneralHelper::oneRow([
+    Html::tag('h2', $model->name),
+    Html::a(Html::icon('pencil') . ' ' . Yii::t('yii', 'Update'), ['update', 'id' => $model->id], ['class' => 'view-button btn btn-primary pull-right']) .
+    Html::a(Html::icon('plus') . ' ' . Yii::t('yii', 'Create'), ['create'], ['class' => 'view-button btn btn-success pull-right']) .
+    Html::a(Html::icon('list') . ' ' . Yii::t('main', 'Рўйхат'), ['index'], ['class' => 'view-button btn btn-info pull-right'])
+]);
 
-    <p>
-        <?= Html::a(Yii::t('main', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a(Yii::t('main', 'Delete'), ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => Yii::t('main', 'Are you sure you want to delete this item?'),
-                'method' => 'post',
-            ],
-        ]) ?>
-    </p>
-
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            'id',
-            'name',
-            'content',
-            'target_class',
-            'target_id',
-            //'url:url',
-            'enabled',
-            'created_at',
-            'updated_at',
-            'creator_id',
-            'modifier_id',
-        ],
-    ]) ?>
-
-</div>
+echo DetailView::widget([
+    'model' => $model,
+    'attributes' => [
+        'id',
+        'name',
+        'content',
+        'target_class',
+        'target_id',
+        //'url:url',
+        'enable',
+        'created_at',
+        'updated_at',
+        'creator.full_name',
+        'modifier.full_name',
+    ],
+]);
