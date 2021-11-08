@@ -1,6 +1,6 @@
 <?php
 
-use yii\helpers\Html;
+use yii\bootstrap\Html;
 use yii\bootstrap\Tabs;
 use yii\widgets\DetailView;
 
@@ -82,3 +82,5 @@ foreach (Yii::$app->params['languages'] as $lang_code => $language) {
 }
 
 echo Tabs::widget(['items' => $items]);
+
+echo backend\widgets\AddMetaTags::widget(['model' => $model]);

@@ -1,6 +1,6 @@
 <?php
 
-use yii\helpers\Html;
+use yii\bootstrap\Html;
 use yii\widgets\DetailView;
 
 /**
@@ -50,5 +50,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'modifier.full_name',
         ],
     ]) ?>
+
+    <?= backend\widgets\AddMetaTags::widget(['model' => $model]); ?>
 
 </div>

@@ -47,12 +47,16 @@ class MetaTagsController extends BaseController
     /**
      * Creates a new MetaTags model.
      * If creation is successful, the browser will be redirected to the 'view' page.
+     * @param string $tcl
+     * @param integer $tid
      * @return mixed
      */
-    public function actionCreate()
+    public function actionCreate($tcl = null, $tid = null)
     {
         $model = new MetaTags();
 
+        $model->target_class = $tcl;
+        $model->target_id = $tid;
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         }

@@ -18,17 +18,18 @@ $form = ActiveForm::begin();
 echo GeneralHelper::oneRow([
     $form->field($model, 'target_class')
         ->dropDownList($model::typeList(), [
-            'prompt' => Yii::t('main', 'Танланг') . ' ...'
+            'prompt' => Yii::t('main', 'Танланг') . ' ...',
+            'disabled' => $model->isNewRecord && $model->target_class
         ]),
     $form->field($model, 'target_id')
         ->widget(DepDrop::class, [
-            //'value' => $model->target_id,
             'type' => DepDrop::TYPE_SELECT2,
             'select2Options' => [
                 'theme' => Select2::THEME_BOOTSTRAP,
                 'pluginOptions' => [
                     'language' => Yii::t('main', 'select2_language'),
-                ]
+                ],
+                'disabled' => $model->isNewRecord && $model->target_id
             ],
             'pluginOptions' => [
                 'depends' => [
