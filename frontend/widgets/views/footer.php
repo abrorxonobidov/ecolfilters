@@ -11,7 +11,8 @@ use frontend\widgets\SocialNetworksMenuWidget;
             <div class="col-md-4 col-sm-4 col-xs-6">
                 <div class="contact_b">
                     <?= Yii::t('main', 'Боғланиш') ?>
-                    <i>+998 99 999 99 99</i>
+                    <i>+998 90 188 14 70</i>
+                    <i>+998 99 870 90 65</i>
                     <i>mail@ecofilters.uz</i>
                 </div>
             </div>
@@ -38,7 +39,7 @@ use frontend\widgets\SocialNetworksMenuWidget;
             <div class="clearfix"></div>
             <div class="address_b">
                 <?= Yii::t('main', '<p><strong>Манзил:</strong> Тошкент шаҳри,</p><p>Навоий кўчаси 158Б</p>') ?>
-                <a href="https://g.page/HiltonTashkentCity?share" target="_blank">
+                <a href="https://goo.gl/maps/r35vKjRvBxA2fBMy9" target="_blank">
                     <img src="/img/location.png" alt=""/><?= Yii::t('main', 'Харитада кўрсатиш') ?>
                 </a>
             </div>
