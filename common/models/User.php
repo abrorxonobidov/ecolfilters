@@ -1,4 +1,5 @@
 <?php
+
 namespace common\models;
 
 use Yii;
@@ -44,7 +45,7 @@ class User extends ActiveRecord implements IdentityInterface
     public function behaviors()
     {
         return [
-            TimestampBehavior::className(),
+            TimestampBehavior::class,
         ];
     }
 
@@ -54,8 +55,35 @@ class User extends ActiveRecord implements IdentityInterface
     public function rules()
     {
         return [
+            [['username', 'email',], 'filter', 'filter' => 'trim'],
+            [['username'], 'required'],
+            [['email', 'password_hash', 'password_reset_token', 'full_name'], 'string', 'max' => 255],
+            ['username', 'string', 'min' => 2, 'max' => 255],
+            ['email', 'email'],
+            [['auth_key'], 'string', 'max' => 32],
+            ['username', 'unique', 'message' => Yii::t('app', 'Бундай логинли фойдаланувчи мавжуд')],
+            [['password_reset_token'], 'unique'],
+            [['password', 'created_at', 'updated_at'], 'safe'],
             ['status', 'default', 'value' => self::STATUS_INACTIVE],
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_INACTIVE, self::STATUS_DELETED]],
+        ];
+    }
+
+    public function attributeLabels()
+    {
+        return [
+            'id' => Yii::t('main', 'ID'),
+            'username' => Yii::t('main', 'Логин'),
+            'full_name' => Yii::t('main', 'Ф.И.Ш'),
+            'status' => Yii::t('main', 'Статус'),
+            'statusName' => Yii::t('main', 'Статус'),
+            'email' => Yii::t('main', 'Э-почта'),
+            'created_at' => Yii::t('main', 'Яратилган сана'),
+            'updated_at' => Yii::t('main', 'Таҳрирланган сана'),
+            'creator_id' => Yii::t('main', 'Яратувчи') . ' ID',
+            'modifier_id' => Yii::t('main', 'Таҳрирловчи') . ' ID',
+            'creator.full_name' => Yii::t('main', 'Яратувчи'),
+            'modifier.full_name' => Yii::t('main', 'Таҳрирловчи')
         ];
     }
 
@@ -72,7 +100,7 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public static function findIdentityByAccessToken($token, $type = null)
     {
-        throw new NotSupportedException(Yii::t('main','"findIdentityByAccessToken" is not implemented.'));
+        throw new NotSupportedException(Yii::t('main', '"findIdentityByAccessToken" is not implemented.'));
     }
 
     /**
@@ -110,7 +138,8 @@ class User extends ActiveRecord implements IdentityInterface
      * @param string $token verify email token
      * @return static|null
      */
-    public static function findByVerificationToken($token) {
+    public static function findByVerificationToken($token)
+    {
         return static::findOne([
             'verification_token' => $token,
             'status' => self::STATUS_INACTIVE
@@ -129,7 +158,7 @@ class User extends ActiveRecord implements IdentityInterface
             return false;
         }
 
-        $timestamp = (int) substr($token, strrpos($token, '_') + 1);
+        $timestamp = (int)substr($token, strrpos($token, '_') + 1);
         $expire = Yii::$app->params['user.passwordResetTokenExpire'];
         return $timestamp + $expire >= time();
     }
@@ -209,5 +238,19 @@ class User extends ActiveRecord implements IdentityInterface
     public function removePasswordResetToken()
     {
         $this->password_reset_token = null;
+    }
+
+    public static function statusList()
+    {
+        return [
+            self::STATUS_INACTIVE => 'INACTIVE',
+            self::STATUS_DELETED => 'DELETED',
+            self::STATUS_ACTIVE => 'ACTIVE'
+        ];
+    }
+
+    public function getStatusName()
+    {
+        return self::statusList()[$this->status];
     }
 }

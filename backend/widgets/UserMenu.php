@@ -2,7 +2,7 @@
 /**
  * Created by PhpStorm.
  * User: a_isokov
- * Date: 26.12.2015
+ * Date: 08.08.2021
  * Time: 16:30
  */
 
@@ -11,22 +11,13 @@ namespace backend\widgets;
 use dmstr\widgets\Menu;
 use Yii;
 use yii\bootstrap\Widget;
-use yii\web\User;
 
-/**
- */
 class UserMenu extends Widget
 {
-    /** @var User $user */
-    public $user;
 
-    /**
-     * @return string
-     */
     public function run()
     {
         $items = [
-            ['label' => '&nbsp;', 'options' => ['class' => 'header'], 'encode' => false],
             [
                 'label' => Yii::t('main', 'Сайтга ўтиш'),
                 'url' => 'http://' . Yii::$app->params['domainName'],
@@ -34,7 +25,7 @@ class UserMenu extends Widget
             ]
         ];
 
-        if ($this->user->isGuest) {
+        if (Yii::$app->user->isGuest) {
             $items[] = ['label' => Yii::t('main', 'Вход'), 'icon' => 'sign-in', 'url' => ['/site/login']];
         } else {
             $items = array_merge($items, [
@@ -51,13 +42,13 @@ class UserMenu extends Widget
                 ['label' => 'Cўзлар таржималари', 'icon' => 'language', 'url' => ['/i18n_interface/source-message/index']],
                 ['label' => 'Валюта курси', 'icon' => 'dollar', 'url' => ['/currency/index']],
                 ['label' => 'Meta Tag', 'icon' => 'code', 'url' => ['/meta-tags/index']],
+                ['label' => 'Фойдаланувчилар', 'icon' => 'user', 'url' => ['/user/index']],
             ]);
         }
-        return Menu::widget(
-            [
-                'options' => ['class' => 'sidebar-menu tree', 'data-widget' => 'tree'],
-                'items' => $items
-            ]
-        );
+
+        return Menu::widget([
+            'options' => ['class' => 'sidebar-menu tree', 'data-widget' => 'tree'],
+            'items' => $items
+        ]);
     }
 }

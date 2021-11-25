@@ -33,7 +33,7 @@ dmstr\web\AdminLteAsset::register($this);
 
         <section class="sidebar">
 
-            <?= backend\widgets\UserMenu::widget(['user' => Yii::$app->user]) ?>
+            <?= backend\widgets\UserMenu::widget() ?>
 
         </section>
 
