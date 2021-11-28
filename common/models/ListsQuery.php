@@ -14,6 +14,11 @@ class ListsQuery extends \yii\db\ActiveQuery
         return $this->andWhere('[[status]]=1');
     }*/
 
+    public function isPlace()
+    {
+        return $this->andWhere(['link' => ['kvartiralar', 'shaxsiy_uylar', 'ofis', 'sanoat', 'korxona']]);
+    }
+
     /**
      * {@inheritdoc}
      * @return Lists[]|array

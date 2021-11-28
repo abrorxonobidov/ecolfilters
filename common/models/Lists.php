@@ -36,10 +36,42 @@ use Yii;
  * @property int|null $creator_id
  * @property int|null $modifier_id
  *
+ * @property string $title_inner_1_uz [varchar(255)]
+ * @property string $title_inner_1_oz [varchar(255)]
+ * @property string $title_inner_1_ru [varchar(255)]
+ * @property string $title_inner_1_en [varchar(255)]
+ * @property string $title_inner_2_uz [varchar(255)]
+ * @property string $title_inner_2_oz [varchar(255)]
+ * @property string $title_inner_2_ru [varchar(255)]
+ * @property string $title_inner_2_en [varchar(255)]
+ * @property string $content_1_uz
+ * @property string $content_1_oz
+ * @property string $content_1_ru
+ * @property string $content_1_en
+ * @property string $content_2_uz
+ * @property string $content_2_oz
+ * @property string $content_2_ru
+ * @property string $content_2_en
+ * @property string $content_3_uz
+ * @property string $content_3_oz
+ * @property string $content_3_ru
+ * @property string $content_3_en
+ * @property string $gallery_inner [varchar(255)]
+ *
  * @property ListCategory $category
+ * @property ListCategory $titleInner1Lang
+ * @property ListCategory $titleInner2Lang
+ * @property ListCategory $content1Lang
+ * @property ListCategory $content2Lang
+ * @property ListCategory $content3Lang
+ * @property ListCategory $helpGalleryInner
+ *
+ *
  */
 class Lists extends BaseActiveRecord
 {
+
+    public $helpGalleryInner;
     /**
      * {@inheritdoc}
      */
@@ -60,6 +92,22 @@ class Lists extends BaseActiveRecord
             [['date', 'created_at', 'updated_at'], 'safe'],
             [['title_uz', 'title_oz', 'title_ru', 'title_en', 'preview_image', 'gallery', 'inner_image', 'video', 'link'], 'string', 'max' => 255],
             [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => ListCategory::class, 'targetAttribute' => ['category_id' => 'id']],
+            [
+                [
+                    'title_inner_1_uz', 'title_inner_1_oz', 'title_inner_1_ru', 'title_inner_1_en',
+                    'title_inner_2_uz', 'title_inner_2_oz', 'title_inner_2_ru', 'title_inner_2_en',
+                    'gallery_inner'
+                ],
+                'string', 'max' => 255
+            ],
+            [
+                [
+                    'content_1_uz', 'content_1_oz', 'content_1_ru', 'content_1_en',
+                    'content_2_uz', 'content_2_oz', 'content_2_ru', 'content_2_en',
+                    'content_3_uz', 'content_3_oz', 'content_3_ru', 'content_3_en'
+                ],
+                'string'
+            ]
         ];
     }
 
@@ -85,6 +133,8 @@ class Lists extends BaseActiveRecord
             'description_en' => Yii::t('main', 'Description En'),
             'preview_image' => Yii::t('main', 'Preview Image'),
             'gallery' => Yii::t('main', 'Gallery'),
+            'gallery_inner' => Yii::t('main', 'Inner slider'),
+            'helpGalleryInner' => Yii::t('main', 'Inner slider'),
             'order' => Yii::t('main', 'Order'),
             'region_id' => Yii::t('main', 'Region ID'),
             'inner_image' => Yii::t('main', 'Inner Image'),
@@ -117,5 +167,35 @@ class Lists extends BaseActiveRecord
     public static function find()
     {
         return new ListsQuery(get_called_class());
+    }
+
+    public function getTitleInner1Lang()
+    {
+        return $this->{'title_inner_1_' . Yii::$app->language};
+    }
+
+    public function getTitleInner2Lang()
+    {
+        return $this->{'title_inner_2_' . Yii::$app->language};
+    }
+
+    public function getContent1Lang()
+    {
+        return $this->{'content_1_' . Yii::$app->language};
+    }
+
+    public function getContent2Lang()
+    {
+        return $this->{'content_2_' . Yii::$app->language};
+    }
+
+    public function getContent3Lang()
+    {
+        return $this->{'content_3_' . Yii::$app->language};
+    }
+
+    public function isPlace()
+    {
+        return in_array($this->link, ['kvartiralar', 'shaxsiy_uylar', 'ofis', 'sanoat', 'korxona']);
     }
 }

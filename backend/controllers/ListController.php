@@ -2,8 +2,6 @@
 
 namespace backend\controllers;
 
-use common\models\BaseActiveRecord;
-use common\models\Product;
 use Yii;
 use common\models\Lists;
 use common\models\ListSearch;
@@ -22,6 +20,20 @@ class ListController extends BaseController
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    public function actionPlaces()
+    {
+        $searchModel = new ListSearch();
+        $queryParams = Yii::$app->request->queryParams;
+        $queryParams['ListSearch']['category_id'] = 1;
+        $dataProvider = $searchModel->search($queryParams);
+        $dataProvider->query->isPlace();
+
+        return $this->render('index_places', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider
         ]);
     }
 
@@ -57,6 +69,7 @@ class ListController extends BaseController
             if ($model->save()) {
                 $model->uploadImage('previewImageHelper', 'preview_image', 'list');
                 $model->uploadGallery('helpGallery', 'gallery', 'list');
+                $model->uploadGallery('helpGalleryInner', 'gallery_inner', 'list');
                 return $this->redirect(['view', 'id' => $model->id, 'ci' => $model->category_id]);
             }
         }

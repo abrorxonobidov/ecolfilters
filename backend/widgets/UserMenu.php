@@ -35,6 +35,7 @@ class UserMenu extends Widget
                 ['label' => 'Буюртмалар', 'icon' => 'cart-arrow-down', 'url' => ['/order/index']],
                 ['label' => 'Янгиликлар', 'icon' => 'newspaper-o', 'url' => ['/list/index', 'ci' => 3]],
                 ['label' => 'Саҳифалар', 'icon' => 'address-book-o', 'url' => ['/list/index', 'ci' => 1]],
+                ['label' => 'Жойлар', 'icon' => 'building', 'url' => ['/list/places']],
                 ['label' => 'Бизнинг ҳамкорларимиз', 'icon' => 'users', 'url' => ['/list/index', 'ci' => 6]],
                 ['label' => 'Хизматлар', 'icon' => 'truck', 'url' => ['/list/index', 'ci' => 2]],
                 ['label' => 'Фикрлар', 'icon' => 'comments-o', 'url' => ['/reviews/index']],

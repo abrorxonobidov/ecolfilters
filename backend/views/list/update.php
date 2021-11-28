@@ -8,12 +8,14 @@ use yii\helpers\Html;
  */
 
 $this->title = Yii::t('yii', 'Update');
-$this->params['breadcrumbs'][] = ['label' => Yii::$app->request->get('ci') ? $model->category->titleLang : Yii::t('main', 'Рўйхат'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = $model->isPlace()
+    ? ['label' => Yii::t('main', 'Жойлар'), 'url' => ['places']]
+    : ['label' => Yii::$app->request->get('ci') ? $model->category->titleLang : Yii::t('main', 'Рўйхат'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = $this->title;
 
 echo Html::tag('h1', $this->title);
 
-echo $this->render('_form', [
+echo $this->render($model->isPlace() ? '_form_place' : '_form', [
     'model' => $model,
 ]);

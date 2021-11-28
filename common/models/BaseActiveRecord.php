@@ -199,26 +199,26 @@ class BaseActiveRecord extends ActiveRecord
         return $config;
     }
 
-    public function inputGalleryConfig($delUrl)
+    public function inputGalleryConfig($delUrl, $columnName = 'gallery')
     {
         $config = [
             'path' => [],
             'config' => []
         ];
-        if (!$this->isNewRecord && !empty($this->gallery)) {
+        if (!$this->isNewRecord && !empty($this->$columnName)) {
 
-            $files = glob(self::uploadImagePath() . $this->gallery . Yii::$app->params['allowedImageExtension'], GLOB_BRACE);
+            $files = glob(self::uploadImagePath() . $this->$columnName . Yii::$app->params['allowedImageExtension'], GLOB_BRACE);
 
             foreach ($files as $file) {
                 $filePath = explode('/', $file);
                 $imageName = end($filePath);
                 if (file_exists($file)) {
-                    $config['path'][] = Url::to(self::imageSourcePath() . $this->gallery . '/' . $imageName);
+                    $config['path'][] = Url::to(self::imageSourcePath() . $this->$columnName . '/' . $imageName);
                     $config['config'][] = [
                         'caption' => $imageName,
                         'size' => filesize($file),
                         'url' => Url::to([$delUrl]),
-                        'key' => $this->gallery,
+                        'key' => $this->$columnName,
                         'extra' => [
                             'id' => $this->id,
                             'count' => count($files),
