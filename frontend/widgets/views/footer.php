@@ -38,7 +38,7 @@ use frontend\widgets\SocialNetworksMenuWidget;
             <?= SocialNetworksMenuWidget::widget() ?>
             <div class="clearfix"></div>
             <div class="address_b">
-                <?= Yii::t('main', '<p><strong>Манзил:</strong> Тошкент шаҳри,</p><p>Навоий кўчаси 158Б</p>') ?>
+                <?= Yii::t('main', '<p><strong>Манзил:</strong> Тошкент шаҳри,</p><p>Нурмуҳаммедов кўчаси 2</p>') ?>
                 <a href="https://goo.gl/maps/r35vKjRvBxA2fBMy9" target="_blank">
                     <img src="/img/location.png" alt=""/><?= Yii::t('main', 'Харитада кўрсатиш') ?>
                 </a>

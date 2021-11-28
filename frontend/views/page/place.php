@@ -14,7 +14,7 @@ $this->title = $page->titleLang;
 $tab_items = [];
 if ($page->descriptionLang)
     $tab_items[] = [
-        'label' => Yii::t('main', 'Техник тавсифи'),
+        'label' => Yii::t('main', 'Маълумот'),
         'content' =>
         //Html::tag('span', Yii::t('main', 'Техник тавсифи'), ['class' => 'about_product_title']) .
             Html::tag('div', $page->descriptionLang)
@@ -36,6 +36,26 @@ if ($page->video) {
 
 ?>
 
+<style>
+    .static-banner-table {
+        height: 550px;
+    }
+
+    .static-banner-table .col-xs-6 {
+        height: 550px;
+    }
+    @media screen and (max-width: 991px) {
+        .static-banner-table .order_link {
+            top: 50%;
+            right: 10%;
+            position: absolute;
+            transform: translate(0, -50%);
+            margin: 0;
+            width: auto;
+        }
+    }
+</style>
+
 <section class="place-page view_product">
     <div class="container has_width">
         <h1>
@@ -46,12 +66,12 @@ if ($page->video) {
         <div class="static-banner-table hidden-xs"
              style="background: url('<?= $page::imageSourcePath() . $page->preview_image ?>') no-repeat center; background-size: cover">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-6 col-xs-6">
                     <div class="simple-text service-preview">
                         <?= $page->previewLang ?>
                     </div>
                 </div>
-                <div class="col-md-6 text-center">
+                <div class="col-md-6 col-xs-6 text-center">
                     <a type="button" class="order_link pjaxModalButton"
                        href="<?= yii\helpers\Url::to(['order/create']) ?>">
                         <?= Yii::t('main', 'Буюртма бериш') ?>
