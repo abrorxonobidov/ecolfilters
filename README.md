@@ -1,2 +1,2 @@
-# ecolfilters
+# ecofilters
 ecofilters.uz
