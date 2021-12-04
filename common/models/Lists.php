@@ -72,6 +72,7 @@ class Lists extends BaseActiveRecord
 {
 
     public $helpGalleryInner;
+
     /**
      * {@inheritdoc}
      */
@@ -147,6 +148,14 @@ class Lists extends BaseActiveRecord
             'updated_at' => Yii::t('main', 'Updated At'),
             'creator_id' => Yii::t('main', 'Creator ID'),
             'modifier_id' => Yii::t('main', 'Modifier ID'),
+            'title_inner_1_uz' => Yii::t('main', 'Magic view title') . ' UZ',
+            'title_inner_1_oz' => Yii::t('main', 'Magic view title') . ' OZ',
+            'title_inner_1_ru' => Yii::t('main', 'Magic view title') . ' RU',
+            'title_inner_1_en' => Yii::t('main', 'Magic view title') . ' EN',
+            'title_inner_2_uz' => Yii::t('main', 'Content 1 title') . ' UZ',
+            'title_inner_2_oz' => Yii::t('main', 'Content 1 title') . ' OZ',
+            'title_inner_2_ru' => Yii::t('main', 'Content 1 title') . ' RU',
+            'title_inner_2_en' => Yii::t('main', 'Content 1 title') . ' EN',
         ];
     }
 

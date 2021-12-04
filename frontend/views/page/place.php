@@ -44,6 +44,7 @@ if ($page->video) {
     .static-banner-table .col-xs-6 {
         height: 550px;
     }
+
     @media screen and (max-width: 991px) {
         .static-banner-table .order_link {
             top: 50%;
@@ -98,22 +99,16 @@ if ($page->video) {
 
 <section class="place-page view_product">
     <div class="container has_width">
+        <? if ($page->titleInner1Lang) { ?>
+            <p class="review_title text-center"><?= $page->titleInner1Lang ?></p> <br>
+        <? } ?>
         <div class="row">
-            <div class="col-md-6">
-                <div class="simple-text characteristics_info">
-                    <!--<span><? /*= Yii::t('main', 'Характеристика') */ ?></span>-->
-                    <?= $page->previewLang ?>
-                </div>
-            </div>
-            <div class="col-md-6">
+            <div class="col-md-offset-3 col-md-6">
                 <?= frontend\widgets\MagicZoom::widget(['items' => $page->galleryItems()]) ?>
             </div>
         </div>
         <div class="row">
             <div class="col-md-12 text-center">
-                <!--<button type="button" class="order_link_2">
-                    <?/*= Yii::t('main', 'Буюртма бериш') */?>
-                </button>-->
                 <br>
                 <br>
                 <?= yii\helpers\Html::a(Yii::t('main', 'Буюртма бериш'),
@@ -125,15 +120,67 @@ if ($page->video) {
     </div>
 </section>
 
+<section class="place-page view_product">
+    <div class="container has_width">
+        <? if ($page->titleInner2Lang) { ?>
+            <p class="review_title text-center"><?= $page->titleInner2Lang ?></p> <br>
+        <? } ?>
+        <div class="row">
+            <? if ($page->content1Lang) { ?>
+                <div class="col-md-12">
+                    <div class="about_product_b">
+                        <?= $page->content1Lang ?>
+                    </div>
+                </div>
+                <div class="col-md-12 text-center">
+                    <?= yii\helpers\Html::a(Yii::t('main', 'Буюртма бериш'),
+                        ['order/create'],
+                        ['class' => 'my-order-link pjaxModalButton'])
+                    ?>
+                    <br>
+                    <br>
+                    <br>
+                </div>
+            <? } ?>
+            <? if ($page->content2Lang) { ?>
+                <div class="col-md-12">
+                    <div class="about_product_b">
+                        <?= $page->content2Lang ?>
+                    </div>
+                </div>
+            <? } ?>
+            <? if (($inner_gallery = $page->galleryItems('gallery_inner')) != []) { ?>
+                <div class="col-md-12">
+                    <div class="theme-default">
+                        <div class="nivoSlider nivo-slider-class">
+                            <? foreach ($inner_gallery as $galleryItem) { ?>
+                                <img src="<?= $galleryItem ?>" data-thumb="<?= $galleryItem ?>" alt="">
+                            <? } ?>
+                        </div>
+                    </div>
+                </div>
+            <? } ?>
+            <? if ($page->content3Lang) { ?>
+                <div class="col-md-12">
+                    <br>
+                    <br>
+                    <div class="about_product_b">
+                        <?= $page->content3Lang ?>
+                    </div>
+                </div>
+            <? } ?>
+        </div>
+    </div>
+</section>
 
-<section class="place-page product">
+<!--<section class="place-page product">
     <p class="text-center">
         <span class="view_product_title">
-            <?= Yii::t('main', 'Маҳсулотлар') ?>
+            <? /*= Yii::t('main', 'Маҳсулотлар') */ ?>
         </span>
     </p>
     <div class="container has_width">
-        <?= yii\widgets\ListView::widget([
+        <? /*= yii\widgets\ListView::widget([
             'dataProvider' => $dataProvider,
             'itemView' => '/product/_product',
             'options' => ['tag' => false],
@@ -142,13 +189,13 @@ if ($page->video) {
                 'class' => 'text-center'
             ],
             'layout' => "<div class='flex-row row'> {items}</div><div class='text-center'>{pager}</div>"
-        ]); ?>
+        ]); */ ?>
 
         <div class="col-md-offset-4 col-md-4 text-center">
-            <?= Html::a(Yii::t('main', 'Яна маҳсулотлар'),
+            <? /*= Html::a(Yii::t('main', 'Яна маҳсулотлар'),
                 ['product/category', 'pli' => $searchModel['pli']],
                 ['class' => 'order_link', 'style' => 'margin: 50px 0;']
-            ) ?>
+            ) */ ?>
         </div>
     </div>
-</section>
+</section>-->

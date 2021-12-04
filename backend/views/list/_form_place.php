@@ -54,6 +54,33 @@ echo $form->field($model, 'previewImageHelper')
         ]
     ]);
 
+$galleyConfig = $model->inputGalleryConfig('list/gallery-remove');
+
+echo $form->field($model, 'helpGallery[]')
+    ->widget(FileInput::class, [
+        'options' => [
+            'accept' => 'image/*',
+            'multiple' => true
+        ],
+        'pluginOptions' => [
+            'allowedFileExtensions' => ['jpg', 'gif', 'png', 'jpeg', 'mp4', 'svg'],
+            'initialPreview' => $galleyConfig['path'],
+            'initialPreviewAsData' => true,
+            'initialPreviewConfig' => $galleyConfig['config'],
+            'showUpload' => false,
+            'showRemove' => false,
+            'browseClass' => 'btn btn-success',
+            'browseLabel' => Html::icon('folder-open') . '&nbsp;Tanlang...',
+            'browseIcon' => '',
+            'overwriteInitial' => false,
+            'fileActionSettings' => [
+                'removeIcon' => Html::icon('trash'),
+                'showZoom' => false,
+            ]
+        ]
+    ])->label('Magic view');
+
+
 $galleyConfig = $model->inputGalleryConfig('list/gallery-remove', 'gallery_inner');
 
 echo $form->field($model, 'helpGalleryInner[]')
@@ -86,10 +113,10 @@ foreach (Yii::$app->params['languages'] as $lang_code => $language)
         'label' => $language,
         'content' => '<br>' .
             $form->field($model, "title_$lang_code")->textarea(['rows' => 2]) .
-            $form->field($model, "title_inner_1_$lang_code")->textarea(['rows' => 2]) .
-            $form->field($model, "title_inner_2_$lang_code")->textarea(['rows' => 2]) .
             $form->field($model, "preview_$lang_code")->widget(dosamigos\ckeditor\CKEditor::class, $model->ckEditorConfig('p_' . $lang_code)) .
             $form->field($model, "description_$lang_code")->widget(dosamigos\ckeditor\CKEditor::class, $model->ckEditorConfig('d_' . $lang_code)) .
+            $form->field($model, "title_inner_1_$lang_code")->textarea(['rows' => 2]) .
+            $form->field($model, "title_inner_2_$lang_code")->textarea(['rows' => 2]) .
             $form->field($model, "content_1_$lang_code")->widget(dosamigos\ckeditor\CKEditor::class, $model->ckEditorConfig('c_1_' . $lang_code)) .
             $form->field($model, "content_2_$lang_code")->widget(dosamigos\ckeditor\CKEditor::class, $model->ckEditorConfig('c_2_' . $lang_code)) .
             $form->field($model, "content_3_$lang_code")->widget(dosamigos\ckeditor\CKEditor::class, $model->ckEditorConfig('c_3_' . $lang_code))

@@ -217,7 +217,7 @@ class BaseActiveRecord extends ActiveRecord
                     $config['config'][] = [
                         'caption' => $imageName,
                         'size' => filesize($file),
-                        'url' => Url::to([$delUrl]),
+                        'url' => Url::to([$delUrl, 'columnName' => $columnName]),
                         'key' => $this->$columnName,
                         'extra' => [
                             'id' => $this->id,

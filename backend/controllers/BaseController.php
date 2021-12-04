@@ -61,7 +61,7 @@ class BaseController extends Controller {
         return $return;
     }
 
-    public function actionGalleryRemove()
+    public function actionGalleryRemove($columnName = 'gallery')
     {
         $return = false;
         $className = Yii::$app->request->post('className');
@@ -79,7 +79,7 @@ class BaseController extends Controller {
         if (count($images) == 0) {
             BaseActiveRecord::deleteDir($path);
             $model = $className::findOne(Yii::$app->request->post('id'));
-            $model->gallery = '';
+            $model->$columnName = '';
             $model->save();
         }
 

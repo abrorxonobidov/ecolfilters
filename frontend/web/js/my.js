@@ -55,6 +55,7 @@ $(document).ready(function () {
 
     linkShowMore.click();
 
+    $('.nivo-slider-class').nivoSlider();
 
 })
 
