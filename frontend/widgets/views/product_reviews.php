@@ -42,6 +42,8 @@ use yii\helpers\Html;
     <div class="col-md-7 col-sm-7 col-xs-12">
         <div id="review-list" class="rev_users">
         </div>
-        <a href="#" data-offset="0" data-pid="<?= $review->product_id ?>" class="link_show_more">Показать ещё</a>
+        <a href="#" data-offset="0" data-pid="<?= $review->product_id ?>" class="link_show_more">
+            <?=Yii::t('main', 'Яна кўрсатиш')?>
+        </a>
     </div>
 </div>
