@@ -25,9 +25,12 @@ echo DetailView::widget([
     'attributes' => [
         'id',
         'name',
-        'content',
         'target_class',
         'target_id',
+        'content_uz',
+        'content_oz',
+        'content_ru',
+        'content_en',
         //'url:url',
         'enable',
         'created_at',

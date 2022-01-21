@@ -41,7 +41,18 @@ class AddMetaTags extends Widget
                 'columns' => [
                     ['class' => 'yii\grid\SerialColumn'],
                     'name',
-                    'content',
+                    [
+                        'attribute' => 'content',
+                        'value' => function ($model) {
+                            return Html::ul([
+                                "<b>UZ:</b> $model->content_uz",
+                                "<b>OZ:</b> $model->content_oz",
+                                "<b>RU:</b> $model->content_ru",
+                                "<b>EN:</b> $model->content_en",
+                            ], ['encode' => false]);
+                        },
+                        'format' => 'raw'
+                    ],
                     'enable',
                     [
                         'class' => 'yii\grid\ActionColumn',

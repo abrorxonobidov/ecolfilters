@@ -17,14 +17,14 @@ echo GridView::widget([
     'dataProvider' => $dataProvider,
     'filterModel' => $searchModel,
     'columns' => [
+        ['class' => 'yii\grid\SerialColumn'],
+        'name',
         [
             'attribute' => 'id',
             'contentOptions' => [
                 'class' => 'col-md-1'
             ]
         ],
-        'name',
-        'content',
         [
             'attribute' => 'target_class',
             'value' => 'targetClassTitle',
@@ -36,6 +36,18 @@ echo GridView::widget([
             'contentOptions' => [
                 'class' => 'col-md-3'
             ]
+        ],
+        [
+            'attribute' => 'content',
+            'value' => function ($model) {
+                return yii\helpers\Html::ul([
+                    "<b>UZ:</b> $model->content_uz",
+                    "<b>OZ:</b> $model->content_oz",
+                    "<b>RU:</b> $model->content_ru",
+                    "<b>EN:</b> $model->content_en",
+                ], ['encode' => false]);
+            },
+            'format' => 'raw'
         ],
         //'url:url',
         [

@@ -10,7 +10,10 @@ use yii\db\ActiveQuery;
  *
  * @property int $id
  * @property string $name
- * @property string|null $content
+ * @property string $content_uz
+ * @property string $content_oz
+ * @property string $content_ru
+ * @property string $content_en
  * @property ActiveQuery|null $target_class
  * @property int|null $target_id
  * @property string|null $url
@@ -19,9 +22,15 @@ use yii\db\ActiveQuery;
  * @property string|null $updated_at
  * @property int|null $creator_id
  * @property int|null $modifier_id
+ *
+ * @property string|null $content
+ * @property string|null $contentLang
  */
 class MetaTags extends BaseActiveRecord
 {
+
+    public $content;
+
     /**
      * {@inheritdoc}
      */
@@ -41,7 +50,7 @@ class MetaTags extends BaseActiveRecord
             [['url'], 'string'],
             [['created_at', 'updated_at'], 'safe'],
             [['name', 'target_class'], 'string', 'max' => 50],
-            [['content'], 'string'],
+            [['content_uz', 'content_oz', 'content_ru', 'content_en',], 'string'],
         ];
     }
 
@@ -53,6 +62,10 @@ class MetaTags extends BaseActiveRecord
         return array_merge(parent::attributeLabels(), [
             'name' => Yii::t('main', 'Name'),
             'content' => Yii::t('main', 'Content'),
+            'content_uz' => Yii::t('main', 'Content') . ' UZ',
+            'content_oz' => Yii::t('main', 'Content') . ' OZ',
+            'content_ru' => Yii::t('main', 'Content') . ' RU',
+            'content_en' => Yii::t('main', 'Content') . ' EN',
             'target_class' => Yii::t('main', 'Тури'),
             'target_id' => Yii::t('main', 'Тури ID'),
             'url' => Yii::t('main', 'Url'),
@@ -95,5 +108,15 @@ class MetaTags extends BaseActiveRecord
     public function getTargetClassTitle()
     {
         return self::typeList()[$this->target_class];
+    }
+
+    public function getContent()
+    {
+        return $this->{'content_' . Yii::$app->language};
+    }
+
+    public function getContentLang()
+    {
+        return $this->{'content_' . Yii::$app->language};
     }
 }

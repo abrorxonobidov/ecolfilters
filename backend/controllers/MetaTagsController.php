@@ -2,6 +2,7 @@
 
 namespace backend\controllers;
 
+use common\helpers\DebugHelper;
 use Yii;
 use common\models\MetaTags;
 use common\models\MetaTagsSearch;
@@ -38,8 +39,12 @@ class MetaTagsController extends BaseController
 
         $model->target_class = $tcl;
         $model->target_id = $tid;
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+            if ($model->save()) {
+                return $this->redirect(['view', 'id' => $model->id]);
+            } else {
+                DebugHelper::printSingleObject($model->errors, 1);
+            }
         }
 
         return $this->render('create', [
@@ -51,8 +56,12 @@ class MetaTagsController extends BaseController
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+            if ($model->save()) {
+                return $this->redirect(['view', 'id' => $model->id]);
+            } else {
+                DebugHelper::printSingleObject($model->errors, 1);
+            }
         }
 
         return $this->render('update', [

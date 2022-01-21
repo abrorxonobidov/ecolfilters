@@ -45,7 +45,14 @@ echo GeneralHelper::oneRow([
 
 echo $form->field($model, 'name')->textInput(['maxlength' => true]);
 
-echo $form->field($model, 'content')->textarea(['rows' => 6]);
+$items = [];
+foreach (Yii::$app->params['languages'] as $lang_code => $language)
+    $items[] = [
+        'label' => $language,
+        'content' => '<br>' . $form->field($model, "content_$lang_code")->textarea(['rows' => 6]),
+    ];
+
+echo yii\bootstrap\Tabs::widget(['items' => $items]);
 
 //echo $form->field($model, 'url')->textInput();
 

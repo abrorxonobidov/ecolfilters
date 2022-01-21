@@ -3,6 +3,7 @@
 namespace frontend\widgets;
 
 use common\models\MetaTags;
+use Yii;
 use yii\base\Widget;
 
 /**
@@ -20,6 +21,10 @@ class MetaTagsWidget extends Widget
     public function run()
     {
         $meta_tags = MetaTags::find()
+            ->select([
+                'name',
+                'content' => 'content_' . Yii::$app->language
+            ])
             ->where([
                 'target_class' => $this->target_class,
                 'target_id' => $this->target_id,
