@@ -6,6 +6,9 @@
  */
 
 $this->title = Yii::t('main', 'Тоза сув — <br>бу ECOFILTERS');
+
+echo frontend\widgets\MetaTagsWidget::widget(['target_class' => common\models\Lists::className(), 'target_id' => 41]);
+
 ?>
 
 <section class="news_block">
